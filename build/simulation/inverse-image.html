@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+	<link rel="stylesheet" href="./css/sigma-algebra.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	<title>
+		Random Variables
+	</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="columns is-centered">
+				<div class="column is-one-quarter v-instruction-title">
+					Tasks
+				</div>
+				<div class="column">
+					<div class="v-tabs">
+						<ul>
+							<li id="Task1" onclick="window.location.href = 'sigma-algebra.html';">
+								<a>
+									Sigma Algebra
+								</a>
+							</li>
+							<li id="Task2" class="is-active" >
+								<a>
+									Inverse image
+								</a>
+							</li>
+							<li id="Task3" onclick="window.location.href = 'valid-rv.html';">
+								<a>
+									Valid RV
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class ="mainContainer">
+		<div class="v-collapsible-instruction-container v-instruction-container">
+			<div class="v-collapsible is-size-5">Instructions</div>
+				<div class="v-content" style="text-align: left;">
+					<ul style="list-style: disc;">
+						<b>Quick theory overview:</b>
+						<li>
+							For a given constant \(c\), the inverse image of \(c\) is defined as $$\mathcal{f}^{-1}(c) = \{ \omega_i : \mathcal{f}(\omega_i) \leq c\}$$
+						</li>
+					</ul>
+					<br>
+					<ul style="list-style: disc;">
+						<b>Procedure:</b>
+						<li> Given: A function \(\mathcal{f}\), a sample space \(\Omega\), and a variable \(c\)</li>
+						<li> Populate the function \(\mathcal{f}\) and the variable \(c\) using the generate button given below </li>
+						<li> The generate button will give a random mapping for the function \(\mathcal{f}\) with values ranging from \(-7.5\) to \(7.5\) </li>
+						<li> Please select the subset of \( \Omega \) which is the inverse image of the generated function \(\mathcal{f}\) </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="questionContainer">
+			<p style= "text-align: left; font-size: 15px; font-weight: bold;">
+				<u> Question:</u>
+			</p>
+			<p style= "text-align: center; font-size: 15px; padding: 10px;">
+				Given a sample space \( \Omega = \{\omega_1, \omega_2, \omega_3, \omega_4\}\) and a function from \(\mathcal{f}: \Omega \to \mathbb{R}\). Find the inverse image for the function \(\mathcal{f}\) based on the value \(c\) that was randomly generated:
+			</p>
+		</div>
+		<div class="experimentContainer">
+			<div class="graphContainer">
+				<canvas class= "canvas" id="mychart1"></canvas>
+			</div>
+			<div class="graphContainer">
+				<canvas class= "canvas" id="mychart3"></canvas>
+			</div>
+			<div class="graphContainer">
+				<canvas class="canvas" id="mychart2"></canvas>
+			</div>
+			<div class="graphContainer">
+				<canvas class="canvas" id="mychart4"></canvas>
+			</div>
+			<div class="mcqContainer" id="mcq">
+				Questions
+			</div>
+			<div class="observationContainer" id="observation">
+				Observation
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+	<script src="./js/inverse-image.js"></script>
+</body>
+</html>
