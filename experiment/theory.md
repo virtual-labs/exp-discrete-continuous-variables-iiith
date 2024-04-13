@@ -1,1 +1,1 @@
-### Link your theory in here
+# Discrete and Continuous Random Variables

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+	<link rel="stylesheet" href="./css/valid-rv.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	<title>
+		Random Variables
+	</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+
+		<div class="columns is-centered">
+			<div class="columns is-centered">
+				<div class="column is-one-quarter v-instruction-title">
+					Tasks
+				</div>
+				<div class="column">
+					<div class="v-tabs">
+						<ul>
+							<li id="Task1" onclick="window.location.href = 'sigma-algebra.html';">
+								<a>
+									Sigma Algebra
+								</a>
+							</li>
+
+							<li id="Task2" onclick="window.location.href = 'inverse-image.html';">
+								<a>
+									Inverse image
+								</a>
+							</li>
+
+							<li id="Task3" class="is-active">
+								<a>
+									Valid RV
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns is-centered">
+
+			<div class="column">
+				<div class="v-collapsible-instruction-container v-instruction-container">
+					<div class="v-collapsible is-size-5">Instructions</div>
+					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+						<ul style="list-style: disc;">
+							<b>Quick theory overview:</b>
+							<ul style="list-style: disc;">
+								<b>Procedure:</b>
+								<p>
+									<li>You have to find a valid Random Variable for the given sigma algebra from the given function mappings.</li>
+									<li>Click on the function mappings to select it.</li>
+									<li>Click on the submit button to check your answer.</li>
+									<li>Click on the reset button to clear your answer.</li>
+								</p>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<section id="page1">
+		<div class="columns is-centered">
+			<div class="column is-11-desktop is-12-tablet is-12-mobile">
+				<div class="v-datalist-container components-list">
+					<br>
+					<p> Given a sample space \(\{\omega_1,\omega_2,\omega_3,\omega_4\}\) and sigma algebra \(\mathcal{F}=\{\{\},\{\omega_1,\omega_2,\omega_3,\omega_4\},\{\omega_1\},\{\omega_2,\omega_3,\omega_4\}\}\), select a function which is a valid RV.
+					</p>
+					<br>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+			style="margin-top: 2%;">
+			<div class="column is-8-desktop is-12-tablet is-12-mobile">
+				<div class="box-question">
+					<div class="image-container">
+						<img id="img_f1" src="./images/valid-rv_f1.png" alt="valid-rv-f1" onclick="chooseFunction1(1)">
+						<img id="img_f2" src="./images/valid-rv_f2.png" alt="valid-rv-f2" onclick="chooseFunction1(2)">
+						<img id="img_f3" src="./images/valid-rv_f3.png" alt="valid-rv-f3" onclick="chooseFunction1(3)">
+						<img id="img_f4" src="./images/valid-rv_f4.png" alt="valid-rv-f4" onclick="chooseFunction1(4)">
+					</div>
+
+					<button class="v-button" role="button" onclick="check1()"> Submit </button>
+					<button class="v-button" role="button" onclick="reset1()"> Reset </button>
+					<!-- <button class="v-button" role="button" onclick="page2()"> Next </button> -->
+
+				</div>
+			</div>
+			<div class="column is-3-desktop is-4-tablet is-12-mobile">
+				<div class="v-datalist-container components-list canvas-container">
+					<div class="v-datalist-title">Observations</div>
+					<div>
+						<div id="observations1"></div>
+						<div id="results1"></div>
+						<div class="canvas-container">
+							<canvas id="canvas1"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+	<script src="./js/valid-rv.js"></script>
+</body>
+
+
+</html>

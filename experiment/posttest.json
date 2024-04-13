@@ -2,38 +2,55 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "1. For a sample space $\\Omega = \\{w_1,w_2,w_3,w_4\\}$, and a random variable $X$ such that $X(w_1) = X(w_3) = X(w_4) = 2.5 $ and $X(w_2) = 1 $, what is the smallest possible sigma algebra $\\mathcal{F}$ that makes the random variable valid?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Power set of $\\Omega$",
+        "b": "$\\{\\phi, \\Omega, \\{w_1\\} \\}$",
+        "c": "$\\{\\phi, \\Omega, \\{w_1, w_3, w_4\\}, \\{w_2\\}, \\{w_3\\}, \\{w_1, w_2, w_4\\}, \\{w_1, w_4\\}, \\{w_2, w_3\\}  \\}$",
+        "d": "$\\{\\phi, \\Omega, \\{w_1, w_3, w_4\\}, \\{w_2\\} \\}$"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "While it is a valid $\\mathcal{F}$, it is not the smallest possible sigma algebra",
+        "b": "Not a valid $\\mathcal{F}$",
+        "c": "valid $\\mathcal{F}$ but its not the smallest",
+        "d": "Correct answer"
       },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "2. Which of the following statements are true?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+      "a": " If $A  \\& B$ are independent, then $A \\cap B = \\phi$" ,
+      "b": "A probability space $(\\Omega, \\mathcal{F}, \\mathbb{P})$ is called a complete space if atleast one of the subset of each null sets are events.",
+      "c": "Impossible event is null, but null events need not be impossible",
+      "d": "All of the above"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "a": "Condition described is for mutually exclusive events",
+      "b": "all subsets of null sets should be events",
+      "c": "Correct answer",
+      "d": "Only one of the statement is true"
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "Easy"
+    },
+    {
+      "question": "3. Given a $\\Omega = \\{1, 2, 3, 4\\}$ and $\\mathcal{F} = \\{ \\phi, \\Omega, \\{1\\}, \\{2\\}, \\{1,2\\}, \\{3,4\\}, \\{1,3,4\\}, \\{2,3,4\\}\\}$ and a valid random mapping $X(1) = 5, X(2) = 4, X(3) = 1, X(4) = 1$ and the inverse image of $c$, denoted by $X^{-1}(c) = \\{ 2, 3, 4\\}$ what is the valid range for values of $v$ ",
+      "answers": {
+      "a": "Less than 1" ,
+      "b": "Greater than or equal to 1 and less than 4",
+      "c": "Greater than or equal to 4 and less than 5",
+      "d": "Greater than or equal to 5"
+      },
+      "explanations": {
+      "a": " $X(^{-1}(c) = \\{\\phi\\}$ ",
+      "b": " $X(^{-1}(c) = \\{\\3, 4\\}$",
+      "c": " Correct answer",
+      "d": " $X(^{-1}(c) = \\{1,2,3,4\\}$"
+      },
+      "correctAnswer": "c",
+      "difficulty": "Easy"
     }
   ]
 }
