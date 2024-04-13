@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+	<link rel="stylesheet" href="./css/cdf.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	<title>
+		Continuous and Discrete Random Variables
+	</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+
+		<div class="columns is-centered">
+			<div class="columns is-centered">
+				<div class="column is-one-quarter v-instruction-title">
+					Tasks
+				</div>
+				<div class="column">
+					<!-- <div class="v-tabs">
+						<ul>
+							<li class="is-active" id="Task1">
+								<a>
+									Sigma Algebra
+								</a>
+							</li>
+
+							<li id="Task2" onclick="window.location.href = 'inverse-image.html';">
+								<a>
+									Inverse image
+								</a>
+							</li>
+
+							<li id="Task3" onclick="window.location.href = 'valid-rv.html';">
+								<a>
+									Valid RV
+								</a>
+							</li>
+						</ul>
+					</div> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="columns is-centered">
+
+			<div class="column">
+				<div class="v-collapsible-instruction-container v-instruction-container">
+					<div class="v-collapsible is-size-5">Instructions</div>
+					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+						<ul style="list-style: disc;">
+							<b>Quick theory overview:</b>
+							<ul style="list-style: disc;">
+								<b>Procedure:</b>
+								<p></p>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<section id="page1">
+		<div class="columns is-centered">
+			<div class="column is-11-desktop is-12-tablet is-12-mobile">
+				<div class="v-datalist-container components-list">
+					<br>
+					<p>
+						Given a sample space
+						\(\Omega = \{\omega_1,\omega_2,\omega_3,\omega_4\}\)
+						, event space
+						\(\mathcal{F}\)
+						=
+						\(\{\phi,\{\omega_1,\omega_2,\omega_3,\omega_4\},\{\omega_1\},\{\omega_2,\omega_3,\omega_4\}\}\)
+						, a probability measure
+						\(P\)
+						such that
+						\(P(\{\omega_1\}) = 0.2\),
+						\(P(\{\omega_2,\omega_3,\omega_4\}) = 0.8\)
+						, and a random variable
+						\( X\)
+						such that
+						\(X(\omega_1) = 1\),
+						\(X(\omega_2) = 2\),
+						\(X(\omega_3) = 2\),
+						and
+						\(X(\omega_4) = 2.\)
+					</p>
+					<br>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+			style="margin-top:-1.5%">
+			<div class="column is-8-desktop is-12-tablet is-12-mobile">
+				<div class="box-question">
+
+					<div id="generateNumberButton1">
+						<p>Click on the button to generate a random number.
+							<button class="v-button" role="button" onclick="generateRandom1()"> Generate </button>
+						</p>
+					</div>
+					<div id="generatedNumber1"></div>
+
+					<div id="selectInverseImage1" class="hiddenInitially">
+						Now, select the inverse image of c for the given RV \(X\).
+						<div class="grid-container scroll-view">
+							<div class="ans" id="ans1" onclick="setInvImg1(0,0,0,0)">
+								\(\phi\)
+							</div>
+							<div class="ans" id="ans2" onclick="setInvImg1(1,0,0,0)">
+								\(\{\omega_1\}\)
+							</div>
+							<div class="ans" id="ans3" onclick="setInvImg1(0,1,0,0)">
+								\(\{\omega_2\}\)
+							</div>
+							<div class="ans" id="ans4" onclick="setInvImg1(0,0,1,0)">
+								\(\{\omega_3\}\)
+							</div>
+							<div class="ans" id="ans5" onclick="setInvImg1(0,0,0,1)">
+								\(\{\omega_4\}\)
+							</div>
+							<div class="ans" id="ans6" onclick="setInvImg1(1,1,0,0)">
+								\(\{\omega_1, \omega_2\}\)
+							</div>
+							<div class="ans" id="ans7" onclick="setInvImg1(1,0,1,0)">
+								\(\{\omega_1, \omega_3\}\)
+							</div>
+							<div class="ans" id="ans8" onclick="setInvImg1(1,0,0,1)">
+								\(\{\omega_1, \omega_4\}\)
+							</div>
+							<div class="ans" id="ans9" onclick="setInvImg1(0,1,1,0)">
+								\(\{\omega_2, \omega_3\}\)
+							</div>
+							<div class="ans" id="ans10" onclick="setInvImg1(0,1,0,1)">
+								\(\{\omega_2, \omega_4\}\)
+							</div>
+							<div class="ans" id="ans11" onclick="setInvImg1(0,0,1,1)">
+								\(\{\omega_3, \omega_4\}\)
+							</div>
+							<div class="ans" id="ans12" onclick="setInvImg1(1,1,1,0)">
+								\(\{\omega_1, \omega_2, \omega_3\}\)
+							</div>
+							<div class="ans" id="ans13" onclick="setInvImg1(1,1,0,1)">
+								\(\{\omega_1, \omega_2, \omega_4\}\)
+							</div>
+							<div class="ans" id="ans14" onclick="setInvImg1(1,0,1,1)">
+								\(\{\omega_1, \omega_3, \omega_4\}\)
+							</div>
+							<div class="ans" id="ans15" onclick="setInvImg1(0,1,1,1)">
+								\(\{\omega_2, \omega_3, \omega_4\}\)
+							</div>
+							<div class="ans" id="ans16" onclick="setInvImg1(1,1,1,1)">
+								\(\{\omega_1, \omega_2, \omega_3, \omega_4\}\)
+							</div>
+						</div>
+					</div>
+					<div id="selectedInverseImage1"></div>
+
+					<div id="enterCDF1" class="hiddenInitially">
+						<p>Now, find the CDF of the random variable \(X\) at c using this inverse image and the given
+						probability measure.</p>
+						<input type="number" id="enteredCDF1" placeholder="Enter c" required>
+						<button class="v-button" role="button" onclick="checkCDF1()"> Submit </button>
+					</div>
+					<div id="showCDF1"></div>
+
+
+					<div class="button-holder-div">
+						<button class="v-button" role="button" onclick="reset1()"> Reset </button>
+						<!-- <button class="v-button" role="button" onclick="page2()"> Next </button> -->
+					</div>
+				</div>
+			</div>
+
+			<div class="column is-3-desktop is-4-tablet is-12-mobile">
+				<div class="v-datalist-container components-list">
+					<div class="v-datalist-title">Observations</div>
+					<div id="observations1">
+					</div>
+					<div id="results1">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+	<script src="./js/cdf.js"></script>
+</body>
+
+
+</html>
