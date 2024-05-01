@@ -141,8 +141,8 @@
 /* Srikar's CSS */
 
 .mainContainer {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
   padding-top: 2%;
   padding-bottom: 2%;
   overflow-x: scroll;
@@ -151,123 +151,102 @@
 .questionContainer{
   border: 2px solid green;
   padding-left: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
+  padding-right: 3%;
+  margin: 0.5% 3.5%;
   border-radius: 10px;
   background-color: bisque;
   text-align: center;
 }
 
-.experimentAndObservationContainer {
-  display: flex;
-  border-radius: 10px;
-  margin-left: 5%;
-  margin-top: 2%;
-  margin-right: 5%;
-  align-items: center;
-  flex-direction: column; /* Stack vertically by default */
-}
-
 .experimentContainer {
-  border-radius: 10px;
-  flex: 30%;
-  border: 2px solid green;
-  margin: 0.75%;
-}
-
-.observationContainer {
-  border-radius: 10px;
-  flex: 70%;
-  border: 2px solid green;
-  text-align: center;
-  font-size: 15px;
-  height: 375px;
-  margin: 0.75%;
-}
-
-.buttonsContainer{
-  border-radius: 10px;
-  margin: 1%;
-  display: flex;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  margin: 10px;
-  row-gap: 10px;
+  border: 2px solid green; 
+  row-gap: 5px;
   column-gap: 5px;
-}
-
-.grid-container > div {
   border-radius: 10px;
-  background-color: beige;
-  border: 2px black solid;
-  color: black;
-  text-align: center;
-  padding: 5px;
-  font-size: 10px;
-}
-
-.inputContainer {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-}
-
-.valuesContainer {
-  color: black;
-  text-align: left;
-  font-size: 10px;
-  height: 35px;
-  margin: 15px;
-}
-
-.item5{
-  grid-column-start: 1;
-  grid-column-end: 5;
-  color: black;
-  font-size: 15px;
-  text-align: center;
-  border-color: black;
+  margin: 0.5% 3.5%;
   align-items: center;
-  padding: 5px;
-}
-
-#randomNumGeneratorButton{
-  border-radius: 10px;
-  background-color: black;
-  color: goldenrod;
-  font-size: 15px;
-  padding: 5px;
-}
-
-#randomNumGeneratorButton:hover{
-  background-color: darkblue;
-  color: beige;
-}
-
-.ans:hover{
-  background-color: darkblue;
-  color: beige;
 }
 
 /* Media query for landscape mode */
 @media (orientation: landscape) {
-  .experimentAndObservationContainer {
-      flex-direction: row; /* Lay out side by side */
-      justify-content: center; /* Center align the child elements horizontally */
+  .experimentContainer {
+    border: 2px solid green;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0.5% 3.5%;
+    padding: 0.5%;
+    align-items: center;
+  }
+
+  .graphContainer{
+    align-items: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    max-width:45vw;
+    max-height: 55vh;
+    width: 45vw;
+    height: 55vh;
+  }
+
+  .observationContainer{
+    align-items: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    max-width:45vw;
+    max-height: 55vh;
+    width: 45vw;
+    height: 55vh;
+  }
+
+  .observationTitle{
+    text-align: center;
+    border: 2px solid black;
+  }
+
+  .mcqContainer{
+    align-items: center;
+    justify-content: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    max-width:45vw;
+    max-height: 55vh;
+    width: 45vw;
+    height: 55vh;
+  }
+
+  .answerdiv{
+    border: 2px solid green;
+    margin: 0.5%;
+    border-radius: 15px;
+    text-align: center;
+    color: black;
+    background-color: beige;
+  }
+
+  .answerdiv:hover{
+    background-color: darkblue;
+    color: gold;
+  }
+  
+  .questiondiv{
+    border: 2px solid black;
+    margin: 0.5%;
+    border-radius: 10px;
+    text-align: center;
   }
 }
 
-.graphContainer{
-  height: 250px;
-  align-items: center;
-}
-
-#myChart1{
-  align-items: center;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+@media (orientation: portrait){
+  .graphContainer{
+    align-items: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    max-width:90vw;
+    max-height: 40vh;
+    width: 90vw;
+    height: 40vh;
+  }  
 }

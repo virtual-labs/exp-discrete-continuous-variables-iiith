@@ -73,98 +73,60 @@
 				<u> Question:</u>
 			</p>
 			<p style= "text-align: center; font-size: 15px; padding: 10px;">
-				Given a sample space \( \Omega = \{\omega_1, \omega_2, \omega_3, \omega_4\}\) and a function from \(\mathcal{f}: \Omega \to \mathbb{R}\). Find the inverse image for the function \(\mathcal{f}\) based on the value \(c\) that was randomly generated:
+
+				\(X\) is a random variable defined over a sample space \( \Omega \) and a function from \(\mathcal{f}\). Below are 4 graphs which are the distributive function \(F\) of various random variables X. Choose the appropriate answer for each graph which represents 
 			</p>
 		</div>
-		<div class="experimentAndObservationContainer">
-			<div class="experimentContainer">
-				<div class="inputContainer">
-					<div class="item5">
-						<form id="myForm">
-							Please enter a value for \(c\) :
-							<input type="number" id="myNumberInput" value="0" onkeypress= "return isNumberKey(event)" /><br>
-						</form>
-					</div>
-					<div class="valuesContainer">
-						\(\mathcal{f}(\omega_1)\) = <type="number" class="inputNumber" id="W1"></type>
-					</div>
-					<div class="valuesContainer">
-						\(\mathcal{f}(\omega_2)\) = <type="number" class="inputNumber" id="W2"></type>
-					</div>
-					<div class="valuesContainer">
-						\(\mathcal{f}(\omega_3)\) = <type="number" class="inputNumber" id="W3"></type>
-					</div>  
-					<div class="valuesContainer">
-						\(\mathcal{f}(\omega_4)\) = <type="number" class="inputNumber" id="W4"></type>
-					</div>
-					<div class="item5">
-						<button type="button" id="randomNumGeneratorButton">Generate</button>
-					</div>
+		<div class="experimentContainer">
+			<div class="graphContainer" onclick="sendresponse(1)">
+				<div class = "questiondiv" style="text-align: center;">
+					\(X\) is a Uniform discrete random variable with the values of \(x = \{1,2,3,4,5\}\)
 				</div>
-				<div class="grid-container">
-					<div class="ans" id ="ans1" onclick="verifyAns(0,0,0,0)">
-						\(\phi\)
-					</div>
-					<div class="ans" id ="ans2"  onclick="verifyAns(1,0,0,0)">
-						 \(\{\omega_1\}\)
-					</div>
-					<div class="ans" id ="ans3" onclick="verifyAns(0,1,0,0)">
-						\(\{\omega_2\}\)
-					</div>
-					<div class="ans" id ="ans4" onclick="verifyAns(0,0,1,0)">
-						\(\{\omega_3\}\)
-					</div>
-					<div class="ans" id ="ans5" onclick="verifyAns(0,0,0,1)">
-						\(\{\omega_4\}\)
-					</div>
-					<div class="ans" id ="ans6" onclick="verifyAns(1,1,0,0)">
-						\(\{\omega_1, \omega_2\}\)
-					</div>
-					<div class="ans" id ="ans7" onclick="verifyAns(1,0,1,0)">
-						\(\{\omega_1, \omega_3\}\)
-					</div>
-					<div class="ans" id ="ans8" onclick="verifyAns(1,0,0,1)">
-						\(\{\omega_1, \omega_4\}\)
-					</div>
-					<div class="ans" id ="ans9" onclick="verifyAns(0,1,1,0)">
-						\(\{\omega_2, \omega_3\}\)
-					</div>
-					<div class="ans" id ="ans10" onclick="verifyAns(0,1,0,1)">
-						\(\{\omega_2, \omega_4\}\)
-					</div>
-					<div class="ans" id ="ans11" onclick="verifyAns(0,0,1,1)">
-						\(\{\omega_3, \omega_4\}\)
-					</div>
-					<div class="ans" id ="ans12" onclick="verifyAns(1,1,1,0)">
-						\(\{\omega_1, \omega_2, \omega_3\}\)
-					</div>
-					<div class="ans" id ="ans13" onclick="verifyAns(1,1,0,1)">
-						\(\{\omega_1, \omega_2, \omega_4\}\)
-					</div>
-					<div class="ans" id ="ans14" onclick="verifyAns(1,0,1,1)">
-						\(\{\omega_1, \omega_3, \omega_4\}\)
-					</div>
-					<div class="ans" id ="ans15" onclick="verifyAns(0,1,1,1)">
-						\(\{\omega_2, \omega_3, \omega_4\}\)
-					</div>
-					<div class="ans" id ="ans16" onclick="verifyAns(1,1,1,1)">
-						\(\{\omega_1, \omega_2, \omega_3, \omega_4\}\)
-					</div>
-				</div>				
-				<div class = "item5">
-					<button id = "randomNumGeneratorButton" onclick="resetValues()">
-						Reset 
-					</button>
+					<img alt="My Image" src="./images/UniformCDFDiscrete.png" style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;" />
+			</div>
+			<div class="graphContainer" onclick="sendresponse(2)">
+				<div class = "questiondiv" style="text-align: center;">
+					\(X\) is a Binomial discrete random variable with \(n = 5\) and \(p > 0.5 \)
+				</div>
+					<img  alt="My Image" src="./images/BinomialCDF.png" style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;"/>
+			</div>
+			<div class="graphContainer" onclick="sendresponse(3)">
+				<div class = "questiondiv" style="text-align: center;">
+					\(X\) is a uniform continous random variable \(a = 2\) and \(b = 5\)
+				</div>
+				<img alt="My Image" src="./images/UniformCDF.png" style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;"/>
+			</div>
+			<div class="graphContainer" onclick="sendresponse(4)">
+				<div class = "questiondiv" style="text-align: center;">
+					\(X\) is a normal continous random variable with \( \mu = 0\) and \( \sigma = 2\)
+				</div>
+				<img alt="My Image" src="./images/NormalCDF.png"  style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;"/>
+			</div>
+			<div class="mcqContainer" id="mcq">
+				<div class = "questiondiv" > 
+					<p id="AnswerChoiceText">No choice has been made by the user so far</p>
+				</div>
+				<div class="answerdiv" onclick="checkanswer(1)" >
+					Property 1: \(lim_{x \rightarrow 0} F(x) = 0,  lim_{x \rightarrow \infty} F(x) = 1\)
+				</div>
+				<div class="answerdiv" onclick="checkanswer(2)">
+					Property 2: if \(x <  y \) then \(F(x) \leq F(y)\)
+				</div>
+				<div class="answerdiv" onclick="checkanswer(3)">
+					Property 3: \(F\) is right continous, \(F(x+h) \rightarrow F(x)\) as \(h \rightarrow 0\)
+				</div>
+				<div class="answerdiv" onclick="checkanswer(4)">
+					All the properties of \(F(x)\) for all \( x \in \mathbb{R}\) satisfy
 				</div>
 			</div>
-			<div class="observationContainer">
-				<u> Observations </u>
-				<p id="observationText1"> 
-					Please generate the values using the "Generate" button
-				<div class = "graphContainer">
-				<canvas id="myChart1"></canvas>
+				<div class="observationContainer" id="observation">
+					<div class="observationTitle">
+						Observation
+					</div>
+					<div class="observationBody" style="text-align: center;">
+						<p id="obsBody">No choice has been made the user so far</p>
+					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
