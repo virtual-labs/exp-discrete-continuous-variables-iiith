@@ -40,9 +40,16 @@
       "content-type": "text"
     },
     {
-      "target": "sigmaAlgebra.html",
-      "source": "simulation/sigma-algebra.html",
-      "label": "Experiments",
+      "target": "cdf.html",
+      "source": "simulation/cdf.html",
+      "label": "Experiments Part 1",
+      "unit-type": "task",
+      "content-type": "simulation"
+    },
+    {
+      "target": "bernoulli.html",
+      "source": "simulation/bernoulli.html",
+      "label": "Experiments Part 2",
       "unit-type": "task",
       "content-type": "simulation"
     },
