@@ -1,6 +1,7 @@
 var p;
 var result;
 var counter = 0;
+const maxCounter = 40;
 
 // on dom load
 document.addEventListener("DOMContentLoaded", function () {
@@ -30,6 +31,10 @@ function bernoulli() {
 function updateCounter() {
     counter++;
     document.getElementById("geometric-counter").innerHTML = counter;
+    if (counter == maxCounter) {
+        document.getElementById("bernoulli-instance-btn").disabled = true;
+        showObservations();
+    }
     if (result == 1) {
         document.getElementById("bernoulli-instance-btn").disabled = true;
         showObservations();
@@ -38,6 +43,12 @@ function updateCounter() {
 
 
 function showObservations() {
+    if(counter == maxCounter) {
+        var observation = "We got Tail in all the "+maxCounter+" trials. Please choose a higher value for P(H) and try again.<br>";
+        document.getElementById("observations").innerHTML = observation;
+        document.getElementById("observations").style.color = "red";
+        return;
+    }
     var observation = "We got Head in the <b>" + counter + (counter == 1 ? "st" : counter == 2 ? "nd" : counter == 3 ? "rd" : "th") + "</b> trial in this experiment. Thus, the value of the Geometric random variable is <b>X = " + counter + "</b>.<br>";
     document.getElementById("observations").innerHTML = observation;
 }
@@ -50,6 +61,7 @@ function reset() {
     document.getElementById("bernoulli-instance").style.display = "none";
     document.getElementById("bernoulli-instance-btn").disabled = false;
     document.getElementById("observations").innerHTML = "";
+    document.getElementById("observations").style.color = "black";
     document.getElementById("bernoulli-result").innerHTML = "";
     document.getElementById("geometric-counter-div").style.display = "none";
 }
