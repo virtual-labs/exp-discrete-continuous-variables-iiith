@@ -1,0 +1,252 @@
+#observations,
+#observations1,
+#observations2,
+#observations3{
+  font-size: 1.25em;
+}
+
+@media screen and (min-width: 400px) {
+  .field {
+      margin-left: 1.5em;
+      margin-right: 1.5em;
+      padding-top: 1em;
+      display: inline-flex;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .field {
+      margin-left: 1em;
+      margin-right: 1em;
+      padding-top: 1em;
+      display: inline-flex;
+  }
+
+}
+
+@media screen and (max-width: 750px) {
+  .center {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .scroll-box-2,
+  .scroll-box-4,
+  .scroll-box-6 {
+    overflow-x: scroll;
+  }
+
+  #tile-container-2,
+  #tile-container-4,
+  #tile-container-6  {
+    padding-left: 1em;
+    padding-right: 1em;
+    display: inline-flex;
+  }
+
+}
+
+@media screen and (min-width: 751px) {
+  .center {
+    text-align: center;
+    font-size: 3em;
+  }
+
+  .scroll-box-2,
+  .scroll-box-4,
+  .scroll-box-6 {
+    display: inline-flex;
+  }
+
+  #tile-container-2,
+  #tile-container-4,
+  #tile-container-6 {
+    display: inline-flex;
+  }
+}
+
+
+#top-bar-1,
+#top-bar-2,
+#top-bar-3 {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  background-color: white;
+  box-shadow: 0 0.1em 0.4em 0 rgba(0, 0, 0, 0.3);
+  min-height: 9em;
+  display: flex;
+}
+
+
+#drop-panel-1,
+#drop-panel-2,
+#drop-panel-3 {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding-left: 1em;
+  background-color: white;
+  box-shadow: 0 0.1em 0.4em 0 rgba(0, 0, 0, 0.3);
+  min-height: 9em;
+  display: flex;
+}
+
+#tile-container-1,
+#tile-container-3,
+#tile-container-5 {
+  padding-left: 1em;
+  padding-right: 1em;
+  display: inline-flex;
+}
+
+.scroll-box-1,
+.scroll-box-3,
+.scroll-box-5 {
+  overflow-x: scroll;
+}
+
+.tile {
+  background-color: mediumvioletred;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 4em;
+  height: 2em;
+  font-size: 0.9em;
+  cursor: pointer;
+  box-shadow: 0 0.1em 0.4em 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin: 1em;
+}
+
+.tile2 {
+  background-color: cornflowerblue;
+  color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 4em;
+  height: 2em;
+  font-size: 0.9em;
+  cursor: pointer;
+  box-shadow: 0 0.1em 0.4em 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin: 1em;
+}
+
+/* Srikar's CSS */
+
+.mainContainer {
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  overflow-x: scroll;
+}
+
+.questionContainer{
+  border: 2px solid green;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin: 0.5% 3.5%;
+  border-radius: 10px;
+  background-color: bisque;
+  text-align: center;
+}
+
+.experimentContainer {
+  border: 2px solid green; 
+  row-gap: 5px;
+  column-gap: 5px;
+  border-radius: 10px;
+  margin: 0.5% 3.5%;
+  align-items: center;
+}
+
+/* Media query for landscape mode */
+@media (orientation: landscape) {
+  .experimentContainer {
+    border: 2px solid green;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0.5% 3.5%;
+    padding: 0.5%;
+    align-items: center;
+  }
+
+  .graphContainer{
+    align-items: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    max-width:45vw;
+    max-height: 55vh;
+    width: 45vw;
+    height: 55vh;
+  }
+
+  .observationContainer{
+    align-items: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    max-width:45vw;
+    max-height: 55vh;
+    width: 45vw;
+    height: 55vh;
+  }
+
+  .observationTitle{
+    text-align: center;
+    border: 2px solid black;
+  }
+
+  .mcqContainer{
+    align-items: center;
+    justify-content: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    max-width:45vw;
+    max-height: 55vh;
+    width: 45vw;
+    height: 55vh;
+  }
+
+  .answerdiv{
+    border: 2px solid green;
+    margin: 0.5%;
+    border-radius: 15px;
+    text-align: center;
+    color: black;
+    background-color: beige;
+  }
+
+  .answerdiv:hover{
+    background-color: darkblue;
+    color: gold;
+  }
+  
+  .questiondiv{
+    border: 2px solid black;
+    margin: 0.5%;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
+@media (orientation: portrait){
+  .graphContainer{
+    align-items: center;
+    border: 2px solid blue;
+    margin: 0.5% 0.5%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    max-width:90vw;
+    max-height: 40vh;
+    width: 90vw;
+    height: 40vh;
+  }  
+}
