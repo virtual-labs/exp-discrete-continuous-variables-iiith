@@ -12,13 +12,6 @@
       "target": "index.html"
     },
     {
-      "target": "prelims.html",
-      "source": "prelims.md",
-      "label": "Prelims",
-      "unit-type": "task",
-      "content-type": "text"
-    },
-    {
       "target": "theory.html",
       "source": "theory.md",
       "label": "Theory",
@@ -40,9 +33,16 @@
       "content-type": "text"
     },
     {
-      "target": "sigmaAlgebra.html",
-      "source": "simulation/sigma-algebra.html",
-      "label": "Experiments",
+      "target": "cdf.html",
+      "source": "simulation/cdf.html",
+      "label": "Part 1 CDF",
+      "unit-type": "task",
+      "content-type": "simulation"
+    },
+    {
+      "target": "bernoulli.html",
+      "source": "simulation/bernoulli.html",
+      "label": "Part 2 Modelling RV",
       "unit-type": "task",
       "content-type": "simulation"
     },

@@ -14,8 +14,6 @@
 	<title>
 		Geometric RV
 	</title>
-    <!-- set favicon -->
-    <link rel="icon" href="images/free-icon-heads-or-tails-456.png">
 </head>
 
 <body>
@@ -29,27 +27,30 @@
 					Tasks
 				</div>
 				<div class="column">
-					<!-- <div class="v-tabs">
+					<div class="v-tabs">
 						<ul>
-							<li class="is-active" id="Task1">
+							<li id="Task1" onclick="window.location.href = 'bernoulli.html';">
 								<a>
-									Sigma Algebra
+									Bernoulli RV
 								</a>
 							</li>
-
-							<li id="Task2" onclick="window.location.href = 'inverse-image.html';">
+							<li id="Task2" onclick="window.location.href = 'binomial.html';">
 								<a>
-									Inverse image
+									Binomial RV
+								</a>
+							</li>							
+							<li class="is-active" id="Task3">
+								<a>
+									Geometric RV
 								</a>
 							</li>
-
-							<li id="Task3" onclick="window.location.href = 'valid-rv.html';">
+							<li id="Task3" onclick="window.location.href = 'poisson.html';">
 								<a>
-									Valid RV
+									Poisson RV
 								</a>
 							</li>
 						</ul>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -79,7 +80,7 @@
 				<div class="v-datalist-container components-list">
 					<br>
 					<p>
-						Question
+						We want to model a Geometric random variable \(X\) with parameter \(p\) as the number of coin tosses required to get the first head. Perform the toss and observe the value of the Geometric random variable \(X\) for the chosen parameter \(p\).
 					</p>
 					<br>
 				</div>
@@ -109,6 +110,39 @@
                         </div>
                         <br>
                     </div>
+
+					<div class="previous-response" id="prev-resp">
+						<div style="text-align: center;">
+							<span id="res1">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res2">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res3">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res4">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res5">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res6">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res7">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res8">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res9">-</span></b>
+						</div>
+						<div style="text-align: center;">
+							<span id="res10">-</span></b>
+						</div>
+					</div>
 
 					<div id="geometric-counter-div">
 						Number of trials: <b><span id="geometric-counter">0</span></b>
