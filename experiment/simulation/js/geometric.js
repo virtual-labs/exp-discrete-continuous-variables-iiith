@@ -2,6 +2,7 @@ var p;
 var result;
 var counter = 0;
 const maxCounter = 40;
+var previousResp = [];
 
 // on dom load
 document.addEventListener("DOMContentLoaded", function () {
@@ -18,19 +19,41 @@ function setPbernoulli() {
     document.getElementById("input-p-bernoulli-div").style.display = "none";
     document.getElementById("bernoulli-instance").style.display = "block";
     document.getElementById("geometric-counter-div").style.display = "block";
+    document.getElementById("prev-resp").style.display = "grid";
     document.getElementById("p-bernoulli-value").innerHTML = p;
 }
 function bernoulli() {
     var random = Math.random();
     result = (random < p) ? 1 : 0;
     document.getElementById("bernoulli-result").innerHTML = "<b>" + (result == 0 ? "Tail" : "Head") + "</b>";
-
+    
     updateCounter();
+}
+
+function updatePreviousResp(){
+    if(result)
+        previousResp.push('H');
+    else previousResp.push('T');
+    if(counter<=10)
+    {
+        for(var i=1; i<=previousResp.length; i++)
+        {
+            document.getElementById("res"+i).innerText = previousResp[i-1];
+        }
+    }
+    else
+    {
+        for(var i=1; i<=10; i++)
+        {
+            document.getElementById("res"+i).innerText = previousResp[counter-10+i-1];
+        }
+    }
 }
 
 function updateCounter() {
     counter++;
     document.getElementById("geometric-counter").innerHTML = counter;
+    updatePreviousResp();
     if (counter == maxCounter) {
         document.getElementById("bernoulli-instance-btn").disabled = true;
         showObservations();
@@ -55,6 +78,7 @@ function showObservations() {
 
 function reset() {
     counter = 0;
+    previousResp = [];
     document.getElementById("geometric-counter").innerHTML = counter;
     document.getElementById("input-p-bernoulli").value = 0.5;
     document.getElementById("input-p-bernoulli-div").style.display = "block";
@@ -63,5 +87,8 @@ function reset() {
     document.getElementById("observations").innerHTML = "";
     document.getElementById("observations").style.color = "black";
     document.getElementById("bernoulli-result").innerHTML = "";
-    document.getElementById("geometric-counter-div").style.display = "none";
+    document.getElementById("geometric-counter-div").style.display = "none";    
+    document.getElementById("prev-resp").style.display = "none";
+    for(var i = 1;i <=10; i++)
+        document.getElementById("res"+i).innerText = "-";
 }

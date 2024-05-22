@@ -75,3 +75,8 @@
 .scroll-view{
     overflow-x: scroll;
 }
+
+.previous-response{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
