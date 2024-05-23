@@ -2,68 +2,148 @@ document.addEventListener("DOMContentLoaded", function() {
     reset();
 });
 
-function binomialCoefficient (n, k){  
-    if(k < 0 || k > n){ 
-      return 0 
-    } 
-    
-    if(k === 0 || k === n){ 
-      return 1 
-    } 
-    
-    if(k === 1 || k === n - 1){ 
-      return n 
-    } 
-    
-    let res = n; 
-    for(let i = 2; i <= k; i++){ 
-      res *= (n - i + 1) / i; 
-    } 
-    
-    return Math.round(res); 
-} 
-
-
-function factorial(n){
-    var temporary = 1;
-
-    if(n==0 || n==1)
-        return 1;
-    for(var i = 1; i<=n; i++)
-        temporary = temporary *i;
-
-    return temporary;
-}
-
 var p = document.getElementById("inputProbability");
-var result;
-var binomialAns1;
-var binomialAns2;
-var binomialAns3;
-var poissonAns1;
-var poissonAns2;
-var poissonAns3;
-
 var expResult1 = document.getElementById("binomialResult1");
 var expResult2 = document.getElementById("binomialResult2");
 var expResult3 = document.getElementById("binomialResult3");
-
 var obs = document.getElementById("observations")
-
 var fixedProbValue = document.getElementById("probabilityValue");
 var fixednumofexp = document.getElementById("experimentsValue")
-
 var headCount1 = document.getElementById("numOfHeads1");
 var tailCount1 = document.getElementById("numOfTails1");
 var headCount2 = document.getElementById("numOfHeads2");
 var tailCount2 = document.getElementById("numOfTails2");
 var headCount3 = document.getElementById("numOfHeads3");
 var tailCount3 = document.getElementById("numOfTails3");
+var nFinal = document.getElementById("numofexperiments");
+var ctx = document.getElementById('pointsChart').getContext('2d');
+var ctx1 = document.getElementById('stepChart').getContext('2d');
 
+const xData = [0, 1, 2, 3, 4, 5];
+const yData = [0, 10, 5, 15, 10, 20];
+var result;
+
+var binomialAns1;
+var binomialAns2;
+var binomialAns3;
+
+var poissonAns1;
+var poissonAns2;
+var poissonAns3;
 var temp = 1;
 var lambda = 0;
 
-var nFinal = document.getElementById("numofexperiments");
+const dataPoints = xData.map((x, index) => ({ x: x, y: yData[index] }));
+
+var pointsChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+                label: 'Binomial probabilities',
+                data: [
+                    { x: 'Experiment 1', y: 0 },
+                    { x: 'Experiment 2', y: 10 },
+                    { x: 'Experiment 3', y: 5 }
+                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Poisson probabilities',
+                data: [
+                    { x: 'Experiment 1', y: -5 },
+                    { x: 'Experiment 2', y: 20 },
+                    { x: 'Experiment 3', y: -10 }
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        scales: {
+            x: {
+                position: 'bottom',
+                label: "Experiment",
+                type: 'category',
+                labels: ['Experiment 1', 'Experiment 2', 'Experiment 3'],
+                ticks: {
+                    stepSize: 1
+                }
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const stepChart = new Chart(ctx1, {
+    type: 'line',
+    data: {
+        datasets: [{
+                label: 'Binomial probabilities',
+                data:dataPoints,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                fill: false,
+                stepped: true
+            },
+            {
+                label: 'Poisson probabilities',
+                data: dataPoints,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                fill: false,
+                stepped: true
+            }
+        ]
+    },
+    options: {
+        scales: {
+            x: {
+                type: 'linear',
+                position: 'bottom',
+                title: {
+                    display: true,
+                    text: 'X Axis'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Y Axis'
+                    }
+                }
+            }
+        }
+});
+
+function binomialCoefficient (n, k){  
+    if(k < 0 || k > n) 
+      return 0;
+    if(k === 0 || k === n)
+      return 1;
+    if(k === 1 || k === n - 1) 
+      return n;
+    let res = n; 
+    for(let i = 2; i <= k; i++)
+      res *= (n - i + 1) / i; 
+    return Math.round(res); 
+} 
+
+function factorial(n){
+    var temporary = 1;
+    if(n==0 || n==1)
+        return 1;
+    for(var i = 1; i<=n; i++)
+        temporary = temporary *i;
+    return temporary;
+}
 
 function setPPoisson() {
     var prob = parseFloat(p.value);
@@ -81,7 +161,7 @@ function setPPoisson() {
     fixedProbValue.innerHTML = prob;
     fixednumofexp.innerHTML = n;
 
-    lambda = n* prob;
+    lambda = parseFloat(n* prob);
 }
 
 function Poisson() {
@@ -157,11 +237,42 @@ function Poisson() {
     
                 // Update the chart
                 pointsChart.update();
-            }
-        }
-        
-    }
 
+                document.getElementById("stepDiv").style.display="block";
+
+                var xDataNew = new Array();
+                var yDataBinomial = new Array();
+                var yDataPoisson = new Array();
+                for(var i = 0; i <= exp; i++){
+                    xDataNew.push(i);
+                    var yBinomial = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(4);
+                    var yPoisson = parseFloat( Math.pow(2.718, -lambda) * Math.pow(lambda, i)/factorial(i) ).toFixed(4)
+                    yDataBinomial.push(parseFloat(yBinomial));
+                    yDataPoisson.push(parseFloat(yPoisson));
+                }
+
+                for(var i = 1; i<=exp; i++){
+                    yDataBinomial[i] = parseFloat(yDataBinomial[i]) + parseFloat(yDataBinomial[i-1]);
+                    yDataBinomial[i] = parseFloat(yDataBinomial[i]).toFixed(3);
+                    yDataPoisson[i] = parseFloat(yDataPoisson[i]) + parseFloat(yDataPoisson[i-1]);
+                    yDataPoisson[i] = parseFloat(yDataPoisson[i]).toFixed(3);
+                }
+                console.log(yDataBinomial);
+                console.log(yDataPoisson);
+                var dataPoints1 = xDataNew.map((x, index) => ({ x: x, y: yDataBinomial[index] }));
+            
+                var dataPoints2 = xDataNew.map((x, index) => ({ x: x, y: yDataPoisson[index] }));
+                
+                stepChart.data.datasets[0].data = dataPoints1;
+                stepChart.data.datasets[1].data = dataPoints2;
+    
+                // Update the chart
+                stepChart.update();
+
+            }
+
+        }
+    }
     temp++;
 }
 
@@ -176,14 +287,13 @@ function Poisson3(){
         Poisson();
 }
 
-
-
 function reset() {
     p.value = 0.5;
     nFinal.value = 10;
     document.getElementById("inputDiv").style.display = "block";
     document.getElementById("binomialDiv").style.display = "none";
     document.getElementById("graphDiv").style.display="none";
+    document.getElementById("stepDiv").style.display="none";
     obs.innerText = "";
     expResult1.innerText = "Experiment 1: ";
     expResult2.innerText = "Experiment 2: ";
@@ -199,50 +309,3 @@ function reset() {
 
     temp = 1;
 }
-
-
-var ctx = document.getElementById('pointsChart').getContext('2d');
-var pointsChart = new Chart(ctx, {
-    type: 'scatter',
-    data: {
-        datasets: [{
-                label: 'Binomial probabilities',
-                data: [
-                    { x: 'Experiment 1', y: 0 },
-                    { x: 'Experiment 2', y: 10 },
-                    { x: 'Experiment 3', y: 5 }
-                ],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            },
-            {
-                label: 'Poisson probabilities',
-                data: [
-                    { x: 'Experiment 1', y: -5 },
-                    { x: 'Experiment 2', y: 20 },
-                    { x: 'Experiment 3', y: -10 }
-                ],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }
-        ]
-    },
-    options: {
-        scales: {
-            x: {
-                position: 'bottom',
-                label: "Experiment",
-                type: 'category',
-                labels: ['Experiment 1', 'Experiment 2', 'Experiment 3'],
-                ticks: {
-                    stepSize: 1
-                }
-            },
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
