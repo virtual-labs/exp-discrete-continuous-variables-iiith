@@ -31,7 +31,7 @@
 						<ul>
 							<li id="Task1" onclick="window.location.href='cdf.html'">
 								<a>
-									CDF 
+									CDF
 								</a>
 							</li>
 
@@ -89,10 +89,41 @@
 			<div class="column is-8-desktop is-12-tablet is-12-mobile">
 				<div class="box-question">
 
-					
+					<button id="generate-cdf-button" class="v-button" role="button" onclick="generateCDF()"> Generate
+						CDF </button>
+
+					<img id="cdf-img-elem" src="./images/cdfuniform.png" alt="CDF to PMF">
+
+
+					<div id="select-rv-type">
+						<label for="rv-type">Select Random Variable Type:</label>
+						<select id="rv-type" name="rv-type" onchange="rvType()">
+\							<option value="discrete">Discrete</option>
+							<option value="continuous">Continuous</option>
+						</select>
+					</div>
+					<div id="pdf-resp">
+						<input type="number" id="pdf-val" name="pdf-input" placeholder="Enter PDF value"><br>
+						<input type="number" id="pdf-left" name="pdf-left"
+							placeholder="Enter leftmost non zero point"><br>
+						<input type="number" id="pdf-right" name="pdf-right"
+							placeholder="Enter rightmost non zero point"><br>
+						<br>
+						<button class="v-button" role="button" onclick="pdf()"> Submit </button>
+					</div>
+					<div id="pmf-resp">
+						Enter PMF values:<br>
+						<input type="number" id="pmf-p1" name="pmf-p1" placeholder="PMF-P1"><br>
+						<input type="number" id="pmf-p2" name="pmf-p2" placeholder="PMF-P2"><br>
+						<input type="number" id="pmf-p3" name="pmf-p3" placeholder="PMF-P3"><br>
+						<input type="number" id="pmf-p4" name="pmf-p4" placeholder="PMF-P4"><br>
+						<input type="number" id="pmf-p5" name="pmf-p5" placeholder="PMF-P5"><br>
+						<br>
+						<button class="v-button" role="button" onclick="pmf()"> Submit </button>
+					</div>
 
 					<div class="button-holder-div">
-						<button class="v-button" role="button" onclick="reset1()"> Reset </button>
+						<button class="v-button" role="button" onclick="reset()"> Reset </button>
 						<!-- <button class="v-button" role="button" onclick="page2()"> Next </button> -->
 					</div>
 				</div>
