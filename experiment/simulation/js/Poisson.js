@@ -174,8 +174,8 @@ function Poisson() {
 
     if(temp == 1){
         exp = 150;
-        prob = parseFloat(lambda/150).toFixed(4);
-        console.log(exp, prob);
+        prob = parseFloat( parseFloat(np.innerText)/exp).toFixed(3);
+
         for(var i = 0; i < exp; i++){
             var random = Math.random();
             result = (random < prob) ? 1 : 0;
@@ -184,19 +184,26 @@ function Poisson() {
             else
                 tailCount1.innerText = 1 + parseInt(tailCount1.innerText);
         }
-        binomialAns1 = parseFloat( binomialCoefficient(exp, parseInt(headCount1.innerText)) * Math.pow(prob, parseInt(headCount1.innerText)) * Math.pow(1-prob, parseInt(tailCount1.innerText)) ).toFixed(4);
-        poissonAns1 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount1.innerText))/factorial(parseInt(headCount1.innerText))).toFixed(4)
-        var obs1 = "Number of H<sub>Exp 1</sub>: " + headCount1.innerText+", P<sub>Binomial</sub>(X = " + headCount1.innerText+") is: "+ binomialAns1+", and P<sub>Poisson</sub>(X = "+ headCount1.innerText+") is: "+ poissonAns1+". <br>";
-        obs.innerHTML += obs1;
+        
+        
+        // binomialAns1 = parseFloat( binomialCoefficient(exp, parseInt(headCount1.innerText)) * Math.pow(prob, parseInt(headCount1.innerText)) * Math.pow(1-prob, parseInt(tailCount1.innerText)) ).toFixed(3);
+        // poissonAns1 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount1.innerText))/factorial(parseInt(headCount1.innerText))).toFixed(3)
+        
         document.getElementById("graphDiv").style.display="block";
         var xDataNew1 = new Array();
         var yDataBinomial1 = new Array();
         var yDataPoisson1 = new Array();
-        var prob1 = parseFloat( parseFloat(np.innerText)/exp).toFixed(4);
+        
         for(var i = 0; i <= exp; i++){
-            var yBinomial1 = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob1, i) * Math.pow(1-prob1, exp - i)).toFixed(4);
-            var yPoisson1 = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(4)
-            if(parseFloat(yBinomial1).toFixed(4) != 0){
+            var yBinomial1 = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(3);
+            var yPoisson1 = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(3)
+
+            if(parseInt(i) === parseInt(headCount1.innerText)){
+                binomialAns1 = yBinomial1;
+                poissonAns1  = yPoisson1;
+            }
+
+            if(parseFloat(yBinomial1).toFixed(3) != 0){
                 xDataNew1.push(i);
                 yDataBinomial1.push(parseFloat(yBinomial1));
                 yDataPoisson1.push(parseFloat(yPoisson1));
@@ -204,12 +211,17 @@ function Poisson() {
             else
                 break;
         }
+
+        var obs1 = "Number of H<sub>Exp 1</sub>: " + headCount1.innerText+", P<sub>Binomial</sub>(X = " + headCount1.innerText+") is: "+ binomialAns1+", and P<sub>Poisson</sub>(X = "+ headCount1.innerText+") is: "+ poissonAns1+". <br>";
+        obs.innerHTML += obs1;
         
         var dp1 = xDataNew1.map((x, index) => ({ x: x, y: yDataBinomial1[index] }));
         var dp2 = xDataNew1.map((x, index) => ({ x: x, y: yDataPoisson1[index] }));
         stepChart2.data.datasets[0].data = dp1;
         stepChart2.data.datasets[1].data = dp2;
         stepChart2.update();
+
+        
     }
     else if( temp == 2){
         for(var i = 0; i < exp; i++){
@@ -220,20 +232,22 @@ function Poisson() {
             else
                 tailCount2.innerText = 1 + parseInt(tailCount2.innerText);
         }
-        binomialAns2 = parseFloat(binomialCoefficient(exp, parseInt(headCount2.innerText)) * Math.pow(prob, parseInt(headCount2.innerText)) * Math.pow(1-prob, parseInt(tailCount2.innerText))).toFixed(4);
-        poissonAns2 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount2.innerText) )/factorial(parseInt(headCount2.innerText))).toFixed(4)
-        var obs2 = "Number of H<sub>Exp 2</sub>: " + headCount2.innerText+", P<sub>Binomial</sub>(X = " + headCount2.innerText+") is: "+ binomialAns2+", and P<sub>Poisson</sub>(X = "+ headCount2.innerText+") is: "+ poissonAns2+". <br>";
+        // binomialAns2 = parseFloat(binomialCoefficient(exp, parseInt(headCount2.innerText)) * Math.pow(prob, parseInt(headCount2.innerText)) * Math.pow(1-prob, parseInt(tailCount2.innerText))).toFixed(3);
+        // poissonAns2 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount2.innerText) )/factorial(parseInt(headCount2.innerText))).toFixed(3)
+        
 
-        var obs3 = "We can observe from the two graphs below that by keeping lambda constant and increasing n, the difference between  P<sub>Binomial</sub>(x) and  P<sub>Poisson</sub>(x) becomes smaller and smaller. It implies that the Poisson random variable is the limiting case of Binomial random variable as n grows large (tends to infinity)"
-        obs.innerHTML += obs2 + obs3;
         document.getElementById("stepDiv").style.display="block";
         var xDataNew = new Array();
         var yDataBinomial = new Array();
         var yDataPoisson = new Array();
         for(var i = 0; i <= exp; i++){
-            var yBinomial = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(4);
-            var yPoisson = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(4)
-            if(parseFloat(yBinomial).toFixed(4) != 0){
+            var yBinomial = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(3);
+            var yPoisson = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(3)
+            if(parseInt(i) === parseInt(headCount2.innerText)){
+                binomialAns2 = yBinomial;
+                poissonAns2  = yPoisson;
+            }
+            if(parseFloat(yBinomial).toFixed(3) != 0){
                 xDataNew.push(i);
                 yDataBinomial.push(parseFloat(yBinomial));
                 yDataPoisson.push(parseFloat(yPoisson));
@@ -241,6 +255,13 @@ function Poisson() {
             else
                 break;
         }
+
+        var obs2 = "Number of H<sub>Exp 2</sub>: " + headCount2.innerText+", P<sub>Binomial</sub>(X = " + headCount2.innerText+") is: "+ binomialAns2+", and P<sub>Poisson</sub>(X = "+ headCount2.innerText+") is: "+ poissonAns2+". <br>";
+
+        var obs3 = "We can observe from the two graphs below that by keeping lambda constant and increasing n, the difference between  P<sub>Binomial</sub>(x) and  P<sub>Poisson</sub>(x) becomes smaller and smaller. It implies that the Poisson random variable is the limiting case of Binomial random variable as n grows large (tends to infinity)"
+        obs.innerHTML += obs2 + obs3;
+
+
         var dataPoints1 = xDataNew.map((x, index) => ({ x: x, y: yDataBinomial[index] }));
         var dataPoints2 = xDataNew.map((x, index) => ({ x: x, y: yDataPoisson[index] }));
         stepChart.data.datasets[0].data = dataPoints1;
@@ -280,7 +301,7 @@ function reset() {
     document.getElementById("stepDiv").style.display="none";
     obs.innerText = "";
     
-    expResult1.innerText = "Experiment with fixed n = 150 and p = "+ parseFloat(randomize/150).toFixed(4) +" such that lambda  = " + randomize;
+    expResult1.innerText = "Experiment with fixed n = 150 and p = "+ parseFloat(randomize/150).toFixed(3) +" such that lambda  = " + randomize;
     expResult2.innerText = "User experiment with given n and p values: ";
 
     headCount1.innerText = 0;
