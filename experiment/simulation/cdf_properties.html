@@ -37,6 +37,11 @@
 									CDF Properties
 								</a>
 							</li>
+							<li id="Task3" onclick="window.location.href = 'cdf_toPdmf.html';">
+								<a>
+									CDF to PMF/PDF
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -78,25 +83,25 @@
 				<div class = "questiondiv" style="text-align: center;">
 					\(X\) is a Uniform discrete random variable with the values of \(x = \{1,2,3,4,5\}\)
 				</div>
-					<img alt="My Image" src="./images/UniformCDFDiscrete.png" style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;" />
+					<img class="graphimages" alt="My Image" src="./images/UniformCDF.png"/>
 			</div>
 			<div class="graphContainer" onclick="sendresponse(2)">
 				<div class = "questiondiv" style="text-align: center;">
 					\(X\) is a Binomial discrete random variable with \(n = 5\) and \(p > 0.5 \)
 				</div>
-					<img  alt="My Image" src="./images/BinomialCDF.png" style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;"/>
+					<img class="graphimages" alt="My Image" src="./images/BnomialCDFDiscrete.png" />
 			</div>
 			<div class="graphContainer" onclick="sendresponse(3)">
 				<div class = "questiondiv" style="text-align: center;">
 					\(X\) is a uniform continous random variable \(a = 2\) and \(b = 5\)
 				</div>
-				<img alt="My Image" src="./images/UniformCDF.png" style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;"/>
+				<img class="graphimages" alt="My Image" src="./images/uniformCDFContinous.png" />
 			</div>
 			<div class="graphContainer" onclick="sendresponse(4)">
 				<div class = "questiondiv" style="text-align: center;">
 					\(X\) is a normal continous random variable with \( \mu = 0\) and \( \sigma = 2\)
 				</div>
-				<img alt="My Image" src="./images/NormalCDF.png"  style= " max-width:40vw; max-height: 45vh; width: 40vw;	height: 45vh;"/>
+				<img  class="graphimages" alt="My Image" src="./images/NormalCDF.png"  />
 			</div>
 			<div class="mcqContainer" id="mcq">
 				<div class = "questiondiv" > 
@@ -116,7 +121,7 @@
 				</div>
 			</div>
 				<div class="observationContainer" id="observation">
-					<div class="observationTitle">
+					<div class="questiondiv">
 						Observation
 					</div>
 					<div class="observationBody" style="text-align: center;">
