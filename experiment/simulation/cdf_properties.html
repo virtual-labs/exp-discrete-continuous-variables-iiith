@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,7 +29,7 @@
 						<ul>
 							<li id="Task1" onclick="window.location.href = 'cdf.html';">
 								<a>
-									CDF 
+									CDF
 								</a>
 							</li>
 
@@ -48,89 +49,103 @@
 			</div>
 		</div>
 	</div>
-	<div class ="mainContainer">
+	<div class="mainContainer">
 		<div class="v-collapsible-instruction-container v-instruction-container">
 			<div class="v-collapsible is-size-5">Instructions</div>
-				<div class="v-content" style="text-align: left;">
-					<ul style="list-style: disc;">
-						<b>Quick theory overview:</b>
-						<li>
-							For a given constant \(c\), the inverse image of \(c\) is defined as $$\mathcal{f}^{-1}(c) = \{ \omega_i : \mathcal{f}(\omega_i) \leq c\}$$
-						</li>
-					</ul>
-					<br>
-					<ul style="list-style: disc;">
-						<b>Procedure:</b>
-						<li> Given: A function \(\mathcal{f}\), a sample space \(\Omega\), and a variable \(c\)</li>
-						<li> Populate the function \(\mathcal{f}\) and the variable \(c\) using the generate button given below </li>
-						<li> The generate button will give a random mapping for the function \(\mathcal{f}\) with values ranging from \(-7.5\) to \(7.5\) </li>
-						<li> Please select the subset of \( \Omega \) which is the inverse image of the generated function \(\mathcal{f}\) </li>
-					</ul>
-				</div>
+			<div class="v-content" style="text-align: left;">
+				<ul style="list-style: disc;">
+					<b>Quick theory overview:</b>
+					<li>
+						For a given constant \(c\), the inverse image of \(c\) is defined as $$\mathcal{f}^{-1}(c) = \{
+						\omega_i : \mathcal{f}(\omega_i) \leq c\}$$
+					</li>
+				</ul>
+				<br>
+				<ul style="list-style: disc;">
+					<b>Procedure:</b>
+					<li>
+						Given: A function \(\mathcal{f}\), a sample space \(\Omega\), and a variable \(c\)
+					</li>
+					<li>
+						Populate the function \(\mathcal{f}\) and the variable \(c\) using the generate button given
+						below
+					</li>
+					<li> 
+						The generate button will give a random mapping for the function \(\mathcal{f}\) with values
+						ranging from \(-7.5\) to \(7.5\)
+					</li>
+					<li> 
+						Please select the subset of \( \Omega \) which is the inverse image of the generated function
+						\(\mathcal{f}\)
+					</li>
+				</ul>
 			</div>
 		</div>
-		<div class="questionContainer">
-			<p style= "text-align: left; font-size: 15px; font-weight: bold;">
-				<u> Question:</u>
-			</p>
-			<p style= "text-align: center; font-size: 15px; padding: 10px;">
+	</div>
+	<div class="questionContainer">
+		<p style="text-align: left; font-size: 15px; font-weight: bold;">
+			<u> Question:</u>
+		</p>
+		<p style="text-align: center; font-size: 15px; padding: 10px;">
 
-				\(X\) is a random variable defined over a sample space \( \Omega \) and a function from \(\mathcal{f}\). Below are 4 graphs which are the distributive function \(F\) of various random variables X. Choose the appropriate answer for each graph which represents 
-			</p>
+			\(X\) is a random variable defined over a sample space \( \Omega \) and a function from \(\mathcal{f}\).
+			Below are 4 graphs which are the distributive function \(F\) of various random variables X. Choose the
+			appropriate answer for each graph which represents
+		</p>
+	</div>
+	<div class="experimentContainer">
+		<div class="graphContainer" onclick="sendresponse(1)">
+			<div class="questiondiv" style="text-align: center;">
+				\(X\) is a Uniform discrete random variable with the values of \(x = \{1,2,3,4,5\}\)
+			</div>
+			<img class="graphimages" alt="My Image" src="./images/UniformCDF.png" />
 		</div>
-		<div class="experimentContainer">
-			<div class="graphContainer" onclick="sendresponse(1)">
-				<div class = "questiondiv" style="text-align: center;">
-					\(X\) is a Uniform discrete random variable with the values of \(x = \{1,2,3,4,5\}\)
-				</div>
-					<img class="graphimages" alt="My Image" src="./images/UniformCDF.png"/>
+		<div class="graphContainer" onclick="sendresponse(2)">
+			<div class="questiondiv" style="text-align: center;">
+				\(X\) is a Binomial discrete random variable with \(n = 5\) and \(p > 0.5 \)
 			</div>
-			<div class="graphContainer" onclick="sendresponse(2)">
-				<div class = "questiondiv" style="text-align: center;">
-					\(X\) is a Binomial discrete random variable with \(n = 5\) and \(p > 0.5 \)
-				</div>
-					<img class="graphimages" alt="My Image" src="./images/BnomialCDFDiscrete.png" />
+			<img class="graphimages" alt="My Image" src="./images/BnomialCDFDiscrete.png" />
+		</div>
+		<div class="graphContainer" onclick="sendresponse(3)">
+			<div class="questiondiv" style="text-align: center;">
+				\(X\) is a uniform continous random variable \(a = 2\) and \(b = 5\)
 			</div>
-			<div class="graphContainer" onclick="sendresponse(3)">
-				<div class = "questiondiv" style="text-align: center;">
-					\(X\) is a uniform continous random variable \(a = 2\) and \(b = 5\)
-				</div>
-				<img class="graphimages" alt="My Image" src="./images/uniformCDFContinous.png" />
+			<img class="graphimages" alt="My Image" src="./images/uniformCDFContinous.png" />
+		</div>
+		<div class="graphContainer" onclick="sendresponse(4)">
+			<div class="questiondiv" style="text-align: center;">
+				\(X\) is a normal continous random variable with \( \mu = 0\) and \( \sigma = 2\)
 			</div>
-			<div class="graphContainer" onclick="sendresponse(4)">
-				<div class = "questiondiv" style="text-align: center;">
-					\(X\) is a normal continous random variable with \( \mu = 0\) and \( \sigma = 2\)
-				</div>
-				<img  class="graphimages" alt="My Image" src="./images/NormalCDF.png"  />
+			<img class="graphimages" alt="My Image" src="./images/NormalCDF.png" />
+		</div>
+		<div class="mcqContainer" id="mcq">
+			<div class="questiondiv">
+				<p id="AnswerChoiceText">No choice has been made by the user so far</p>
 			</div>
-			<div class="mcqContainer" id="mcq">
-				<div class = "questiondiv" > 
-					<p id="AnswerChoiceText">No choice has been made by the user so far</p>
-				</div>
-				<div class="answerdiv" onclick="checkanswer(1)" >
-					Property 1: \(lim_{x \rightarrow 0} F(x) = 0,  lim_{x \rightarrow \infty} F(x) = 1\)
-				</div>
-				<div class="answerdiv" onclick="checkanswer(2)">
-					Property 2: if \(x <  y \) then \(F(x) \leq F(y)\)
-				</div>
-				<div class="answerdiv" onclick="checkanswer(3)">
-					Property 3: \(F\) is right continous, \(F(x+h) \rightarrow F(x)\) as \(h \rightarrow 0\)
-				</div>
-				<div class="answerdiv" onclick="checkanswer(4)">
-					All the properties of \(F(x)\) for all \( x \in \mathbb{R}\) satisfy
-				</div>
+			<div class="answerdiv" onclick="checkanswer(1)">
+				Property 1: \(lim_{x \rightarrow 0} F(x) = 0, lim_{x \rightarrow \infty} F(x) = 1\)
 			</div>
-				<div class="observationContainer" id="observation">
-					<div class="questiondiv">
-						Observation
+			<div class="answerdiv" onclick="checkanswer(2)">
+				Property 2: if \(x < y \) then \(F(x) \leq F(y)\) </div>
+					<div class="answerdiv" onclick="checkanswer(3)">
+						Property 3: \(F\) is right continous, \(F(x+h) \rightarrow F(x)\) as \(h \rightarrow 0\)
 					</div>
-					<div class="observationBody" style="text-align: center;">
-						<p id="obsBody">No choice has been made the user so far</p>
+					<div class="answerdiv" onclick="checkanswer(4)">
+						All the properties of \(F(x)\) for all \( x \in \mathbb{R}\) satisfy
 					</div>
+			</div>
+			<div class="observationContainer" id="observation">
+				<div class="questiondiv">
+					Observation
 				</div>
+				<div class="observationBody" style="text-align: center;">
+					<p id="obsBody">No choice has been made the user so far</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
 	<script src="./js/cdf_properties.js"></script>
 </body>
+
 </html>

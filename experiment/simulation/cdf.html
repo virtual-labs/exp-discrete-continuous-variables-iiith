@@ -31,7 +31,7 @@
 						<ul>
 							<li class="is-active" id="Task1">
 								<a>
-									CDF 
+									CDF
 								</a>
 							</li>
 
@@ -60,8 +60,30 @@
 						<ul style="list-style: disc;">
 							<b>Quick theory overview:</b>
 							<ul style="list-style: disc;">
+								<li>
+									Here, we want to find the CDF of a random variable \(X\) at a randomly generated
+									value "c" by finding the inverse image which we learnt in the previous experiment
+									and using the given probability measure.
+								</li>
 								<b>Procedure:</b>
-								<p></p>
+
+								<li>
+									Click on the button to generate a random number "c".
+								</li>
+								<li>
+									Find the inverse image of the generated random number "c" for the given random
+									variable \(X\) and select the appropriate inverse image.
+								</li>
+								<li>
+									Based on the inverse image calculated and the probabiliy measure given, find the CDF
+									of the random variable \(X\) at "c" and enter the value in the input box.
+								</li>
+								<li>
+									Click on the "Submit" button to check your answer.
+								</li>
+								<li>
+									Click on the "Reset" button to reset the experiment.
+								</li>
 							</ul>
 					</div>
 				</div>
@@ -95,6 +117,7 @@
 						\(X(\omega_3) = 2\),
 						and
 						\(X(\omega_4) = 2.\)
+						Find the inverse cdf of a randomly generated value for \(X\).
 					</p>
 					<br>
 				</div>
@@ -107,14 +130,15 @@
 				<div class="box-question">
 
 					<div id="generateNumberButton1">
-						<p>Click on the button to generate a random number.
-							<button class="v-button" role="button" onclick="generateRandom1()"> Generate </button>
-						</p>
+						<!-- <p>Click on the button to generate a random number. -->
+						<button class="v-button" role="button" onclick="generateRandom1()"> Generate a random number
+						</button>
+						<!-- </p> -->
 					</div>
 					<div id="generatedNumber1"></div>
 
 					<div id="selectInverseImage1" class="hiddenInitially">
-						Now, select the inverse image of c for the given RV \(X\).
+						Find the <b>inverse image of c</b> for the given RV \(X\).
 						<div class="grid-container scroll-view">
 							<div class="ans" id="ans1" onclick="setInvImg1(0,0,0,0)">
 								\(\phi\)
@@ -170,7 +194,7 @@
 
 					<div id="enterCDF1" class="hiddenInitially">
 						<p>Now, find the CDF of the random variable \(X\) at c using this inverse image and the given
-						probability measure.</p>
+							probability measure.</p>
 						<input type="number" id="enteredCDF1" placeholder="Enter c" required>
 						<button class="v-button" role="button" onclick="checkCDF1()"> Submit </button>
 					</div>
@@ -187,10 +211,8 @@
 			<div class="column is-3-desktop is-4-tablet is-12-mobile">
 				<div class="v-datalist-container components-list">
 					<div class="v-datalist-title">Observations</div>
-					<div id="observations1">
-					</div>
-					<div id="results1">
-					</div>
+					<div id="observations1">Observation</div>
+					<div id="results1">Result</div>
 				</div>
 			</div>
 		</div>
