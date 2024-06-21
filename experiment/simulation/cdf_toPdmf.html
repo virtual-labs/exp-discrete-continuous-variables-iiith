@@ -9,7 +9,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
 	<link rel="stylesheet" href="./css/cdf_toPdmf.css">
 	<link rel="stylesheet" href="./css/main.css">
-	<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<title>
 		Continuous and Discrete Random Variables
@@ -60,8 +61,33 @@
 						<ul style="list-style: disc;">
 							<b>Quick theory overview:</b>
 							<ul style="list-style: disc;">
+								<li>
+									Here, we want to show the relationship between the CDF and the PMF/PDF of a random variable. We will find the PMF/PDF of a random variable given its CDF and also try to identify the type of random variable from the plot of its CDF.
+								</li>
 								<b>Procedure:</b>
-								<p></p>
+								<li>
+									Click on the button to randomly generate a plot of CDF of a valid RV. Note that the
+									only types of RV used here are either continuous Uniform RV of a discrete RV with 5
+									non-zero point.
+								</li>
+								<li>
+									Identify the type of RV from the plot and select from the dropdown.
+								</li>
+								<li>
+									If you choose continuous RV, enter the PDF value and the range of values of RV in
+									which the PDF is non-zero. For example, if the plot is a straight line from (1,0) to
+									(2,0), the PDF value here is 1, the leftmost non-zero point is 1 and the rightmost
+									non-zero point is 2.
+								</li>
+								<li>
+									If you choose discrete RV, enter the PMF values in increasing order of value of RV.
+								</li>
+								<li>
+									Click on the "Submit" button to check your answer.
+								</li>
+								<li>
+									Click on the "Reset" button to reset the experiment.
+								</li>
 							</ul>
 						</ul>
 					</div>
@@ -77,7 +103,8 @@
 				<div class="v-datalist-container components-list">
 					<br>
 					<p>
-						Given a CDF, select the type of random variable and enter the PDF or PMF values for it.
+						Given a randomly generated CDF, select the type of random variable and enter the PDF or PMF
+						values for it.
 					</p>
 					<br>
 				</div>
@@ -88,23 +115,25 @@
 			style="margin-top:-1.5%">
 			<div class="column is-8-desktop is-12-tablet is-12-mobile">
 				<div class="box-question">
-
-					<button id="generate-cdf-button" class="v-button" role="button" onclick="generateCDF()"> Generate
-						CDF </button>
-
+					<div class="button-holder-div">
+						<button id="generate-cdf-button" class="v-button" role="button" onclick="generateCDF()"> Click
+							to Generate CDF </button>
+					</div>
 					<img id="cdf-img-elem" src="./images/cdfuniform.png" alt="CDF">
 					<canvas id="cont-cdf-canvas-elem"></canvas>
 					<canvas id="disc-cdf-canvas-elem"></canvas>
 
 
 					<div id="select-rv-type">
-						<label for="rv-type">Select Random Variable Type:</label>
+						<label for="rv-type">Look at the above plot and <b>Identify the Type of RV </b></label>
 						<select id="rv-type" name="rv-type" onchange="rvType()">
 							\ <option value="discrete">Discrete</option>
 							<option value="continuous">Continuous</option>
 						</select>
 					</div>
 					<div id="pdf-resp">
+						From the above plot, Calculate the <b>PDF value</b> and the <b>range of values of RV in which
+							the PDF is non-zero. </b><br>
 						<input type="number" id="pdf-val" name="pdf-input" placeholder="Enter PDF value"><br>
 						<input type="number" id="pdf-left" name="pdf-left"
 							placeholder="Enter leftmost non zero point"><br>
@@ -114,12 +143,15 @@
 						<button class="v-button" role="button" onclick="pdf()"> Submit </button>
 					</div>
 					<div id="pmf-resp">
-						Enter PMF values:<br>
-						<input type="number" id="pmf-p1" name="pmf-p1" placeholder="PMF-P1"><br>
-						<input type="number" id="pmf-p2" name="pmf-p2" placeholder="PMF-P2"><br>
-						<input type="number" id="pmf-p3" name="pmf-p3" placeholder="PMF-P3"><br>
-						<input type="number" id="pmf-p4" name="pmf-p4" placeholder="PMF-P4"><br>
-						<input type="number" id="pmf-p5" name="pmf-p5" placeholder="PMF-P5"><br>
+						From the above plot, <b> Calculate the PMF values </b> and enter the pmf values in increasing
+						order of value of RV<br>
+						<div>
+							<input type="number" id="pmf-p1" name="pmf-p1" placeholder="PMF-P1"><br>
+							<input type="number" id="pmf-p2" name="pmf-p2" placeholder="PMF-P2"><br>
+							<input type="number" id="pmf-p3" name="pmf-p3" placeholder="PMF-P3"><br>
+							<input type="number" id="pmf-p4" name="pmf-p4" placeholder="PMF-P4"><br>
+							<input type="number" id="pmf-p5" name="pmf-p5" placeholder="PMF-P5"><br>
+						</div>
 						<br>
 						<button class="v-button" role="button" onclick="pmf()"> Submit </button>
 					</div>

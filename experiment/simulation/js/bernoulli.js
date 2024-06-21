@@ -27,7 +27,7 @@ function bernoulli() {
 }
 
 function showObservations() {
-    var observation = "We got <b>" + (result==0?"Tail":"Head") + "</b> in this experiment.<br> Thus, the value of the Bernoulli random variable is <b>X=" + result + "</b>.<br>";
+    var observation = "We got <b>" + (result==0?"Tail":"Head") + "</b> in this coin toss experiment.<br> Thus, the value of the Bernoulli random variable is <b>X=" + result + "</b>.<br>";
     document.getElementById("observations").innerHTML = observation;
 }
 
