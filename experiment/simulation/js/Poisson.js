@@ -232,9 +232,13 @@ function Poisson() {
             else
                 tailCount2.innerText = 1 + parseInt(tailCount2.innerText);
         }
-        // binomialAns2 = parseFloat(binomialCoefficient(exp, parseInt(headCount2.innerText)) * Math.pow(prob, parseInt(headCount2.innerText)) * Math.pow(1-prob, parseInt(tailCount2.innerText))).toFixed(3);
-        // poissonAns2 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount2.innerText) )/factorial(parseInt(headCount2.innerText))).toFixed(3)
-        
+        binomialAns2 = parseFloat(binomialCoefficient(exp, parseInt(headCount2.innerText)) * Math.pow(prob, parseInt(headCount2.innerText)) * Math.pow(1-prob, parseInt(tailCount2.innerText))).toFixed(3);
+        poissonAns2 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount2.innerText) )/factorial(parseInt(headCount2.innerText))).toFixed(3)
+        var obs2 = "Number of H<sub>Exp 2</sub>: " + headCount2.innerText+", P<sub>Binomial</sub>(X = " + headCount2.innerText+") is: "+ binomialAns2+", and P<sub>Poisson</sub>(X = "+ headCount2.innerText+") is: "+ poissonAns2+". <br>";
+
+        var obs3 = "We can observe from the two graphs below that by keeping lambda constant and increasing n, the difference between  P<sub>Binomial</sub>(x) and  P<sub>Poisson</sub>(x) becomes smaller and smaller. It implies that the Poisson random variable is the limiting case of Binomial random variable as n grows large (tends to infinity)"
+        obs.innerHTML += obs2 + obs3;
+
 
         document.getElementById("stepDiv").style.display="block";
         var xDataNew = new Array();
@@ -243,10 +247,6 @@ function Poisson() {
         for(var i = 0; i <= exp; i++){
             var yBinomial = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(3);
             var yPoisson = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(3)
-            if(parseInt(i) === parseInt(headCount2.innerText)){
-                binomialAns2 = yBinomial;
-                poissonAns2  = yPoisson;
-            }
             if(parseFloat(yBinomial).toFixed(3) != 0){
                 xDataNew.push(i);
                 yDataBinomial.push(parseFloat(yBinomial));
@@ -256,11 +256,7 @@ function Poisson() {
                 break;
         }
 
-        var obs2 = "Number of H<sub>Exp 2</sub>: " + headCount2.innerText+", P<sub>Binomial</sub>(X = " + headCount2.innerText+") is: "+ binomialAns2+", and P<sub>Poisson</sub>(X = "+ headCount2.innerText+") is: "+ poissonAns2+". <br>";
-
-        var obs3 = "We can observe from the two graphs below that by keeping lambda constant and increasing n, the difference between  P<sub>Binomial</sub>(x) and  P<sub>Poisson</sub>(x) becomes smaller and smaller. It implies that the Poisson random variable is the limiting case of Binomial random variable as n grows large (tends to infinity)"
-        obs.innerHTML += obs2 + obs3;
-
+        
 
         var dataPoints1 = xDataNew.map((x, index) => ({ x: x, y: yDataBinomial[index] }));
         var dataPoints2 = xDataNew.map((x, index) => ({ x: x, y: yDataPoisson[index] }));
