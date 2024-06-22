@@ -3,178 +3,222 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 var np = document.getElementById("inputLambda");
-var p = document.getElementById("inputProbability");
-var expResult1 = document.getElementById("binomialResult1");
-var expResult2 = document.getElementById("binomialResult2");
-var expResult3 = document.getElementById("binomialResult3");
+
+
+var p1 = document.getElementById("inputProbability1");
+var p2 = document.getElementById("inputProbability2");
+var p3 = document.getElementById("inputProbability3");
+
+var n1Final = document.getElementById("numofexperiments1");
+var n2Final = document.getElementById("numofexperiments2");
+var n3Final = document.getElementById("numofexperiments3");
+
+
 var obs = document.getElementById("observations")
-var fixedProbValue = document.getElementById("probabilityValue");
-var fixednumofexp = document.getElementById("experimentsValue")
+
+var fixedProbValue1 = document.getElementById("probabilityValue1");
+var fixednumofexp1 = document.getElementById("experimentsValue1")
+
+var fixedProbValue2 = document.getElementById("probabilityValue2");
+var fixednumofexp2 = document.getElementById("experimentsValue2")
+
+var fixedProbValue3 = document.getElementById("probabilityValue3");
+var fixednumofexp3 = document.getElementById("experimentsValue3")
+
+
 var headCount1 = document.getElementById("numOfHeads1");
 var tailCount1 = document.getElementById("numOfTails1");
+
 var headCount2 = document.getElementById("numOfHeads2");
 var tailCount2 = document.getElementById("numOfTails2");
+
 var headCount3 = document.getElementById("numOfHeads3");
 var tailCount3 = document.getElementById("numOfTails3");
-var nFinal = document.getElementById("numofexperiments");
-var ctx2 = document.getElementById('stepchart2').getContext('2d');
-var ctx1 = document.getElementById('stepChart').getContext('2d');
 
-const xData = [0, 1, 2, 3, 4, 5];
-const yData = [0, 10, 5, 15, 10, 20];
+
+var binomialAns;
+var poissonAns;
+
 var result;
 
-var binomialAns1;
-var binomialAns2;
-
-var poissonAns1;
-var poissonAns2;
 
 var temp = 1;
 var lambda = 0;
 
-
-const dataPoints = xData.map((x, index) => ({ x: x, y: yData[index] }));
-const stepChart = new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        datasets: [{
-                label: 'Binomial probabilities',
-                data:dataPoints,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-                fill: false,
-                stepped: true
-            },
-            {
-                label: 'Poisson probabilities',
-                data: dataPoints,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-                fill: false,
-                stepped: true
-            }
-        ]
-    },
-    options: {
-        scales: {
-            x: {
-                type: 'linear',
-                position: 'bottom',
-                title: {
-                    display: true,
-                    text: 'X Axis'
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Y Axis'
-                    }
-                }
-            }
-        }
-});
-
-const stepChart2 = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        datasets: [{
-                label: 'Binomial probabilities',
-                data:dataPoints,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-                fill: false,
-                stepped: true
-            },
-            {
-                label: 'Poisson probabilities',
-                data: dataPoints,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-                fill: false,
-                stepped: true
-            }
-        ]
-    },
-    options: {
-        scales: {
-            x: {
-                type: 'linear',
-                position: 'bottom',
-                title: {
-                    display: true,
-                    text: 'Value of the Random Variable X'
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'PMF of X'
-                    }
-                }
-            }
-        }
-});
-
-function binomialCoefficient (n, k){  
-    let sum = 1;
-    for(let i = 1; i <= k; i++)
-        sum = sum * (n - k + i) / i;
-    return sum;
-} 
-
-function factorial(n){
-    var temporary = 1;
-    if(n==0 || n==1)
-        return 1;
-    for(var i = 1; i<=n; i++)
-        temporary = temporary *i;
-    return temporary;
+const xValues1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const xValues2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const xValues3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const binomialData1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const binomialData2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const binomialData3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const poissonData1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const poissonData2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const poissonData3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+       
+function binomialPMF(x, n, p) {
+    return (factorial(n) / (factorial(x) * factorial(n - x))) * Math.pow(p, x) * Math.pow(1 - p, n - x);
+}
+function factorial(num) {
+    let result = 1;
+    for (let i = 1; i <= num; i++) {
+        result *= i;
+    }
+    return result;
 }
 
+function poissonPMF(x, lambda) {
+    return (Math.pow(lambda, x) * Math.exp(-lambda)) / factorial(x);
+}
+
+
+const ctx = document.getElementById('linechart').getContext('2d');
+const pmfChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: xValues1,
+        datasets: [
+            {
+                label: 'Binomial PMF n1, p1',
+                data: binomialData1,
+                borderColor: 'pink',
+                fill: false
+            },
+            {
+                label: 'Poisson distribution ',
+                data: poissonData1,
+                borderColor: 'red',
+                fill: false
+            },
+            {
+                label: 'Binomial PMF n2, p2',
+                data: binomialData2,
+                borderColor: 'green',
+                fill: false
+            },
+            // {
+            //     label: 'Poisson PMF n2, p2',
+            //     data: poissonData2,
+            //     borderColor: 'light green',
+            //     fill: false
+            // },
+            {
+                label: 'Binomial PMF n3, p3',
+                data: binomialData3,
+                borderColor: 'blue',
+                fill: false
+            }
+            // {
+            //     label: 'Poisson PMF n3, p3',
+            //     data: poissonData3,
+            //     borderColor: 'light blue',
+            //     fill: false
+            // }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Random Variable (x)'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'PMF'
+                }
+            }
+        }
+    }
+});
+
 function setPPoisson() {
-    var prob = parseFloat(p.value);
-    var n = parseInt(nFinal.value);
+    var prob1 = parseFloat(p1.value);
+    var n1 = parseInt(n1Final.value);
+
+    var prob2 = parseFloat(p2.value);
+    var n2 = parseInt(n2Final.value);
+
+    var prob3 = parseFloat(p3.value);
+    var n3 = parseInt(n3Final.value);
     
-    if (prob < 0 || prob > 1) {
-        alert("Invalid P(H) value");
+    if (prob1 < 0 || prob1 > 1) {
+        alert("Invalid p1 value");
         return;
     }
     
-    if(n < 10 || n > 200){
-        alert("Range of n for the sake of the experiement is between 10 and 200");
+    if (prob2 < 0 || prob2 > 1) {
+        alert("Invalid p2 value");
+        return;
+    }
+
+    if (prob3 < 0 || prob3 > 1) {
+        alert("Invalid p3 value");
+        return;
+    }
+
+    if(n1 < 10 || n1 > 50){
+        alert("Range of n1 for the sake of the experiement is between 10 and 50");
+        return;
+    }
+
+    if(n2 < 50 || n2 > 100){
+        alert("Range of n2 for the sake of the experiement is between 51 and 100");
         return;
     }
     
-    fixedProbValue.innerHTML = prob;
-    fixednumofexp.innerHTML = n;
+    if(n3 <100  || n3 > 150){
+        alert("Range of n3 for the sake of the experiement is between 101 and 150");
+        return;
+    }
 
-    lambda = parseFloat(n * prob).toFixed(1);
+    lambda = parseFloat(n1 * prob1).toFixed(1);
 
-    var deltahigh = parseFloat(np.innerText) + 0.01;
-    var deltalow = parseFloat(np.innerText) - 0.01;
+    var deltahigh = parseFloat(np.innerText) + 0.05;
+    var deltalow = parseFloat(np.innerText) - 0.05;
 
     if(lambda < deltalow || lambda > deltahigh ){
-        alert("pick n and p values such that lambda = " + np.innerText);
+        alert("pick n1and p1 values such that lambda = " + np.innerText);
         return;
     }
+
+    lambda = parseFloat(n2 * prob2).toFixed(1);
+
+
+    if(lambda < deltalow || lambda > deltahigh ){
+        alert("pick n2 and p2 values such that lambda = " + np.innerText);
+        return;
+    }
+
+    lambda = parseFloat(n3 * prob3).toFixed(1);
+
+
+    if(lambda < deltalow || lambda > deltahigh ){
+        alert("pick n3 and p3 values such that lambda = " + np.innerText);
+        return;
+    }
+
+    fixedProbValue1.innerText = parseFloat(prob1).toFixed(5);
+    fixedProbValue2.innerText =  parseFloat(prob2).toFixed(5);
+    fixedProbValue3.innerText =  parseFloat(prob3).toFixed(5);
+
+    fixednumofexp1.innerText = n1;
+    fixednumofexp2.innerText = n2;
+    fixednumofexp3.innerText = n3;
 
     document.getElementById("inputDiv").style.display = "none";
     document.getElementById("binomialDiv").style.display = "block";
 }
 
 function Poisson() {
-    var exp = parseInt(fixednumofexp.innerText);
-    var prob = parseFloat(fixedProbValue.innerText);
+    var exp, prob;
 
     if(temp == 1){
-        exp = 150;
-        prob = parseFloat( parseFloat(np.innerText)/exp).toFixed(3);
+        exp = parseInt(fixednumofexp1.innerText);
+        prob = parseFloat( fixedProbValue1.innerText);
+        lambda = parseFloat(exp * prob).toFixed(1);
 
         for(var i = 0; i < exp; i++){
             var random = Math.random();
@@ -184,46 +228,43 @@ function Poisson() {
             else
                 tailCount1.innerText = 1 + parseInt(tailCount1.innerText);
         }
+
+        poissonAns = parseFloat(poissonPMF(parseInt(headCount1.innerText), lambda)).toFixed(5);
+        binomialAns = parseFloat(binomialPMF(parseInt(headCount1.innerText), exp, prob)).toFixed(5);
+
         
+        var obs2 = "Exp 1: P<sub>Binomial</sub>(X = " + headCount1.innerText+") is: "+ binomialAns +", and P<sub>Poisson</sub>(X = "+ headCount1.innerText+") is: "+ poissonAns +". Difference: " +parseFloat(Math.abs(poissonAns - binomialAns)).toFixed(3)+". <br>";
+
+        obs.innerHTML += obs2 ;
+
+
         
-        // binomialAns1 = parseFloat( binomialCoefficient(exp, parseInt(headCount1.innerText)) * Math.pow(prob, parseInt(headCount1.innerText)) * Math.pow(1-prob, parseInt(tailCount1.innerText)) ).toFixed(3);
-        // poissonAns1 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount1.innerText))/factorial(parseInt(headCount1.innerText))).toFixed(3)
-        
-        document.getElementById("graphDiv").style.display="block";
-        var xDataNew1 = new Array();
-        var yDataBinomial1 = new Array();
-        var yDataPoisson1 = new Array();
-        
+        var xDataNew = new Array();
+        var yDataBinomial = new Array();
+        var yDataPoisson = new Array();
         for(var i = 0; i <= exp; i++){
-            var yBinomial1 = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(3);
-            var yPoisson1 = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(3)
-
-            if(parseInt(i) === parseInt(headCount1.innerText)){
-                binomialAns1 = yBinomial1;
-                poissonAns1  = yPoisson1;
-            }
-
-            if(parseFloat(yBinomial1).toFixed(3) != 0){
-                xDataNew1.push(i);
-                yDataBinomial1.push(parseFloat(yBinomial1));
-                yDataPoisson1.push(parseFloat(yPoisson1));
+            var yBinomial =  parseFloat(binomialPMF(i, exp, prob)).toFixed(5);
+            var yPoisson =  parseFloat(poissonPMF(i, lambda)).toFixed(5);
+            if(yBinomial != 0){
+                xDataNew.push(i);
+                yDataBinomial.push(parseFloat(yBinomial));
+                yDataPoisson.push(parseFloat(yPoisson));
             }
             else
                 break;
         }
-
-        var obs1 = "Number of H<sub>Exp 1</sub>: " + headCount1.innerText+", P<sub>Binomial</sub>(X = " + headCount1.innerText+") is: "+ binomialAns1+", and P<sub>Poisson</sub>(X = "+ headCount1.innerText+") is: "+ poissonAns1+". <br>";
-        obs.innerHTML += obs1;
+       
+        pmfChart.data.datasets[0].data = yDataBinomial;
+        pmfChart.data.datasets[1].data = yDataPoisson;      
         
-        var dp1 = xDataNew1.map((x, index) => ({ x: x, y: yDataBinomial1[index] }));
-        var dp2 = xDataNew1.map((x, index) => ({ x: x, y: yDataPoisson1[index] }));
-        stepChart2.data.datasets[0].data = dp1;
-        stepChart2.data.datasets[1].data = dp2;
-        stepChart2.update();
-
-        
+        // console.log(yDataBinomial)
+        // console.log(yDataPoisson)
     }
     else if( temp == 2){
+        exp = parseInt(fixednumofexp2.innerText);
+        prob = parseFloat( fixedProbValue2.innerText);
+        lambda = parseFloat(exp * prob).toFixed(1);
+
         for(var i = 0; i < exp; i++){
             var random = Math.random();
             result = (random < prob) ? 1 : 0;
@@ -232,22 +273,22 @@ function Poisson() {
             else
                 tailCount2.innerText = 1 + parseInt(tailCount2.innerText);
         }
-        binomialAns2 = parseFloat(binomialCoefficient(exp, parseInt(headCount2.innerText)) * Math.pow(prob, parseInt(headCount2.innerText)) * Math.pow(1-prob, parseInt(tailCount2.innerText))).toFixed(3);
-        poissonAns2 = parseFloat(Math.pow(2.73, -lambda) * Math.pow(lambda, parseInt(headCount2.innerText) )/factorial(parseInt(headCount2.innerText))).toFixed(3)
-        var obs2 = "Number of H<sub>Exp 2</sub>: " + headCount2.innerText+", P<sub>Binomial</sub>(X = " + headCount2.innerText+") is: "+ binomialAns2+", and P<sub>Poisson</sub>(X = "+ headCount2.innerText+") is: "+ poissonAns2+". <br>";
 
-        var obs3 = "We can observe from the two graphs below that by keeping lambda constant and increasing n, the difference between  P<sub>Binomial</sub>(x) and  P<sub>Poisson</sub>(x) becomes smaller and smaller. It implies that the Poisson random variable is the limiting case of Binomial random variable as n grows large (tends to infinity)"
-        obs.innerHTML += obs2 + obs3;
+        poissonAns = parseFloat(poissonPMF(parseInt(headCount2.innerText), lambda)).toFixed(5);
+        binomialAns = parseFloat(binomialPMF(parseInt(headCount2.innerText), exp, prob)).toFixed(5);
 
+        
+        var obs2 = "Exp 2: P<sub>Binomial</sub>(X = " + headCount2.innerText+") is: "+ binomialAns +", and P<sub>Poisson</sub>(X = "+ headCount2.innerText+") is: "+ poissonAns +". Difference: " + parseFloat(Math.abs(poissonAns - binomialAns)).toFixed(3)+". <br>";
 
-        document.getElementById("stepDiv").style.display="block";
+        obs.innerHTML += obs2 ;
+        
         var xDataNew = new Array();
         var yDataBinomial = new Array();
         var yDataPoisson = new Array();
         for(var i = 0; i <= exp; i++){
-            var yBinomial = parseFloat(binomialCoefficient(exp, i) * Math.pow(prob, i) * Math.pow(1-prob, exp - i)).toFixed(3);
-            var yPoisson = parseFloat( (Math.pow(2.718, -lambda) * Math.pow(lambda, i))/factorial(i) ).toFixed(3)
-            if(parseFloat(yBinomial).toFixed(3) != 0){
+            var yBinomial =  parseFloat(binomialPMF(i, exp, prob)).toFixed(5);
+            var yPoisson =  parseFloat(poissonPMF(i, lambda)).toFixed(5);
+            if(yBinomial != 0){
                 xDataNew.push(i);
                 yDataBinomial.push(parseFloat(yBinomial));
                 yDataPoisson.push(parseFloat(yPoisson));
@@ -256,13 +297,58 @@ function Poisson() {
                 break;
         }
 
-        
+        pmfChart.data.datasets[2].data = yDataBinomial;
+        // pmfChart.data.datasets[3].data = yDataPoisson;
 
-        var dataPoints1 = xDataNew.map((x, index) => ({ x: x, y: yDataBinomial[index] }));
-        var dataPoints2 = xDataNew.map((x, index) => ({ x: x, y: yDataPoisson[index] }));
-        stepChart.data.datasets[0].data = dataPoints1;
-        stepChart.data.datasets[1].data = dataPoints2;
-        stepChart.update();
+        console.log(yDataBinomial)
+        console.log(yDataPoisson)
+    }
+    else if(temp = 3){
+        exp = parseInt(fixednumofexp3.innerText);
+        prob = parseFloat( fixedProbValue3.innerText);
+
+        lambda = parseFloat(exp * prob).toFixed(1);
+        for(var i = 0; i < exp; i++){
+            var random = Math.random();
+            result = (random < prob) ? 1 : 0;
+            if(result == 1)
+                headCount3.innerText = 1 + parseInt(headCount3.innerText);
+            else
+                tailCount3.innerText = 1 + parseInt(tailCount3.innerText);
+        }
+        poissonAns = parseFloat(poissonPMF(parseInt(headCount3.innerText), lambda)).toFixed(5);
+        binomialAns = parseFloat(binomialPMF(parseInt(headCount3.innerText), exp, prob)).toFixed(5);
+
+        
+        var obs2 = "Exp 3: P<sub>Binomial</sub>(X = " + headCount3.innerText+") is: "+ binomialAns +", and P<sub>Poisson</sub>(X = "+ headCount3.innerText+") is: "+ poissonAns +". Difference: " + parseFloat(Math.abs(poissonAns - binomialAns)).toFixed(3)+". <br>";
+
+        obs.innerHTML += obs2 ;
+        
+        var xDataNew = new Array();
+        var yDataBinomial = new Array();
+        var yDataPoisson = new Array();
+        for(var i = 0; i <= exp; i++){
+            var yBinomial =  parseFloat(binomialPMF(i, exp, prob)).toFixed(5);
+            var yPoisson =  parseFloat(poissonPMF(i, lambda)).toFixed(5);
+            if(yBinomial != 0){
+                xDataNew.push(i);
+                yDataBinomial.push(parseFloat(yBinomial));
+                yDataPoisson.push(parseFloat(yPoisson));
+            }
+            else
+                break;
+        }
+
+        pmfChart.data.labels = xDataNew;
+        
+        pmfChart.data.datasets[3].data = yDataBinomial;
+
+        console.log(yDataBinomial)
+        console.log(yDataPoisson)
+
+        pmfChart.update();
+
+        document.getElementById("graphDiv").style.display="block";
     }
     else{
         alert("Experiment limit reached");
@@ -271,8 +357,8 @@ function Poisson() {
     temp++;      
 }
 
-function Poisson2(){
-    var remaining = 2 - temp + 1
+function PoissonAll(){
+    var remaining = 4-temp;
 
     if(remaining == 0){
         alert("Experiment limit reached");
@@ -283,28 +369,34 @@ function Poisson2(){
 }
 
 function reset() {
-    p.value = 0.5;
-    nFinal.value = 10;
-    var randomize = parseFloat(Math.random() * 8).toFixed(1);
+    p1.value = 0.5;
+    n1Final.value = 25;
+    
+    p2.value = 0.5;
+    n2Final.value = 75;
+    
+    p3.value = 0.5;
+    n3Final.value = 150;
+    
+    var randomize = parseFloat(Math.random() * 10).toFixed(1);
     while(randomize < 1 ){
-        randomize = parseFloat(Math.random() * 8).toFixed(1);
+        randomize = parseFloat(Math.random() * 10).toFixed(1);
     }
     np.innerText = randomize;
     
     document.getElementById("inputDiv").style.display = "block";
     document.getElementById("binomialDiv").style.display = "none";
     document.getElementById("graphDiv").style.display="none";
-    document.getElementById("stepDiv").style.display="none";
     obs.innerText = "";
     
-    expResult1.innerText = "Experiment with fixed n = 150 and p = "+ parseFloat(randomize/150).toFixed(3) +" such that lambda  = " + randomize;
-    expResult2.innerText = "User experiment with given n and p values: ";
-
     headCount1.innerText = 0;
     tailCount1.innerText = 0;
 
     headCount2.innerText = 0;
     tailCount2.innerText = 0;
+
+    headCount3.innerText = 0;
+    tailCount3.innerText = 0;
 
     temp = 1;
 }

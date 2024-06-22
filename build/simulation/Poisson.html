@@ -61,11 +61,11 @@
 					</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
 						<ul style="list-style: disc;">
-							
+							<b>
 								Quick theory overview:
-							
+							</b>
 							<ul style="list-style: disc;">
-								Procedure:
+								<b>Procedure:</b>
 								<p></p>
 							</ul>
 					</div>
@@ -85,52 +85,42 @@
 					Poisson Random Variable Experiment
 				</div>
 				<div style="text-align: center;">
-					Randomly generated \( \lambda \) = <span id="inputLambda">0</span>
+					Randomly generated \( \lambda \) = <span id="inputLambda">0</span></b>
 				</div>
 				<div id="inputDiv">
-					<div>
-						\(p_1\) = <input type="number" id="inputProbability1" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-						\(n_1\) = <input type="number" id="numofexperiments1" value="10" step="25" min="10" max="200" style="width: 50px;">
-					</div>
-					<div>
-						\(p_2\) = <input type="number" id="inputProbability2" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-						\(n_2\) = <input type="number" id="numofexperiments2" value="10" step="25" min="10" max="200" style="width: 50px;">
-					</div>	
-					<div>
-						\(p_3\) = <input type="number" id="inputProbability3" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-						\(n_3\) = <input type="number" id="numofexperiments3" value="10" step="25" min="10" max="200" style="width: 50px;">
-					</div>	
-					<div style="justify-content: center;">
+					\(p\) = <input type="number" id="inputProbability" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
+					\(n\) = <input type="number" id="numofexperiments" value="10" step="25" min="10" max="200" style="width: 50px;">
+                    <div style="justify-content: center;">
 						<button class="v-button" role="button"  style="margin: 1.5%;" onclick="setPPoisson()"> 
 							Set
 						</button>
-					</div>	
+					</div>
                 </div>
 				<div id="binomialDiv">
-            		Now, we have set the  \(p_1\) = <span id="probabilityValue1">0</span>,  \( n_1 \) = <span id="experimentsValue1">10</span>,  \(p_2\) = <span id="probabilityValue2">0</span>,  \( n_2 \) = <span id="experimentsValue2">10</span>,  \(p_3\) = <span id="probabilityValue3">0</span>, and  \( n_3 \) = <span id="experimentsValue3">10</span> values respectively.
+            		Now, we have <b> \(p\) = <span id="probabilityValue">0</span></b>.
+                    and <b> \( n \) = <span id="experimentsValue">10</span></b>.
 					<div>
 						<button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance" onclick="Poisson()"> 
-							Toss for 1 experiment at a time
+							Toss for <b> 1  </b> experiment
 						</button>
-                        <button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance3" onclick="PoissonAll()"> 
-							Complete all the 3 experiments at once
+                        <button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance3" onclick="Poisson2()"> 
+							Complete all the <b> 2 </b> experiments
 						</button>
 					</div>
 					<div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
 						<div id="binomialResult1" style="text-align: center;">
-							\(n_1, p_1\) 
+							n = <span id="fixedNumberOfExperiments">0</span></b>, p = <span id="fixedProbabilityValue">0</span></b>
 						</div>
 						<div style="text-align: center;">
-							\(H\) = <span id="numOfHeads1">0</span>
+							\(H\) = <span id="numOfHeads1">0</span></b>
 						</div>
 						<div style="text-align: center;">
-							\(T\) = <span id="numOfTails1">0</span>
+							\(T\) = <span id="numOfTails1">0</span></b>
 						</div>
 					</div>
-
-					<div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
+                    <div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
 						<div id="binomialResult2" style="text-align: center;">
-							\(n_2, p_2\)  
+							User experiment with given n and p values:
 						</div>
 						<div style="text-align: center;">
 							\(H\) = <span id="numOfHeads2">0</span>
@@ -138,20 +128,7 @@
 						<div style="text-align: center;">
 							\(T\) = <span id="numOfTails2">0</span>
 						</div>
-					</div>
-
-					<div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
-						<div id="binomialResult3" style="text-align: center;">
-							\(n_3, p_3\) 
-						</div>
-						<div style="text-align: center;">
-							\(H\) = <span id="numOfHeads3">0</span>
-						</div>
-						<div style="text-align: center;">
-							\(T\) = <span id="numOfTails3">0</span>
-						</div>
-					</div>
-
+					</div>			
                 </div>
 				<div class="buttonsDiv">
 					<button class="v-button" role="button" onclick="reset()"> 
@@ -166,8 +143,11 @@
 				<div id= "observations" style="text-align: center;">
 				</div>
                 <div id="graphDiv">
-                    <canvas id="linechart"></canvas>
-                </div>      
+                    <canvas id="stepchart2"></canvas>
+                </div>
+				<div id ="stepDiv">
+					<canvas id="stepChart"></canvas>
+				</div>             
 			</div>
 		</div>
 	</div>
