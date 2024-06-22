@@ -7,11 +7,11 @@
 </li>
 <li>
     Find the inverse image of the generated random number "c" for the given random
-    variable \(X\) and select the appropriate inverse image.
+    variable $X$ and select the appropriate inverse image.
 </li>
 <li>
     Based on the inverse image calculated and the probabiliy measure given, find the CDF
-    of the random variable \(X\) at "c" and enter the value in the input box.
+    of the random variable $X$ at "c" and enter the value in the input box.
 </li>
 <li>
     Click on the "Submit" button to check your answer.
@@ -67,20 +67,20 @@
 ## Part 2
 ### Bernoulli RV
 <li>
-    Here, we are considering a coin toss experiment as a Bernoulli random variable \(X\). Head is mapped to \(X=1\) and Tail is mapped to \(X=0\).
+    Here, we are considering a coin toss experiment as a Bernoulli random variable $X$. Head is mapped to $X=1$ and Tail is mapped to $X=0$.
 </li>
 <li>
     Choose a value for the probability of getting a Head on tossing a coin, denoted by
-    \(p\).
+    $p$.
 </li>
 <li>
-    Enter the value of \(p\) in the input box and click on the "Set" button.
+    Enter the value of $p$ in the input box and click on the "Set" button.
 </li>
 <li>
     Click on the "TOSS" button to simulate the coin toss experiment.
 </li>
 <li>
-    Observe the value of the Bernoulli random variable \(X\) for each toss.
+    Observe the value of the Bernoulli random variable $X$ for each toss.
 </li>
 <li>
     Click on the "Reset" button to reset the experiment.
@@ -89,18 +89,18 @@
 ### Binomial RV
 <li>
     In this experiment, we are modelling the number of Heads we get when we flip a
-    biased coin \(n\) times as a Binomial RV. The probability of getting a head is given
-    by \(P(H) = p\).
+    biased coin $n$ times as a Binomial RV. The probability of getting a head is given
+    by $P(H) = p$.
 </li>
 <li>
-    Here, we are fixing the number of coin flips to \(n = 10\).
+    Here, we are fixing the number of coin flips to $n = 10$.
 </li>
 <li>
-    You can set the value of \(P(H)\) using the input box and then click on the "Set"
+    You can set the value of $P(H)$ using the input box and then click on the "Set"
     button.
 </li>
 <li>
-    After setting the value of \(P(H)\), you can click on the "TOSS" button to flip the
+    After setting the value of $P(H)$, you can click on the "TOSS" button to flip the
     coin once.
 </li>
 <li>
@@ -120,10 +120,10 @@
 ### Geoemetric RV
 <li>
     Choose a value for the probability of getting a Head on a coin toss, denoted by
-    \(p\).
+    $p$.
 </li>
 <li>
-    Enter the value of \(p\) in the input box and click on the "Set" button.
+    Enter the value of $p$ in the input box and click on the "Set" button.
 </li>
 <li>
     Click on the "TOSS" button to perform the coin toss experiment.
@@ -133,11 +133,11 @@
     first Head.
 </li>
 <li>
-    Observe the value of the Geometric random variable \(X\) for the experiment.
+    Observe the value of the Geometric random variable $X$ for the experiment.
 </li>
 <li>
     Repeat the experiment multiple times to observe the distribution of the Geometric
-    random variable \(X\).
+    random variable $X$.
 </li>
 <li>
     Click on the "Reset" button to reset the experiment.
@@ -145,20 +145,20 @@
 
 ### Poisson RV
 <li>
-    In this experiment, we are trying to show that as \(n \to \infty\) and \(p \to 0\)
-    such that \(np\) is constant, the binomial random variable \(X\) converges to a
-    Poisson random variable with parameter \(\lambda = np\).
+    In this experiment, we are trying to show that as $n \to \infty$ and $p \to 0$
+    such that $np$ is constant, the binomial random variable $X$ converges to a
+    Poisson random variable with parameter $\lambda = np$.
 </li>
 <li>
-    Ypu have to conduct three experiments with different \(n\) and \(p\) values such
-    that \(np\) is constant.
+    Ypu have to conduct three experiments with different $n$ and $p$ values such
+    that $np$ is constant.
 </li>
 <li>
-    A value for \( \lambda \) is randomly generated. You have to set the \(p\) and \(n\)
-    values for the three experiments such that \(np = \lambda\).
+    A value for $ \lambda $ is randomly generated. You have to set the $p$ and $n$
+    values for the three experiments such that $np = \lambda$.
 </li>
 <li>
-    To observe the convergence, you have to enter a value for \(n\) between 10 to 50 for
+    To observe the convergence, you have to enter a value for $n$ between 10 to 50 for
     the first experiment, 50 to 100 for the second experiment, and 100 to 150 for the
     third experiment.
 </li>
