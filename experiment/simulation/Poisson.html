@@ -9,13 +9,14 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
 	<link rel="stylesheet" href="./css/binomial.css">
 	<link rel="stylesheet" href="./css/main.css">
-	<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<title>
 		Poisson RV
 	</title>
-    <!-- set favicon -->
-    <link rel="icon" href="images/free-icon-heads-or-tails-456.png">
+	<!-- set favicon -->
+	<link rel="icon" href="images/free-icon-heads-or-tails-456.png">
 </head>
 
 <body>
@@ -25,31 +26,30 @@
 				<div class="column is-one-quarter v-instruction-title">
 					Tasks
 				</div>
-				<div class="column">
-					<div class="v-tabs">
-						<ul>
-							<li id="Task1" onclick="window.location.href = 'bernoulli.html';">
-								<a>
-									Bernoulli RV
-								</a>
-							</li>
-							<li id="Task2" onclick="window.location.href = 'binomial.html';">
-								<a>
-									Binomial RV
-								</a>
-							</li>							
-							<li id="Task3" onclick="window.location.href = 'geometric.html';">
-								<a>
-									Geometric RV
-								</a>
-							</li>
-							<li class="is-active" id="Task3">
-								<a>
-									Poisson RV
-								</a>
-							</li>
-						</ul>
-					</div>
+				<div class="v-tabs">
+					<ul>
+						<li id="Task1" onclick="window.location.href = 'bernoulli.html';">
+							<a>
+								Bernoulli RV
+							</a>
+						</li>
+						<li id="Task3" onclick="window.location.href = 'geometric.html';">
+							<a>
+								Geometric RV
+							</a>
+						</li>
+						<li id="Task2" onclick="window.location.href = 'binomial.html';">
+							<a>
+								Binomial RV
+							</a>
+						</li>
+						<li class="is-active" id="Task4">
+							<a>
+								Poisson RV
+							</a>
+						</li>
+					</ul>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -61,22 +61,54 @@
 					</div>
 					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
 						<ul style="list-style: disc;">
-							
-								Quick theory overview:
-							
+
+							<b>Quick theory overview:</b>
+
 							<ul style="list-style: disc;">
-								Procedure:
-								<p></p>
+								<b>Procedure:</b>
+								<li>
+									In this experiment, we are trying to show that as \(n \to \infty\) and \(p \to 0\)
+									such that \(np\) is constant, the binomial random variable \(X\) converges to a
+									Poisson random variable with parameter \(\lambda = np\).
+								</li>
+								<li>
+									Ypu have to conduct three experiments with different \(n\) and \(p\) values such
+									that \(np\) is constant.
+								</li>
+								<li>
+									A value for \( \lambda \) is randomly generated. You have to set the \(p\) and \(n\)
+									values for the three experiments such that \(np = \lambda\).
+								</li>
+								<li>
+									To observe the convergence, you have to enter a value for \(n\) between 10 to 50 for
+									the first experiment, 50 to 100 for the second experiment, and 100 to 150 for the
+									third experiment.
+								</li>
+								<li>
+									After entering these values, you can click on the "Set" button to set the values.
+								</li>
+								<li>
+									You can then click on the "Toss for 1 experiment at a time" button to conduct the
+									experiments one by one or click on the "Complete all the 3 experiments at once"
+									button to conduct all the experiments at once.
+								</li>
+								<li>
+									After the experiments are conducted, you can observe the number of heads and tails
+									obtained in each experiment, the observations, and the graph showing the PDF of the
+									three experiments and the Poisson distribution.
+								</li>
 							</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="mainContainer">	
+	<div class="mainContainer">
 		<div class="questionContainer" style="font-size: 20px;">
 			<p>
-				Modelling a Poisson random variable a series of coin toss experiment with a biased coim, where the probability of getting heads = \(p\). The Poisson random variable \(X\) counts the number of heads that occur after the \(n\) independent and random experiments have been conducted.
+				Modelling a Poisson random variable a series of coin toss experiment with a biased coim, where the
+				probability of getting heads = \(p\). The Poisson random variable \(X\) counts the number of heads that
+				occur after the \(n\) independent and random experiments have been conducted.
 			</p>
 		</div>
 		<div class="experimentAndObservationContainer">
@@ -89,36 +121,47 @@
 				</div>
 				<div id="inputDiv">
 					<div>
-						\(p_1\) = <input type="number" id="inputProbability1" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-						\(n_1\) = <input type="number" id="numofexperiments1" value="10" step="25" min="10" max="200" style="width: 50px;">
+						\(p_1\) = <input type="number" id="inputProbability1" value="0.5" step="0.01" min="0" max="1"
+							style="width: 50px;">
+						\(n_1\) = <input type="number" id="numofexperiments1" value="10" step="25" min="10" max="200"
+							style="width: 50px;">
 					</div>
 					<div>
-						\(p_2\) = <input type="number" id="inputProbability2" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-						\(n_2\) = <input type="number" id="numofexperiments2" value="10" step="25" min="10" max="200" style="width: 50px;">
-					</div>	
+						\(p_2\) = <input type="number" id="inputProbability2" value="0.5" step="0.01" min="0" max="1"
+							style="width: 50px;">
+						\(n_2\) = <input type="number" id="numofexperiments2" value="10" step="25" min="10" max="200"
+							style="width: 50px;">
+					</div>
 					<div>
-						\(p_3\) = <input type="number" id="inputProbability3" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-						\(n_3\) = <input type="number" id="numofexperiments3" value="10" step="25" min="10" max="200" style="width: 50px;">
-					</div>	
+						\(p_3\) = <input type="number" id="inputProbability3" value="0.5" step="0.01" min="0" max="1"
+							style="width: 50px;">
+						\(n_3\) = <input type="number" id="numofexperiments3" value="10" step="25" min="10" max="200"
+							style="width: 50px;">
+					</div>
 					<div style="justify-content: center;">
-						<button class="v-button" role="button"  style="margin: 1.5%;" onclick="setPPoisson()"> 
+						<button class="v-button" role="button" style="margin: 1.5%;" onclick="setPPoisson()">
 							Set
 						</button>
-					</div>	
-                </div>
+					</div>
+				</div>
 				<div id="binomialDiv">
-            		Now, we have set the  \(p_1\) = <span id="probabilityValue1">0</span>,  \( n_1 \) = <span id="experimentsValue1">10</span>,  \(p_2\) = <span id="probabilityValue2">0</span>,  \( n_2 \) = <span id="experimentsValue2">10</span>,  \(p_3\) = <span id="probabilityValue3">0</span>, and  \( n_3 \) = <span id="experimentsValue3">10</span> values respectively.
+					Now, we have set the \(p_1\) = <span id="probabilityValue1">0</span>, \( n_1 \) = <span
+						id="experimentsValue1">10</span>, \(p_2\) = <span id="probabilityValue2">0</span>, \( n_2 \) =
+					<span id="experimentsValue2">10</span>, \(p_3\) = <span id="probabilityValue3">0</span>, and \( n_3
+					\) = <span id="experimentsValue3">10</span> values respectively.
 					<div>
-						<button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance" onclick="Poisson()"> 
+						<button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance"
+							onclick="Poisson()">
 							Toss for 1 experiment at a time
 						</button>
-                        <button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance3" onclick="PoissonAll()"> 
+						<button class="v-button" role="button" style="margin: 1.5%;" id="binomialInstance3"
+							onclick="PoissonAll()">
 							Complete all the 3 experiments at once
 						</button>
 					</div>
-					<div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
+					<div class="resultsContainer" style="text-align: center; margin: 1.5%;">
 						<div id="binomialResult1" style="text-align: center;">
-							\(n_1, p_1\) 
+							\(n_1, p_1\)
 						</div>
 						<div style="text-align: center;">
 							\(H\) = <span id="numOfHeads1">0</span>
@@ -128,9 +171,9 @@
 						</div>
 					</div>
 
-					<div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
+					<div class="resultsContainer" style="text-align: center; margin: 1.5%;">
 						<div id="binomialResult2" style="text-align: center;">
-							\(n_2, p_2\)  
+							\(n_2, p_2\)
 						</div>
 						<div style="text-align: center;">
 							\(H\) = <span id="numOfHeads2">0</span>
@@ -140,9 +183,9 @@
 						</div>
 					</div>
 
-					<div class="resultsContainer"  style="text-align: center; margin: 1.5%;" >
+					<div class="resultsContainer" style="text-align: center; margin: 1.5%;">
 						<div id="binomialResult3" style="text-align: center;">
-							\(n_3, p_3\) 
+							\(n_3, p_3\)
 						</div>
 						<div style="text-align: center;">
 							\(H\) = <span id="numOfHeads3">0</span>
@@ -152,9 +195,9 @@
 						</div>
 					</div>
 
-                </div>
+				</div>
 				<div class="buttonsDiv">
-					<button class="v-button" role="button" onclick="reset()"> 
+					<button class="v-button" role="button" onclick="reset()">
 						Reset
 					</button>
 				</div>
@@ -163,11 +206,11 @@
 				<div class="v-datalist-title" style="text-align: center;">
 					Observations
 				</div>
-				<div id= "observations" style="text-align: center;">
+				<div id="observations" style="text-align: center;">
 				</div>
-                <div id="graphDiv">
-                    <canvas id="linechart"></canvas>
-                </div>      
+				<div id="graphDiv">
+					<canvas id="linechart"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -175,4 +218,5 @@
 	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
 	<script src="./js/Poisson.js"></script>
 </body>
+
 </html>

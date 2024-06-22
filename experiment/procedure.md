@@ -7,11 +7,11 @@
 </li>
 <li>
     Find the inverse image of the generated random number "c" for the given random
-    variable \(X\) and select the appropriate inverse image.
+    variable $X$ and select the appropriate inverse image.
 </li>
 <li>
     Based on the inverse image calculated and the probabiliy measure given, find the CDF
-    of the random variable \(X\) at "c" and enter the value in the input box.
+    of the random variable $X$ at "c" and enter the value in the input box.
 </li>
 <li>
     Click on the "Submit" button to check your answer.
@@ -22,20 +22,22 @@
 
 ### CDF Properties
 <li>
-    Given: A function \(\mathcal{f}\), a sample space \(\Omega\), and a variable \(c\)
+    In this experiment, you will be shown 4 graphs of the cumulative distribution function (CDF) of
+    4 different random variables.You have to verify if the given plots satisfy all the properties of
+    a CDF.
 </li>
 <li>
-    Populate the function \(\mathcal{f}\) and the variable \(c\) using the generate button given
-    below
+    To do this, you have to verify each graph individually.
 </li>
-<li> 
-    The generate button will give a random mapping for the function \(\mathcal{f}\) with values
-    ranging from \(-7.5\) to \(7.5\)
+<li>
+    First click on a gaph to select it. The selected graph number will be showed  below.
 </li>
-<li> 
-    Please select the subset of \( \Omega \) which is the inverse image of the generated function
-    \(\mathcal{f}\)
-</li>			
+<li>
+    After this, select the Property of CDF that you think the graph does not satisfy. If it satisfies all the properties, select the last option.
+</li>
+<li>
+    After selecting the option, the observation will be displayed.
+</li>	
 
 ### CDF to PDF/PMF
 <li>
@@ -65,31 +67,63 @@
 ## Part 2
 ### Bernoulli RV
 <li>
-    Choose a value for the probability of getting a Head on tossing a coin, denoted by
-    \(p\).
+    Here, we are considering a coin toss experiment as a Bernoulli random variable $X$. Head is mapped to $X=1$ and Tail is mapped to $X=0$.
 </li>
 <li>
-    Enter the value of \(p\) in the input box and click on the "Set" button.
+    Choose a value for the probability of getting a Head on tossing a coin, denoted by
+    $p$.
+</li>
+<li>
+    Enter the value of $p$ in the input box and click on the "Set" button.
 </li>
 <li>
     Click on the "TOSS" button to simulate the coin toss experiment.
 </li>
 <li>
-    Observe the value of the Bernoulli random variable \(X\) for each toss.
+    Observe the value of the Bernoulli random variable $X$ for each toss.
 </li>
 <li>
     Click on the "Reset" button to reset the experiment.
 </li>
 
 ### Binomial RV
+<li>
+    In this experiment, we are modelling the number of Heads we get when we flip a
+    biased coin $n$ times as a Binomial RV. The probability of getting a head is given
+    by $P(H) = p$.
+</li>
+<li>
+    Here, we are fixing the number of coin flips to $n = 10$.
+</li>
+<li>
+    You can set the value of $P(H)$ using the input box and then click on the "Set"
+    button.
+</li>
+<li>
+    After setting the value of $P(H)$, you can click on the "TOSS" button to flip the
+    coin once.
+</li>
+<li>
+    You can also click on the "Complete remaining toss" button to flip the coin
+    remaining number of times
+    at once.
+</li>
+<li>
+    After the coin is flipped 10 times, check observation to see how the value of the
+    binomial random variable changes.
+</li>
+<li>
+    Repeat this experiment multiple times to see how the value of the binomial random
+    variable changes. You can repeat the experiment by clicking on the "Reset" button.
+</li>
 
 ### Geoemetric RV
 <li>
     Choose a value for the probability of getting a Head on a coin toss, denoted by
-    \(p\).
+    $p$.
 </li>
 <li>
-    Enter the value of \(p\) in the input box and click on the "Set" button.
+    Enter the value of $p$ in the input box and click on the "Set" button.
 </li>
 <li>
     Click on the "TOSS" button to perform the coin toss experiment.
@@ -99,14 +133,45 @@
     first Head.
 </li>
 <li>
-    Observe the value of the Geometric random variable \(X\) for the experiment.
+    Observe the value of the Geometric random variable $X$ for the experiment.
 </li>
 <li>
     Repeat the experiment multiple times to observe the distribution of the Geometric
-    random variable \(X\).
+    random variable $X$.
 </li>
 <li>
     Click on the "Reset" button to reset the experiment.
 </li>
 
 ### Poisson RV
+<li>
+    In this experiment, we are trying to show that as $n \to \infty$ and $p \to 0$
+    such that $np$ is constant, the binomial random variable $X$ converges to a
+    Poisson random variable with parameter $\lambda = np$.
+</li>
+<li>
+    Ypu have to conduct three experiments with different $n$ and $p$ values such
+    that $np$ is constant.
+</li>
+<li>
+    A value for $ \lambda $ is randomly generated. You have to set the $p$ and $n$
+    values for the three experiments such that $np = \lambda$.
+</li>
+<li>
+    To observe the convergence, you have to enter a value for $n$ between 10 to 50 for
+    the first experiment, 50 to 100 for the second experiment, and 100 to 150 for the
+    third experiment.
+</li>
+<li>
+    After entering these values, you can click on the "Set" button to set the values.
+</li>
+<li>
+    You can then click on the "Toss for 1 experiment at a time" button to conduct the
+    experiments one by one or click on the "Complete all the 3 experiments at once"
+    button to conduct all the experiments at once.
+</li>
+<li>
+    After the experiments are conducted, you can observe the number of heads and tails
+    obtained in each experiment, the observations, and the graph showing the PDF of the
+    three experiments and the Poisson distribution.
+</li>
