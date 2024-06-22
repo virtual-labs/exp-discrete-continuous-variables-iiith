@@ -67,6 +67,9 @@
 ## Part 2
 ### Bernoulli RV
 <li>
+    Here, we are considering a coin toss experiment as a Bernoulli random variable \(X\). Head is mapped to \(X=1\) and Tail is mapped to \(X=0\).
+</li>
+<li>
     Choose a value for the probability of getting a Head on tossing a coin, denoted by
     \(p\).
 </li>
