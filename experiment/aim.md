@@ -1,2 +1,2 @@
 # Aim of the experiment
-Through this experiment, students will be introduced to various discrete and continuous random variables.
+Through this experiment, students will be introduced to discrete and continuous random variables and their properties. Various types of discrete and continous random variables will be introduced.

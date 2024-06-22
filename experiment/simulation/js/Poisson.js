@@ -80,12 +80,6 @@ const pmfChart = new Chart(ctx, {
             {
                 label: 'Binomial PMF n1, p1',
                 data: binomialData1,
-                borderColor: 'pink',
-                fill: false
-            },
-            {
-                label: 'Poisson distribution ',
-                data: poissonData1,
                 borderColor: 'red',
                 fill: false
             },
@@ -95,24 +89,18 @@ const pmfChart = new Chart(ctx, {
                 borderColor: 'green',
                 fill: false
             },
-            // {
-            //     label: 'Poisson PMF n2, p2',
-            //     data: poissonData2,
-            //     borderColor: 'light green',
-            //     fill: false
-            // },
             {
                 label: 'Binomial PMF n3, p3',
                 data: binomialData3,
-                borderColor: 'blue',
+                borderColor: 'violet',
+                fill: false
+            },
+            {
+                label: 'Poisson distribution ',
+                data: poissonData1,
+                borderColor: 'black',
                 fill: false
             }
-            // {
-            //     label: 'Poisson PMF n3, p3',
-            //     data: poissonData3,
-            //     borderColor: 'light blue',
-            //     fill: false
-            // }
         ]
     },
     options: {
@@ -159,17 +147,17 @@ function setPPoisson() {
         return;
     }
 
-    if(n1 < 10 || n1 > 50){
+    if(n1 <= 10 || n1 > 50){
         alert("Range of n1 for the sake of the experiement is between 10 and 50");
         return;
     }
 
-    if(n2 < 50 || n2 > 100){
+    if(n2 <= 50 || n2 > 100){
         alert("Range of n2 for the sake of the experiement is between 51 and 100");
         return;
     }
     
-    if(n3 <100  || n3 > 150){
+    if(n3 <=100  || n3 > 150){
         alert("Range of n3 for the sake of the experiement is between 101 and 150");
         return;
     }
@@ -255,10 +243,7 @@ function Poisson() {
         }
        
         pmfChart.data.datasets[0].data = yDataBinomial;
-        pmfChart.data.datasets[1].data = yDataPoisson;      
-        
-        // console.log(yDataBinomial)
-        // console.log(yDataPoisson)
+        pmfChart.data.datasets[3].data = yDataPoisson;      
     }
     else if( temp == 2){
         exp = parseInt(fixednumofexp2.innerText);
@@ -287,21 +272,15 @@ function Poisson() {
         var yDataPoisson = new Array();
         for(var i = 0; i <= exp; i++){
             var yBinomial =  parseFloat(binomialPMF(i, exp, prob)).toFixed(5);
-            var yPoisson =  parseFloat(poissonPMF(i, lambda)).toFixed(5);
             if(yBinomial != 0){
                 xDataNew.push(i);
                 yDataBinomial.push(parseFloat(yBinomial));
-                yDataPoisson.push(parseFloat(yPoisson));
             }
             else
                 break;
         }
 
-        pmfChart.data.datasets[2].data = yDataBinomial;
-        // pmfChart.data.datasets[3].data = yDataPoisson;
-
-        console.log(yDataBinomial)
-        console.log(yDataPoisson)
+        pmfChart.data.datasets[1].data = yDataBinomial;
     }
     else if(temp = 3){
         exp = parseInt(fixednumofexp3.innerText);
@@ -329,32 +308,24 @@ function Poisson() {
         var yDataPoisson = new Array();
         for(var i = 0; i <= exp; i++){
             var yBinomial =  parseFloat(binomialPMF(i, exp, prob)).toFixed(5);
-            var yPoisson =  parseFloat(poissonPMF(i, lambda)).toFixed(5);
             if(yBinomial != 0){
                 xDataNew.push(i);
                 yDataBinomial.push(parseFloat(yBinomial));
-                yDataPoisson.push(parseFloat(yPoisson));
             }
             else
                 break;
         }
 
         pmfChart.data.labels = xDataNew;
-        
-        pmfChart.data.datasets[3].data = yDataBinomial;
-
-        console.log(yDataBinomial)
-        console.log(yDataPoisson)
-
+        pmfChart.data.datasets[2].data = yDataBinomial;
         pmfChart.update();
-
         document.getElementById("graphDiv").style.display="block";
     }
     else{
         alert("Experiment limit reached");
         return;
     }
-    temp++;      
+    temp++;
 }
 
 function PoissonAll(){
@@ -370,13 +341,13 @@ function PoissonAll(){
 
 function reset() {
     p1.value = 0.5;
-    n1Final.value = 25;
+    n1Final.value = 40;
     
     p2.value = 0.5;
-    n2Final.value = 75;
+    n2Final.value = 80;
     
     p3.value = 0.5;
-    n3Final.value = 150;
+    n3Final.value = 120;
     
     var randomize = parseFloat(Math.random() * 10).toFixed(1);
     while(randomize < 1 ){
