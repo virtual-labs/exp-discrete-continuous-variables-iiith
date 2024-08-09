@@ -81,7 +81,7 @@ function binomial10(){
 
 
 function showObservations() {
-    var observation = "<br> Our random variable X counts the number of heads: <b> " + parseInt(headCount.innerText) + "</b> , from 10 experiments. <br> According to the Binomial probability distribution, P( X = " + headCount.innerText+ " ) is : "+ randomVariableAns + "<br> From the experiment conducted by the  user the probability of heads occuring so far has been: " + parseFloat(parseInt(headCount.innerText) /parseInt(coinFlips.innerText) ).toFixed(2) + "<br> The expected number of heads is 'np', which is equal to: " + parseFloat( nFinal * parseFloat(fixedProbValue.innerText)).toFixed(2);
+    var observation = "<br> Our random variable X counts the number of heads: <b> " + parseInt(headCount.innerText) + "</b> , from 10 experiments. <br> According to the Binomial probability distribution, P( X = " + headCount.innerText+ " ) is : "+ randomVariableAns + "<br> From the experiment conducted by the  user the probability of heads occuring so far has been: " + parseFloat(parseInt(headCount.innerText) /parseInt(coinFlips.innerText) ).toFixed(2) + "<br> The expected number of heads is 'n * p', which is equal to: " + parseFloat( nFinal * parseFloat(fixedProbValue.innerText)).toFixed(2);
     obs.innerHTML = observation 
 }
 

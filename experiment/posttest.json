@@ -2,55 +2,89 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "1. For a sample space $\\Omega = \\{w_1,w_2,w_3,w_4\\}$, and a random variable $X$ such that $X(w_1) = X(w_3) = X(w_4) = 2.5 $ and $X(w_2) = 1 $, what is the smallest possible sigma algebra $\\mathcal{F}$ that makes the random variable valid?",
+      "question": "1. I roll a fair die repeatedly until a number less than 2 is observed. If $N$ is the total number of times I roll the die, find $P(N = k)$ for $k = 1, 2, 3, \\ldots$.",
       "answers": {
-        "a": "Power set of $\\Omega$",
-        "b": "$\\{\\phi, \\Omega, \\{w_1\\} \\}$",
-        "c": "$\\{\\phi, \\Omega, \\{w_1, w_3, w_4\\}, \\{w_2\\}, \\{w_3\\}, \\{w_1, w_2, w_4\\}, \\{w_1, w_4\\}, \\{w_2, w_3\\}  \\}$",
-        "d": "$\\{\\phi, \\Omega, \\{w_1, w_3, w_4\\}, \\{w_2\\} \\}$"
+        "a": "$P(N = k) = \\left( \\frac{1}{6} \\right)^k$ for $k = 1, 2, 3, \\ldots$",
+        "b": "$P(N = k) = \\frac{1}{6} \\left( \\frac{5}{6} \\right)^{k-1}$ for $k = 1, 2, 3, \\ldots$",
+        "c": "$P(N = k) = \\frac{5}{6} \\left( \\frac{1}{6} \\right)^{k-1}$ for $k = 1, 2, 3, \\ldots$",
+        "d": "$P(N = k) = \\frac{1}{6} \\left( \\frac{1}{6} \\right)^{k-1}$ for $k = 1, 2, 3, \\ldots$"
       },
       "explanations": {
-        "a": "While it is a valid $\\mathcal{F}$, it is not the smallest possible sigma algebra",
-        "b": "Not a valid $\\mathcal{F}$",
-        "c": "valid $\\mathcal{F}$ but its not the smallest",
-        "d": "Correct answer"
+        "a": "Incorrect. This answer ignores that the probability of rolling a number greater than 1 is $\\frac{5}{6}$ in the first $k-1$ rolls.",
+        "b": "Correct! This follows the geometric distribution where $P(N = k) = \\frac{1}{6} \\left( \\frac{5}{6} \\right)^{k-1}$.",
+        "c": "Incorrect. This swaps the probabilities of success and failure. The probability of rolling a number greater than 1 should be $\\frac{5}{6}$, not $\\frac{1}{6}$.",
+        "d": "Incorrect. This answer confuses the probability of rolling 1 with the overall probability distribution for $N$."
       },
-      "correctAnswer": "d",
+      "correctAnswer": "b",
       "difficulty": "intermediate"
     },
     {
-      "question": "2. Which of the following statements are true?",
+      "question": "2. A person 'S' is driving to work every working day. The driving time of 'S' is between 7 to 10 minutes on a sunny day and 30 to 45 minutes on a rainy day, with all times being equally likely in each case. In a month of 30 days, 3 weeks are said to be sunny while the rest are rainy. What is the PDF of the driving time as a random variable of X?",
       "answers": {
-      "a": " If $A  \\& B$ are independent, then $A \\cap B = \\phi$" ,
-      "b": "A probability space $(\\Omega, \\mathcal{F}, \\mathbb{P})$ is called a complete space if atleast one of the subset of each null sets are events.",
-      "c": "Impossible event is null, but null events need not be impossible",
-      "d": "All of the above"
+        "a": "$f_X(x) = \\frac{7}{30}, \\text{ for } 7 \\leq x \\leq 10$ and $f_X(x) = \\frac{3}{150}, \\text{ for } 30 \\leq x \\leq 45$, and $f_X(x) = 0 \\text{ otherwise}$",
+        "b": "$f_X(x) = \\frac{1}{30}, \\text{ for } 7 \\leq x \\leq 10$ and $f_X(x) = \\frac{2}{150}, \\text{ for } 30 \\leq x \\leq 45$, and $f_X(x) = 0 \\text{ otherwise}$",
+        "c": "$f_X(x) = \\frac{21}{30}, \\text{ for } 7 \\leq x \\leq 10$ and $f_X(x) = \\frac{9}{150}, \\text{ for } 30 \\leq x \\leq 45$, and $f_X(x) = 0 \\text{ otherwise}$",
+        "d": "$f_X(x) = \\frac{9}{30}, \\text{ for } 7 \\leq x \\leq 10$ and $f_X(x) = \\frac{3}{150}, \\text{ for } 30 \\leq x \\leq 45$, and $f_X(x) = 0 \\text{ otherwise}$"
       },
       "explanations": {
-      "a": "Condition described is for mutually exclusive events",
-      "b": "all subsets of null sets should be events",
-      "c": "Correct answer",
-      "d": "Only one of the statement is true"
+        "a": "Correct! The PDF is derived by considering the uniform distribution over the specified intervals and normalizing according to the given probabilities for sunny and rainy days.",
+        "b": "Incorrect. The probabilities and intervals are not correctly normalized.",
+        "c": "Incorrect. The probabilities do not match the correct distribution based on the problem statement.",
+        "d": "Incorrect. The probabilities are not normalized according to the uniform distribution."
       },
-      "correctAnswer": "c",
-      "difficulty": "Easy"
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
     },
     {
-      "question": "3. Given a $\\Omega = \\{1, 2, 3, 4\\}$ and $\\mathcal{F} = \\{ \\phi, \\Omega, \\{1\\}, \\{2\\}, \\{1,2\\}, \\{3,4\\}, \\{1,3,4\\}, \\{2,3,4\\}\\}$ and a valid random mapping $X(1) = 5, X(2) = 4, X(3) = 1, X(4) = 1$ and the inverse image of $c$, denoted by $X^{-1}(c) = \\{ 2, 3, 4\\}$ what is the valid range for values of $v$ ",
+      "question": "3. The time until a small meteorite first lands anywhere in a desert is modeled as an exponential random variable with a mean of 10 days. The time is currently midnight. What is the probability that the meteorite first lands between 8 am on the 4th day and 12 pm on the 7th day?",
       "answers": {
-      "a": "Less than 1" ,
-      "b": "Greater than or equal to 1 and less than 4",
-      "c": "Greater than or equal to 4 and less than 5",
-      "d": "Greater than or equal to 5"
+        "a": "$P\\left( \\frac{10}{3} \\leq X \\leq \\frac{13}{2} \\right) = e^{-\\frac{1}{3}} - e^{-\\frac{13}{20}}$",
+        "b": "$P\\left( \\frac{10}{3} \\leq X \\leq \\frac{13}{2} \\right) = 1 - e^{-\\frac{1}{3}} - e^{-\\frac{13}{20}}$",
+        "c": "$P\\left( \\frac{10}{3} \\leq X \\leq \\frac{13}{2} \\right) = e^{-\\frac{1}{3}} - e^{-\\frac{13}{20}} - 1$",
+        "d": "$P\\left( \\frac{10}{3} \\leq X \\leq \\frac{13}{2} \\right) = e^{-\\frac{1}{3}} + e^{-\\frac{13}{20}}$"
       },
       "explanations": {
-      "a": " $X(^{-1}(c) = \\{\\phi\\}$ ",
-      "b": " $X(^{-1}(c) = \\{\\3, 4\\}$",
-      "c": " Correct answer",
-      "d": " $X(^{-1}(c) = \\{1,2,3,4\\}$"
+        "a": "Correct! This expression correctly calculates the probability using the exponential distribution's cumulative distribution function.",
+        "b": "Incorrect. This subtracts the values incorrectly when using the CDF.",
+        "c": "Incorrect. The subtraction is incorrect and leads to an invalid result.",
+        "d": "Incorrect. The addition instead of subtraction is a fundamental mistake in probability calculation."
       },
-      "correctAnswer": "c",
-      "difficulty": "Easy"
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. You take an exam that contains 10 MCQs. Each question has 4 possible options. You know the answers to the first 5 questions and for the remaining 5, you have randomly guessed an answer. Assume each question gives a score of 1 when your answer is correct and 0 for an incorrect one. Your score X on the exam is the total number of correct answers. What is $P(X > 8)$?",
+      "answers": {
+        "a": "$P(X > 8) = \\frac{9}{2^{10}}$",
+        "b": "$P(X > 8) = \\frac{1}{4^5}$",
+        "c": "$P(X > 8) = \\frac{5}{2^{10}}$",
+        "d": "$P(X > 8) = \\frac{10}{2^9}$"
+      },
+      "explanations": {
+        "a": "Correct! The calculation uses the binomial distribution for the guessed answers with $p = \\frac{1}{4}$.",
+        "b": "Incorrect. This expression does not account for the combination of correct answers and incorrect guesses.",
+        "c": "Incorrect. This underestimates the number of possible correct outcomes.",
+        "d": "Incorrect. The calculation mistakenly uses an incorrect probability distribution."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "5. The number of customers arriving at a grocery store is modeled as a Poisson random variable. On average, 10 customers arrive in an hour. Let X be the number of customers arriving from 10:30 am to 11:30 am. What is $P(10 < X \\leq 15)$?",
+      "answers": {
+        "a": "$P(10 < X \\leq 15) = \\sum_{k=11}^{15} \\frac{e^{-15} \\cdot 15^k}{k!}$",
+        "b": "$P(10 < X \\leq 15) = \\sum_{k=10}^{15} \\frac{e^{-15} \\cdot 15^k}{k!}$",
+        "c": "$P(10 < X \\leq 15) = \\sum_{k=11}^{15} \\frac{e^{-10} \\cdot 10^k}{k!}$",
+        "d": "$P(10 < X \\leq 15) = \\sum_{k=10}^{15} \\frac{e^{-10} \\cdot 10^k}{k!}$"
+      },
+      "explanations": {
+        "a": "Correct! This correctly uses the Poisson probability mass function with the appropriate bounds and lambda value.",
+        "b": "Incorrect. The lower bound should be k=11, not k=10, to exclude 10.",
+        "c": "Incorrect. The lambda value used here is incorrect; it should be 15 instead of 10.",
+        "d": "Incorrect. Both the lambda value and the bounds are incorrect."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
     }
   ]
 }

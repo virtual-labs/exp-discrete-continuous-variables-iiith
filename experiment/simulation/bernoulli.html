@@ -29,22 +29,22 @@
 				<div class="column">
 					<div class="v-tabs">
 						<ul>
-							<li class="is-active" id="Task1" >
+							<li class="is-active" id="Task1">
 								<a>
 									Bernoulli RV
+								</a>
+							</li>
+							<li id="Task3" onclick="window.location.href = 'geometric.html';">
+								<a>
+									Geometric RV
 								</a>
 							</li>
 							<li id="Task2" onclick="window.location.href = 'binomial.html';">
 								<a>
 									Binomial RV
 								</a>
-							</li>							
-							<li id="Task3" onclick="window.location.href = 'geometric.html';">
-								<a>
-									Geometric RV
-								</a>
 							</li>
-							<li id="Task3" onclick="window.location.href = 'Poisson.html';">
+							<li id="Task4" onclick="window.location.href = 'Poisson.html';">
 								<a>
 									Poisson RV
 								</a>
@@ -64,8 +64,31 @@
 						<ul style="list-style: disc;">
 							<b>Quick theory overview:</b>
 							<ul style="list-style: disc;">
+								<li>
+									Here, we want to show the modelling of a coin toss experiment as a Bernoulli random
+									variable \(X\). We will perform the coin toss experiment and observe the value of
+									the Bernoulli random variable \(X\) for each toss.
+								</li>
 								<b>Procedure:</b>
-								<p></p>
+								<li>
+									Here, we are considering a coin toss experiment as a Bernoulli random variable \(X\). Head is mapped to \(X=1\) and Tail is mapped to \(X=0\).
+								</li>
+								<li>
+									Choose a value for the probability of getting a Head on tossing a coin, denoted by
+									\(p\).
+								</li>
+								<li>
+									Enter the value of \(p\) in the input box and click on the "Set" button.
+								</li>
+								<li>
+									Click on the "TOSS" button to simulate the coin toss experiment.
+								</li>
+								<li>
+									Observe the value of the Bernoulli random variable \(X\) for each toss.
+								</li>
+								<li>
+									Click on the "Reset" button to reset the experiment.
+								</li>
 							</ul>
 					</div>
 				</div>
@@ -80,7 +103,11 @@
 				<div class="v-datalist-container components-list">
 					<br>
 					<p>
-						We want to model a Bernoulli random variable \(X\) with parameter \(p\) as a coin toss. Perform the toss and observe the value of the Bernoulli random variable \(X\) for each toss.
+						<!-- We want to model a Bernoulli random variable \(X\) with parameter \(p\) as a coin toss. Perform the toss and observe the value of the Bernoulli random variable \(X\) for each toss. -->
+						Take a coin with the probability of getting a Head on tossing it being \(p\). We will model the
+						result of the coin toss experiment as a Bernoulli random variable \(X\) with parameter \(p\).
+						Perform the coin toss experiment by clicking the button and observe the value of the Bernoulli
+						random variable \(X\).
 					</p>
 					<br>
 				</div>
@@ -93,25 +120,27 @@
 				<div class="box-question">
 
 					<div id="input-p-bernoulli-div">
-                        P(H) = <input type="number" id="input-p-bernoulli" value="0.5" step="0.01" min="0" max="1" style="width: 50px;">
-                        <button class="v-button" role="button" onclick="setPbernoulli()"> Set </button>
-                    </div>
+						P(H) = <input type="number" id="input-p-bernoulli" value="0.5" step="0.01" min="0" max="1"
+							style="width: 50px;">
+						<button class="v-button" role="button" onclick="setPbernoulli()"> Set </button>
+					</div>
 
-                    <div id="bernoulli-instance">
-                        Now, we have <b>P(H) = <span id="p-bernoulli-value">0</span></b>.
-                        <br>
-                        <!-- Simulate the coin flip by clicking the button below. -->
-                        <!-- Mapping head on coin toss with X=1 and tail with X=0 here -->
-                        <br>
-                        <button class="v-button" role="button" id="bernoulli-instance-btn" onclick="bernoulli()"> TOSS </button>
-                        <br>
-                        <div id="bernoulli-result">
-                            <!-- Result will be displayed here -->
-                        </div>
-                        <br>
-                    </div>
+					<div id="bernoulli-instance">
+						Now, we have <b>P(H) = <span id="p-bernoulli-value">0</span></b>.
+						<br>
+						<!-- Simulate the coin flip by clicking the button below. -->
+						<!-- Mapping head on coin toss with X=1 and tail with X=0 here -->
+						<br>
+						<button class="v-button" role="button" id="bernoulli-instance-btn" onclick="bernoulli()"> TOSS
+						</button>
+						<br>
+						<div id="bernoulli-result">
+							<!-- Result will be displayed here -->
+						</div>
+						<br>
+					</div>
 
-                    
+
 					<div class="button-holder-div">
 						<button class="v-button" role="button" onclick="reset()"> Reset </button>
 						<!-- <button class="v-button" role="button" onclick="page2()"> Next </button> -->
@@ -132,4 +161,5 @@
 	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
 	<script src="./js/bernoulli.js"></script>
 </body>
+
 </html>

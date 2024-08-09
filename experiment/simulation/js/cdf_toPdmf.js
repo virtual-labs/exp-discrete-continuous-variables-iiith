@@ -191,7 +191,7 @@ function pmf() {
         var discreteRV_pmf_vals = discrete_cdf_params[0];
         console.log(discreteRV_pmf_vals);
         if (pmf_p1 == discreteRV_pmf_vals[0] && pmf_p2 == discreteRV_pmf_vals[1] && pmf_p3 == discreteRV_pmf_vals[2] && pmf_p4 == discreteRV_pmf_vals[3] && pmf_p5 == discreteRV_pmf_vals[4]) {
-            document.getElementById("observations1").innerText = "Correct!";
+            ShowObservation(["Correct!"]);
         }
         else {
             var obs = ["Incorrect!"];
@@ -220,11 +220,19 @@ function pmf() {
 }
 
 function ShowObservation(obs) {
-    var obsStr = "<b>"+obs[0]+"</b><br>";
+
+    if (obs[0] == "Incorrect!") {
+        document.getElementById("observations1").style.color = "red";
+    }
+    else {
+        document.getElementById("observations1").style.color = "green";
+    }
+    var obsStr = "";
     for (var i = 1; i < obs.length; i++) {
         obsStr += obs[i] + "<br>";
     }
-    document.getElementById("observations1").innerHTML = obsStr;
+    document.getElementById("observations1").innerHTML = obs[0];
+    document.getElementById("results1").innerHTML = obsStr;
 }
 
 function reset() {
@@ -236,7 +244,8 @@ function reset() {
     document.getElementById("pmf-resp").style.display = "none";
     document.getElementById('disc-cdf-canvas-elem').style.display = "none";
     document.getElementById('cont-cdf-canvas-elem').style.display = "none";
-    document.getElementById("observations1").innerText = "";
+    document.getElementById("observations1").innerHTML = "";
+    document.getElementById("results1").innerHTML = "";
     document.getElementById("pdf-val").value = "";
     document.getElementById("pdf-left").value = "";
     document.getElementById("pdf-right").value = "";

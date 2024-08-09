@@ -34,17 +34,17 @@
 									Bernoulli RV
 								</a>
 							</li>
-							<li id="Task2" onclick="window.location.href = 'binomial.html';">
-								<a>
-									Binomial RV
-								</a>
-							</li>
 							<li class="is-active" id="Task3">
 								<a>
 									Geometric RV
 								</a>
 							</li>
-							<li id="Task3" onclick="window.location.href = 'Poisson.html';">
+							<li id="Task2" onclick="window.location.href = 'binomial.html';">
+								<a>
+									Binomial RV
+								</a>
+							</li>
+							<li id="Task4" onclick="window.location.href = 'Poisson.html';">
 								<a>
 									Poisson RV
 								</a>
@@ -64,8 +64,37 @@
 						<ul style="list-style: disc;">
 							<b>Quick theory overview:</b>
 							<ul style="list-style: disc;">
+								<li>
+									Here, we want to show the modelling of an experiment where we perform multiple coin
+									tosses until we get the first Head as a Geometric random variable. We will perform
+									the coin toss till we get the first Head and observe the value of the Geometric
+									random variable \(X\).
+								</li>
 								<b>Procedure:</b>
-								<p></p>
+								<li>
+									Choose a value for the probability of getting a Head on a coin toss, denoted by
+									\(p\).
+								</li>
+								<li>
+									Enter the value of \(p\) in the input box and click on the "Set" button.
+								</li>
+								<li>
+									Click on the "TOSS" button to perform the coin toss experiment.
+								</li>
+								<li>
+									Keep on clicking the "TOSS" button to perform multiple coin tosses until you get the
+									first Head.
+								</li>
+								<li>
+									Observe the value of the Geometric random variable \(X\) for the experiment.
+								</li>
+								<li>
+									Repeat the experiment multiple times to observe the distribution of the Geometric
+									random variable \(X\).
+								</li>
+								<li>
+									Click on the "Reset" button to reset the experiment.
+								</li>
 							</ul>
 					</div>
 				</div>
@@ -80,8 +109,8 @@
 				<div class="v-datalist-container components-list">
 					<br>
 					<p>
-						We want to model a Geometric random variable \(X\) with parameter \(p\) as the number of coin
-						tosses required to get the first head. Perform the toss and observe the value of the Geometric
+						We want to model the number of coin tosses required to get the first head as a Geometric random
+						variable \(X\). Perform the experiment and observe the value of the Geometric
 						random variable \(X\) for the chosen parameter \(p\).
 					</p>
 					<br>
@@ -111,39 +140,6 @@
 						<br>
 						<div id="bernoulli-result">
 							<!-- Result will be displayed here -->
-						</div>
-					</div>
-
-					<div class="previous-response" id="prev-resp">
-						<div style="text-align: center;">
-							<span id="res1">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res2">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res3">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res4">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res5">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res6">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res7">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res8">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res9">-</span></b>
-						</div>
-						<div style="text-align: center;">
-							<span id="res10">-</span></b>
 						</div>
 					</div>
 
