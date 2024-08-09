@@ -34,7 +34,7 @@ function setInvImg1(a, b, c, d) {
     }
     invImg += "\}\)";
     if (a == 0 && b == 0 && c == 0 && d == 0) {
-        invImg = "\(\phi\)";
+        invImg = "\( \phi \)";
     }
     document.getElementById("selectedInverseImage1").innerHTML = "<p>The selected inverse image is <b>" + invImg + "</b></p>";
     document.getElementById("enterCDF1").style.display = "block";
