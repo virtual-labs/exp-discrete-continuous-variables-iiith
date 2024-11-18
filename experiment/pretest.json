@@ -10,7 +10,7 @@
         "d": "None of the Above"
       },
       "explanations": {
-        "a": "Wrong answer. In $E[X^n], x is only a integration variable.$",
+        "a": "Wrong answer. In $E[X^n]$, x is only a integration variable.",
         "b": "Wrong Answer. Use $E[X^n] = \\int_{-\\infty}^{\\infty} x^n f_X(x) dx$",
         "c": "Correct answer",
         "d": "Wrong answer. One of the above is correct"
