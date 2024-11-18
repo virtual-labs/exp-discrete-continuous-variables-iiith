@@ -1,0 +1,81 @@
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/Poisson.js
+   49:7   warning  'xValues2' is assigned a value but never used  no-unused-vars
+   50:7   warning  'xValues3' is assigned a value but never used  no-unused-vars
+   73:22  warning  'Chart' is not defined                         no-undef
+  131:23  warning  'Chart' is not defined                         no-undef
+  187:10  warning  'setPPoisson' is defined but never used        no-unused-vars
+  292:17  warning  'i' is already defined                         no-redeclare
+  312:17  warning  'i' is already defined                         no-redeclare
+  313:17  warning  'yBinomial' is already defined                 no-redeclare
+  314:17  warning  'yPoisson' is already defined                  no-redeclare
+  330:17  warning  'i' is already defined                         no-redeclare
+  331:17  warning  'random' is already defined                    no-redeclare
+  343:13  warning  'obs2' is already defined                      no-redeclare
+  347:13  warning  'yDataBinomial' is already defined             no-redeclare
+  348:17  warning  'i' is already defined                         no-redeclare
+  349:17  warning  'yBinomial' is already defined                 no-redeclare
+  357:13  warning  'lower' is already defined                     no-redeclare
+  358:13  warning  'higher' is already defined                    no-redeclare
+  360:13  warning  'yDataBinomial1' is already defined            no-redeclare
+  362:17  warning  'i' is already defined                         no-redeclare
+  363:17  warning  'yBinomial' is already defined                 no-redeclare
+  378:17  warning  'i' is already defined                         no-redeclare
+  379:17  warning  'random' is already defined                    no-redeclare
+  390:13  warning  'obs2' is already defined                      no-redeclare
+  395:13  warning  'yDataBinomial' is already defined             no-redeclare
+  396:17  warning  'i' is already defined                         no-redeclare
+  397:17  warning  'yBinomial' is already defined                 no-redeclare
+  406:13  warning  'lower' is already defined                     no-redeclare
+  407:13  warning  'higher' is already defined                    no-redeclare
+  410:13  warning  'yDataBinomial1' is already defined            no-redeclare
+  412:17  warning  'i' is already defined                         no-redeclare
+  413:17  warning  'yBinomial' is already defined                 no-redeclare
+  441:10  warning  'PoissonAll' is defined but never used         no-unused-vars
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/bernoulli.js
+   9:10  warning  'setPbernoulli' is defined but never used  no-unused-vars
+  20:10  warning  'bernoulli' is defined but never used      no-unused-vars
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/binomial.js
+  39:10  warning  'setPBinomial' is defined but never used  no-unused-vars
+  76:10  warning  'binomial10' is defined but never used    no-unused-vars
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/cdf.js
+   6:5   warning  'eventSpace1' is assigned a value but never used  no-unused-vars
+   7:5   warning  'prob1' is assigned a value but never used        no-unused-vars
+  15:10  warning  'generateRandom1' is defined but never used       no-unused-vars
+  25:10  warning  'setInvImg1' is defined but never used            no-unused-vars
+  29:19  warning  Unnecessary escape character: \(                  no-useless-escape
+  29:21  warning  Unnecessary escape character: \{                  no-useless-escape
+  32:24  warning  Unnecessary escape character: \o                  no-useless-escape
+  35:16  warning  Unnecessary escape character: \}                  no-useless-escape
+  35:18  warning  Unnecessary escape character: \)                  no-useless-escape
+  37:19  warning  Unnecessary escape character: \(                  no-useless-escape
+  37:22  warning  Unnecessary escape character: \p                  no-useless-escape
+  37:27  warning  Unnecessary escape character: \)                  no-useless-escape
+  43:10  warning  'checkCDF1' is defined but never used             no-unused-vars
+  51:61  warning  Unnecessary escape character: \o                  no-useless-escape
+  67:13  warning  'res' is already defined                          no-redeclare
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/cdf_properties.js
+   4:10  warning  'sendresponse' is defined but never used  no-unused-vars
+  10:10  warning  'checkanswer' is defined but never used   no-unused-vars
+  29:55  warning  'defaultchoicei' is not defined           no-undef
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/cdf_toPdmf.js
+   12:24  warning  'Chart' is not defined                   no-undef
+   42:25  warning  'Chart' is not defined                   no-undef
+  130:10  warning  'generateCDF' is defined but never used  no-unused-vars
+  144:10  warning  'rvType' is defined but never used       no-unused-vars
+  159:10  warning  'pdf' is defined but never used          no-unused-vars
+  184:10  warning  'pmf' is defined but never used          no-unused-vars
+
+/home/runner/work/exp-discrete-continuous-variables-iiith/exp-discrete-continuous-variables-iiith/experiment/simulation/js/geometric.js
+  12:10  warning  'setPbernoulli' is defined but never used  no-unused-vars
+  25:10  warning  'bernoulli' is defined but never used      no-unused-vars
+  46:17  warning  'i' is already defined                     no-redeclare
+  75:9   warning  'observation' is already defined           no-redeclare
+
+✖ 64 problems (0 errors, 64 warnings)
+

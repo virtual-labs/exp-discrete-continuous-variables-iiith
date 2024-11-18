@@ -1,0 +1,90 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. Let $X$ be a contiuous RV with PDF $f_X(x) = \\begin{cases} x^2-\\frac{1}{2} & 0 \\leq x \\leq 1 \\\\ 0 & otherwise \\end{cases}$. For $n\\in N$, calculate $E[X^n]$.",
+      "answers": {
+        "a": "$\\frac{x-1}{2(x+3)(x+1)}$",
+        "b": "$\\frac{n+1}{2(n-3)(n-1)}$",
+        "c": "$\\frac{n-1}{2(n+3)(n+1)}$",
+        "d": "None of the Above"
+      },
+      "explanations": {
+        "a": "Wrong answer. In $E[X^n]$, x is only a integration variable.",
+        "b": "Wrong Answer. Use $E[X^n] = \\int_{-\\infty}^{\\infty} x^n f_X(x) dx$",
+        "c": "Correct answer",
+        "d": "Wrong answer. One of the above is correct"
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "2.  Let $X$ be a contiuous RV with PDF $f_X(x) = \\begin{cases} x^2-\\frac{1}{2} & 0 \\leq x \\leq 1 \\\\ 0 & otherwise \\end{cases}$. Find $Var(X)$",
+      "answers": {
+        "a": "0",
+        "b": "$\\frac{1}{30}$",
+        "c": "$\\frac{1}{75}$",
+        "d": "None of the Above"
+      },
+      "explanations": {
+        "a": "Wrong answer. $Var(X) = E[X^2] - (E[X])^2$",
+        "b": "Correct answer",
+        "c": "Wrong answer. $Var(X) = E[X^2] - (E[X])^2$",
+        "d": "Wrong answer. One of the above is correct"
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "3.  Let $f_X(x) = \\begin{cases} ce^{-3x} & x \\geq 0 \\\\ 0 & otherwise \\end{cases}$. Find value of $c$ such that $f_X(x)$ is a valid PDF",
+      "answers": {
+        "a": "$\\frac{1}{3}$",
+        "b": "1",
+        "c": "3",
+        "d": "None of the above"
+      },
+      "explanations": {
+        "a": "Wrong answer.It should satisfy $\\int_{-\\infty}^{\\infty} f_X(x) dx = 1$",
+        "b": "Wrong answer. It should satisfy $\\int_{-\\infty}^{\\infty} f_X(x) dx = 1$",
+        "c": "Correct answer",
+        "d": "Wrong answer. One of the above is correct"
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "4. Find $P(1<X<3)$ for the above RV in question 3",
+      "answers": {
+        "a": " 0",
+        "b": " $ e^{3}-e^{-9}$ ",
+        "c": " $ e^{-3}-e^{-9} $ ",
+        "d": "None of the Above"
+      },
+      "explanations": {
+        "a": "Wrong answer. $P(1<X<3) = \\int_{1}^{3} f_X(x) dx$",
+        "b": "Wrong answer. $P(1<X<3) = \\int_{1}^{3} f_X(x) dx$. Als0, check the option correctly.",
+        "c": "Correct answer",
+        "d": "Wrong answer. One of the above is correct"
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "5. Let $X$ be a uniform discrete RV with range $\\mathbb{R}_X = \\{0,\\frac{\\pi}{4},\\frac{\\pi}{2},\\frac{3\\pi}{4},\\pi\\}$. Find $E[sin(X)]$",
+      "answers": {
+        "a": " $\\frac{1+\\sqrt{2}}{5}$",
+        "b": " $\\frac{1-\\sqrt{2}}{5}$",
+        "c": " $\\frac{1}{5}$",
+        "d": "None of the Above"
+      },
+      "explanations": {
+        "a": "Correct answer",
+        "b": "Wrong answer. $E[sin(X)] = \\sum_{x \\in \\mathbb{R}_X} sin(x) P(X=x)$",
+        "c": "Wrong answer. $E[sin(X)] = \\sum_{x \\in \\mathbb{R}_X} sin(x) P(X=x)$",
+        "d": "Wrong answer. One of the above is correct"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    }
+  ]
+}
