@@ -3,7 +3,7 @@
 | `<b>`Discipline  | `<b>` Mathematics                      |
 | :----------------- | :--------------------------------------- |
 | `<b>` Lab        | `<b>` Probability and Random Variables |
-| `<b>` Experiment | `<b>` Random Variables                 |
+| `<b>` Experiment | `<b>` Discrete Continuous Variable     |
 
 ### About the Experiment
 
