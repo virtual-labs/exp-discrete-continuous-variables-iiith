@@ -1,8 +1,8 @@
-# Random Variables
+## Random Variables
 
 There are two important classes of random variables: discrete random variables and continuous random variables.
 
-## Discrete Random Variables
+### Discrete Random Variables
 
 A set $ A $ is countable if either:
 - $ A $ is finite, e.g., $ \{1, 2, 3, 4\} $, or
@@ -15,7 +15,7 @@ $$ A = \{s \in S \mid X(s) = x_k\} $$
 
 The probabilities of events $ \{X = x_k\} $ are given by the probability mass function (PMF) of $ X $.
 
-#### Definition (PMF)
+##### Definition (PMF)
 Let $ X $ be a discrete random variable with range $ R_X = \{x_1, x_2, x_3, \ldots\} $ (finite or countably infinite). The function
 $$ P_X(x_k) = P(X = x_k), \quad \text{for } k = 1, 2, 3, \ldots, $$
 is called the probability mass function (PMF) of $ X $.
@@ -31,19 +31,19 @@ The PMF is a probability measure that satisfies:
 - $ \sum_{x \in R_X} P_X(x) = 1 $,
 - For any set $ A \subset R_X $, $ P(X \in A) = \sum_{x \in A} P_X(x) $.
 
-### Independence of Random Variables
+#### Independence of Random Variables
 Two random variables $ X $ and $ Y $ are independent if:
 $$ P(X = x, Y = y) = P(X = x) P(Y = y) \quad \text{for all } x, y. $$
 
 For $ n $ discrete random variables $ X_1, X_2, \ldots, X_n $, they are independent if:
 $$ P(X_1 = x_1, X_2 = x_2, \ldots, X_n = x_n) = P(X_1 = x_1) P(X_2 = x_2) \ldots P(X_n = x_n) \quad \text{for all } x_1, x_2, \ldots, x_n. $$
 
-### Types of Discrete Random Variables
+#### Types of Discrete Random Variables
 
-#### Bernoulli Distribution
+##### Bernoulli Distribution
 A Bernoulli random variable can take two values, usually 0 and 1, modeling a success/failure experiment.
 
-##### Definition (Bernoulli Distribution)
+###### Definition (Bernoulli Distribution)
 A random variable $ X $ is Bernoulli with parameter $ p $, denoted $ X \sim \text{Bernoulli}(p) $, if:
 $$ P_X(x) = \begin{cases}
 p & \text{for } x = 1 \\
@@ -51,37 +51,37 @@ p & \text{for } x = 1 \\
 0 & \text{otherwise}
 \end{cases} $$
 
-#### Geometric Distribution
+##### Geometric Distribution
 This models the number of trials until the first success in a series of independent Bernoulli trials.
 
-##### Definition (Geometric Distribution)
+###### Definition (Geometric Distribution)
 A random variable $ X $ is geometric with parameter $ p $, denoted $ X \sim \text{Geometric}(p) $, if:
 $$ P_X(k) = \begin{cases}
 p(1-p)^{k-1} & \text{for } k = 1, 2, 3, \ldots \\
 0 & \text{otherwise}
 \end{cases} $$
 
-#### Binomial Distribution
+##### Binomial Distribution
 Models the number of successes in $ n $ independent Bernoulli trials.
 
-##### Definition (Binomial Distribution)
+###### Definition (Binomial Distribution)
 A random variable $ X $ is binomial with parameters $ n $ and $ p $, denoted $ X \sim \text{Binomial}(n, p) $, if:
 $$ P_X(k) = \begin{cases}
 {n \choose k} p^k (1-p)^{n-k} & \text{for } k = 0, 1, 2, \ldots, n \\
 0 & \text{otherwise}
 \end{cases} $$
 
-#### Poisson Distribution
+##### Poisson Distribution
 Models the number of events in a fixed interval of time or space.
 
-##### Definition (Poisson Distribution)
+###### Definition (Poisson Distribution)
 A random variable $ X $ is Poisson with parameter $ \lambda $, denoted $ X \sim \text{Poisson}(\lambda) $, if:
 $$ P_X(k) = \begin{cases}
 \frac{e^{-\lambda} \lambda^k}{k!} & \text{for } k \in \{0, 1, 2, \ldots\} \\
 0 & \text{otherwise}
 \end{cases} $$
 
-### Cumulative Distribution Function (CDF)
+#### Cumulative Distribution Function (CDF)
 The CDF of a random variable $ X $ is defined as:
 $$ F_X(x) = P(X \leq x) \quad \text{for all } x \in \mathbb{R}. $$
 
@@ -91,44 +91,44 @@ $$ F_X(x) = \sum_{x_k \leq x} P_X(x_k). $$
 For all $ a \leq b $:
 $$ P(a < X \leq b) = F_X(b) - F_X(a) $$
 
-### Expected Value (Mean)
+#### Expected Value (Mean)
 The expected value of a discrete random variable $ X $ with range $ R_X = \{x_1, x_2, x_3, \ldots\} $ is:
 $$ E[X] = \sum_{x_k \in R_X} x_k P_X(x_k). $$
 
-#### Linearity of Expectation
+##### Linearity of Expectation
 - $ E[aX + b] = aE[X] + b $
 - $ E[X_1 + X_2 + \ldots + X_n] = E[X_1] + E[X_2] + \ldots + E[X_n] $
 
-#### Expected Value of a Function (LOTUS)
+##### Expected Value of a Function (LOTUS)
 For a function $ g(X) $:
 $$ E[g(X)] = \sum_{x_k \in R_X} g(x_k) P_X(x_k) $$
 
-### Variance
+#### Variance
 Variance measures the spread of a random variable around its mean. For $ EX = \mu_X $:
 $$ \text{Var}(X) = E[(X - \mu_X)^2] = \sum_{x_k \in R_X} (x_k - \mu_X)^2 P_X(x_k) $$
 
-#### Standard Deviation
+##### Standard Deviation
 $$ \text{SD}(X) = \sigma_X = \sqrt{\text{Var}(X)} $$
 
-#### Computational Formula for Variance
+##### Computational Formula for Variance
 $$ \text{Var}(X) = E[X^2] - (E[X])^2 $$
 
-#### Variance of a Linear Transformation
+##### Variance of a Linear Transformation
 For $ a, b \in \mathbb{R} $:
 $$ \text{Var}(aX + b) = a^2 \text{Var}(X) $$
 
-#### Variance of the Sum of Independent Variables
+##### Variance of the Sum of Independent Variables
 For independent $ X_1, X_2, \ldots, X_n $:
 $$ \text{Var}(X) = \text{Var}(X_1) + \text{Var}(X_2) + \ldots + \text{Var}(X_n) $$
 
-## Continuous Random Variables
+### Continuous Random Variables
 
 Random variables with a continuous range of possible values are common. For example, the exact velocity of a vehicle on a highway is a continuous random variable. The CDF of a continuous random variable is a continuous function, meaning it does not have jumps. This aligns with the fact that $ P(X = x) = 0 $ for all $ x $.
 
-#### Definition (CDF)
+##### Definition (CDF)
 A random variable $ X $ with CDF $ F_X(x) $ is continuous if $ F_X(x) $ is a continuous function for all $ x \in \mathbb{R} $. We also assume that the CDF is differentiable almost everywhere in $ \mathbb{R} $.
 
-### Probability Density Function (PDF)
+#### Probability Density Function (PDF)
 For continuous random variables, the PMF does not apply as $ P(X = x) = 0 $ for all $ x \in \mathbb{R} $. Instead, we use the PDF, which gives the density of probability at a point.
 
 $$ f_X(x) = \lim_{\Delta \rightarrow 0^+} \frac{P(x < X \leq x + \Delta)}{\Delta} $$
@@ -157,7 +157,7 @@ A function $ f_X $ must be non-negative and satisfy:
 
 $$ \int_{-\infty}^{\infty} f_X \, dx = 1 $$
 
-#### Definition (PDF)
+##### Definition (PDF)
 Consider a continuous random variable $ X $ with an absolutely continuous CDF $ F_X(x) $. The function $ f_X(x) $ defined by:
 
 $$ f_X(x) = \frac{dF_X(x)}{dx} = F'_X(x), \quad \text{if } F_X(x) \text{ is differentiable at } x $$
@@ -180,34 +180,34 @@ And:
 
 $$ P(a < X \leq b) = F_X(b) - F_X(a) = \int_{a}^{b} f_X(u) \, du $$
 
-### Properties of the PDF
+#### Properties of the PDF
 
 - $ f_X(x) \geq 0 $ for all $ x \in \mathbb{R} $
 - $ \int_{-\infty}^{\infty} f_X(u) \, du = 1 $
 - $ P(a < X \leq b) = \int_{a}^{b} f_X(u) \, du $
 - For any set $ A $, $ P(X \in A) = \int_A f_X(u) \, du $
 
-### Range of a Continuous Random Variable
+#### Range of a Continuous Random Variable
 The range $ R_X $ of a continuous random variable $ X $ is:
 
 $$ R_X = \{ x \mid f_X(x) > 0 \} $$
 
-### Expected Value
+#### Expected Value
 The expected value of a continuous random variable $ X $ is:
 
 $$ EX = \int_{-\infty}^{\infty} x f_X(x) \, dx $$
 
-### Expected Value of a Function (LOTUS)
+#### Expected Value of a Function (LOTUS)
 For a function $ g(X) $:
 
 $$ E[g(X)] = \int_{-\infty}^{\infty} g(x) f_X(x) \, dx $$
 
-### Linearity of Expectation
+#### Linearity of Expectation
 
 - $ E[aX + b] = aEX + b $
 - $ E[X_1 + X_2 + \cdots + X_n] = EX_1 + EX_2 + \cdots + EX_n $
 
-### Variance
+#### Variance
 The variance of a continuous random variable $ X $ is:
 
 $$ \textrm{Var}(X) = E[(X - \mu_X)^2] = EX^2 - (EX)^2 $$
@@ -222,7 +222,7 @@ $$ \textrm{Var}(aX + b) = a^2 \textrm{Var}(X) $$
 
 If $ X $ is continuous and $ Y = g(X) $, then $ Y $ is also a random variable. To find the CDF and PDF of $ Y $, start from the CDF and then differentiate.
 
-### Uniform Random Variable
+#### Uniform Random Variable
 A continuous random variable $ X $ is uniformly distributed over $ [a, b] $, denoted $ X \sim \text{Uniform}(a, b) $, if:
 
 $$ f_X(x) = \begin{cases}
@@ -244,7 +244,7 @@ The variance is:
 
 $$ \textrm{Var}(X) = \frac{(b - a)^2}{12} $$
 
-### Exponential Random Variable
+#### Exponential Random Variable
 The exponential distribution models the time between events. A continuous random variable $ X $ is exponentially distributed with parameter $ \lambda > 0 $, denoted $ X \sim \text{Exponential}(\lambda) $, if:
 
 $$ f_X(x) = \begin{cases}
@@ -264,7 +264,7 @@ The exponential distribution is memoryless:
 
 $$ P(X > x + a \mid X > a) = P(X > x) $$
 
-### Normal Distribution
+#### Normal Distribution
 The Central Limit Theorem (CLT) states that the sum of a large number of random variables is approximately normal. A standard normal random variable $ Z $ is denoted $ Z \sim N(0, 1) $ and has PDF:
 
 $$ f_Z(z) = \frac{1}{\sqrt{2\pi}} \exp\left\{ -\frac{z^2}{2} \right\} $$

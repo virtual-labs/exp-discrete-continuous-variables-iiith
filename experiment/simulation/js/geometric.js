@@ -1,94 +1,170 @@
 var p;
 var result;
 var counter = 0;
-const maxCounter = 40;
+var tossAnimationCount = 0;
+const maxCounter = 40; // Safety limit
 var previousResp = [];
+var tossBtn, runBtn;
 
-// on dom load
 document.addEventListener("DOMContentLoaded", function () {
+    tossBtn = document.getElementById("geometric-instance-btn");
+    runBtn = document.getElementById("run-till-heads-btn");
     reset();
 });
 
-function setPbernoulli() {
-    p = document.getElementById("input-p-bernoulli").value;
+function setPGeometric() {
+    p = document.getElementById("input-p-geometric").value;
     p = parseFloat(p);
-    if (p < 0 || p > 1) {
-        alert("Invalid P(H) value");
+    if (isNaN(p) || p <= 0 || p > 1) { // p cannot be 0 for this experiment
+        alert("Invalid P(H) value. Please enter a number greater than 0 and up to 1.");
         return;
     }
-    document.getElementById("input-p-bernoulli-div").style.display = "none";
-    document.getElementById("bernoulli-instance").style.display = "block";
+    document.getElementById("input-p-div").style.display = "none";
+    document.getElementById("geometric-instance").style.display = "block";
     document.getElementById("geometric-counter-div").style.display = "block";
     document.getElementById("prev-resp").style.display = "grid";
-    document.getElementById("p-bernoulli-value").innerHTML = p;
+    document.getElementById("p-geometric-value").innerHTML = p;
 }
-function bernoulli() {
-    var random = Math.random();
-    result = (random < p) ? 1 : 0;
-    document.getElementById("bernoulli-result").innerHTML = "<b>" + (result == 0 ? "Tail" : "Head") + "</b>";
+
+function tossCoinForGeometric() {
+    tossBtn.disabled = true;
+    runBtn.disabled = true;
+    document.getElementById("geometric-result").innerHTML = "Flipping...";
+
+    // --- Animation ---
+    var coin = document.getElementById("coin");
+    coin.style.transition = 'none';
+    coin.style.transform = `rotateY(${tossAnimationCount * 1800}deg)`;
+    coin.offsetHeight; // Reflow
+
+    result = (Math.random() < p) ? 1 : 0; // 1 for Heads, 0 for Tails
+    tossAnimationCount++;
+
+    coin.style.transition = 'transform 1.5s ease-out';
+    var finalRotation = tossAnimationCount * 1800 + (result === 0 ? 180 : 0);
+    coin.style.transform = `rotateY(${finalRotation}deg)`;
+
+    // --- Update UI after animation ---
+    return new Promise(resolve => {
+        setTimeout(() => {
+            var outcomeText = (result === 0 ? "Tail" : "Head");
+            document.getElementById("geometric-result").innerHTML = "Outcome: <b>" + outcomeText + "</b>";
+            updateExperimentState();
+            if (result === 0 && counter < maxCounter) { // Re-enable buttons if not done
+                tossBtn.disabled = false;
+                runBtn.disabled = false;
+            }
+            resolve(result); // Resolve promise with the outcome
+        }, 1600);
+    });
+}
+
+async function runTillHeads() {
+    tossBtn.disabled = true;
+    runBtn.disabled = true;
     
-    updateCounter();
-}
-
-function updatePreviousResp(){
-    if(result)
-        previousResp.push('H');
-    else previousResp.push('T');
-    if(counter<=10)
-    {
-        for(var i=1; i<=previousResp.length; i++)
-        {
-            document.getElementById("res"+i).innerText = previousResp[i-1];
+    while(true) {
+        const outcome = await tossCoinForGeometric();
+        if (outcome === 1 || counter >= maxCounter) {
+            break; // Stop if we got a head or hit the limit
         }
-    }
-    else
-    {
-        for(var i=1; i<=10; i++)
-        {
-            document.getElementById("res"+i).innerText = previousResp[counter-10+i-1];
-        }
+        // Small delay between automated tosses
+        await new Promise(resolve => setTimeout(resolve, 200));
     }
 }
 
-function updateCounter() {
+
+function updatePreviousResp(outcome) {
+    previousResp.push(outcome);
+    // Display the last 10 results
+    var displaySlice = previousResp.slice(-10);
+    for (var i = 1; i <= 10; i++) {
+        var el = document.getElementById("res" + i);
+        if (i <= displaySlice.length) {
+            el.innerText = displaySlice[i - 1];
+        } else {
+            el.innerText = "-";
+        }
+    }
+}
+
+function updateExperimentState() {
     counter++;
     document.getElementById("geometric-counter").innerHTML = counter;
-    updatePreviousResp();
-    if (counter == maxCounter) {
-        document.getElementById("bernoulli-instance-btn").disabled = true;
-        showObservations();
+    updatePreviousResp(result === 1 ? 'H' : 'T');
+
+    if (counter >= maxCounter && result === 0) {
+        showObservations(true); // Reached max trials
     }
-    if (result == 1) {
-        document.getElementById("bernoulli-instance-btn").disabled = true;
-        showObservations();
+    if (result === 1) {
+        showObservations(false); // Success
     }
 }
 
-
-function showObservations() {
-    if(counter == maxCounter) {
-        var observation = "We got Tail in all the "+maxCounter+" trials. Please choose a higher value for P(H) and try again.<br>";
-        document.getElementById("observations").innerHTML = observation;
-        document.getElementById("observations").style.color = "red";
+function showObservations(maxedOut) {
+    var obsEl = document.getElementById("observations");
+    if (maxedOut) {
+        obsEl.innerHTML = `<p><b>Experiment Limit Reached!</b></p><hr><p>We reached the maximum of ${maxCounter} trials without getting a Head. This is unlikely but possible with a low p-value.</p><p>Please try again or use a higher P(H).</p>`;
+        obsEl.style.color = "red";
         return;
     }
-    var observation = "We got Head in the <b>" + counter + (counter == 1 ? "st" : counter == 2 ? "nd" : counter == 3 ? "rd" : "th") + "</b> trial in this experiment. Thus, the value of the Geometric random variable is <b>X = " + counter + "</b>.<br>";
-    document.getElementById("observations").innerHTML = observation;
+    
+    var q = 1 - p;
+    var probOfOutcome = Math.pow(q, counter - 1) * p;
+
+    var extraNote = "";
+    if (counter > 10) {
+        extraNote = `<br><p><i>Note: It took over 10 trials to succeed. With P(H)=${p}, longer waits like this are possible, though less frequent than shorter ones.</i></p>`;
+    }
+
+    var observation = `
+        <p><b>Success!</b></p>
+        <hr>
+        <p><b>1. Outcome:</b></p>
+        <p>We got the first Head on the <b>${counter}${getOrdinal(counter)}</b> trial.</p>
+        <hr>
+        <p><b>2. Geometric RV Value:</b></p>
+        <p>The random variable \(X\) counts trials to get the first success. Therefore, <b>X = ${counter}</b>.</p>
+        <hr>
+        <p><b>3. Probability:</b></p>
+        <p>The theoretical probability of this specific outcome is P(X=${counter}) = (1-p)<sup>${counter-1}</sup>p, which is <b>${probOfOutcome.toExponential(4)}</b>.</p>
+        ${extraNote}
+    `;
+    obsEl.innerHTML = observation;
+}
+
+function getOrdinal(n) {
+    if (n > 3 && n < 21) return 'th';
+    switch (n % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
+    }
 }
 
 function reset() {
     counter = 0;
+    tossAnimationCount = 0;
     previousResp = [];
+    var coin = document.getElementById("coin");
+    if(coin) {
+        coin.style.transition = 'none';
+        coin.style.transform = 'rotateY(0deg)';
+    }
+
     document.getElementById("geometric-counter").innerHTML = counter;
-    document.getElementById("input-p-bernoulli").value = 0.5;
-    document.getElementById("input-p-bernoulli-div").style.display = "block";
-    document.getElementById("bernoulli-instance").style.display = "none";
-    document.getElementById("bernoulli-instance-btn").disabled = false;
-    document.getElementById("observations").innerHTML = "";
+    document.getElementById("input-p-geometric").value = 0.5;
+    document.getElementById("input-p-div").style.display = "block";
+    document.getElementById("geometric-instance").style.display = "none";
+    if(tossBtn) tossBtn.disabled = false;
+    if(runBtn) runBtn.disabled = false;
+    document.getElementById("observations").innerHTML = "Set a probability and toss until you get a Head.";
     document.getElementById("observations").style.color = "black";
-    document.getElementById("bernoulli-result").innerHTML = "";
+    document.getElementById("geometric-result").innerHTML = "-";
     document.getElementById("geometric-counter-div").style.display = "none";    
     document.getElementById("prev-resp").style.display = "none";
-    for(var i = 1;i <=10; i++)
-        document.getElementById("res"+i).innerText = "-";
+    for(var i = 1; i <= 10; i++) {
+        document.getElementById("res" + i).innerText = "-";
+    }
 }

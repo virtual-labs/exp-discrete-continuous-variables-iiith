@@ -1,7 +1,7 @@
-# Procedure for the experiments in the following section
+## Procedure for the experiments in the following section
 
-## Part 1
-### CDF
+### Part 1
+#### CDF
 <li>
     Click on the button to generate a random number "c".
 </li>
@@ -20,7 +20,7 @@
     Click on the "Reset" button to reset the experiment.
 </li>
 
-### CDF Properties
+#### CDF Properties
 <li>
     In this experiment, you will be shown 4 graphs of the cumulative distribution function (CDF) of
     4 different random variables.You have to verify if the given plots satisfy all the properties of
@@ -39,7 +39,7 @@
     After selecting the option, the observation will be displayed.
 </li>	
 
-### CDF to PDF/PMF
+#### CDF to PDF/PMF
 <li>
     Click on the button to randomly generate a plot of CDF of a valid RV. Note that the
     only types of RV used here are either continuous Uniform RV of a discrete RV with 5
@@ -64,8 +64,8 @@
     Click on the "Reset" button to reset the experiment.
 </li>
 
-## Part 2
-### Bernoulli RV
+### Part 2
+#### Bernoulli RV
 <li>
     Here, we are considering a coin toss experiment as a Bernoulli random variable $X$. Head is mapped to $X=1$ and Tail is mapped to $X=0$.
 </li>
@@ -86,7 +86,7 @@
     Click on the "Reset" button to reset the experiment.
 </li>
 
-### Binomial RV
+#### Binomial RV
 <li>
     In this experiment, we are modelling the number of Heads we get when we flip a
     biased coin $n$ times as a Binomial RV. The probability of getting a head is given
@@ -117,7 +117,7 @@
     variable changes. You can repeat the experiment by clicking on the "Reset" button.
 </li>
 
-### Geoemetric RV
+#### Geoemetric RV
 <li>
     Choose a value for the probability of getting a Head on a coin toss, denoted by
     $p$.
@@ -143,7 +143,7 @@
     Click on the "Reset" button to reset the experiment.
 </li>
 
-### Poisson RV
+#### Poisson RV
 <li>
     In this experiment, we are trying to show that as $n \to \infty$ and $p \to 0$
     such that $np$ is constant, the binomial random variable $X$ converges to a

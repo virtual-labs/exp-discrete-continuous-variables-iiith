@@ -1,185 +1,124 @@
 <!DOCTYPE html>
-<html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
-	<link rel="stylesheet" href="./css/cdf_toPdmf.css">
-	<link rel="stylesheet" href="./css/main.css">
-	<script type="text/javascript" id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<title>
-		Continuous and Discrete Random Variables
-	</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>CDF to PMF/PDF</title>
 </head>
-
 <body>
+    <div class="container">
+        <!-- Header and Tabs -->
+        <div class="columns is-centered">
+            <div class="column is-full"><h2 class="tasks-heading">Tasks</h2></div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li onclick="window.location.href='cdf.html'"><a>CDF</a></li>
+                        <li onclick="window.location.href = 'cdf_properties.html';"><a>CDF Properties</a></li>
+                        <li class="is-active"><a>CDF to PMF/PDF</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-	<div class="container">
+        <div class="subheading-box">
+            <h3 class="title">Deriving PMF/PDF from CDF</h3>
+        </div>
 
+        <!-- Instructions -->
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding: 0 10%;">
+                        <ul style="list-style: disc; margin-bottom: 10px;">
+                            <b>Procedure:</b>
+                            <ul style="list-style: circle; margin-left: 20px;">
+                                <li>Click to generate a random CDF plot (either continuous Uniform or a discrete RV).</li>
+                                <li>Identify the type of RV and select it from the dropdown.</li>
+                                <li><b>For continuous RV:</b> Enter the constant PDF value (the derivative of the slope) and the range [left, right] where it is non-zero.</li>
+                                <li><b>For discrete RV:</b> Enter the PMF values (the heights of the jumps) for each corresponding x-value.</li>
+                                <li>Click "Submit" to check your answer.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div class="columns is-centered">
-			<div class="columns is-centered">
-				<div class="column is-one-quarter v-instruction-title">
-					Tasks
-				</div>
-				<div class="column">
-					<div class="v-tabs">
-						<ul>
-							<li id="Task1" onclick="window.location.href='cdf.html'">
-								<a>
-									CDF
-								</a>
-							</li>
+        <!-- Main Content -->
+        <section>
+            <div class="columns is-centered">
+                <!-- Experiment Panel -->
+                <div class="column is-8-desktop is-9-tablet">
+                    <div class="white-boxed-panel">
+                        <div class="button-holder-div" style="border-top: none; margin-top:0; padding-top:0;">
+                            <button id="generate-cdf-button" class="v-button" role="button" onclick="generateCDF()">Click to Generate CDF</button>
+                        </div>
+                        
+                        <canvas id="cont-cdf-canvas-elem" style="display: none;"></canvas>
+                        <canvas id="disc-cdf-canvas-elem" style="display: none;"></canvas>
 
-							<li id="Task2" onclick="window.location.href = 'cdf_properties.html';">
-								<a>
-									CDF Properties
-								</a>
-							</li>
-							<li id="Task3" class="is-active">
-								<a>
-									CDF to PMF/PDF
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+                        <div id="select-rv-type" style="display: none;">
+                            <label for="rv-type"><b>1. Identify the Type of RV</b></label>
+                            <select id="rv-type" name="rv-type" onchange="rvType()">
+                                <option value="none" selected disabled>Select Type...</option>
+                                <option value="discrete">Discrete</option>
+                                <option value="continuous">Continuous</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div id="pdf-resp" style="display: none;">
+                            <p><b>2. Calculate the PDF value and its non-zero range.</b></p>
+                            <div class="pdf-input-grid">
+                                <label for="pdf-val">PDF value, f(x)</label>
+                                <input type="number" id="pdf-val" name="pdf-input" placeholder="e.g., 0.5">
+                                <label for="pdf-left">Lower bound, a</label>
+                                <input type="number" id="pdf-left" name="pdf-left" placeholder="e.g., -2">
+                                <label for="pdf-right">Upper bound, b</label>
+                                <input type="number" id="pdf-right" name="pdf-right" placeholder="e.g., 2">
+                            </div>
+                            <button class="v-button" role="button" onclick="pdf()">Submit</button>
+                        </div>
+                        <div id="pmf-resp" style="display: none;">
+                            <p><b>2. Calculate the PMF values (jump heights).</b></p>
+                            <div class="pmf-input-grid">
+                                <!-- Dynamically generated -->
+                                <label id="pmf-l1" for="pmf-p1"></label><input type="number" id="pmf-p1" placeholder="P(X=x₁)">
+                                <label id="pmf-l2" for="pmf-p2"></label><input type="number" id="pmf-p2" placeholder="P(X=x₂)">
+                                <label id="pmf-l3" for="pmf-p3"></label><input type="number" id="pmf-p3" placeholder="P(X=x₃)">
+                                <label id="pmf-l4" for="pmf-p4"></label><input type="number" id="pmf-p4" placeholder="P(X=x₄)">
+                                <label id="pmf-l5" for="pmf-p5"></label><input type="number" id="pmf-p5" placeholder="P(X=x₅)">
+                            </div>
+                            <button class="v-button" role="button" onclick="pmf()">Submit</button>
+                        </div>
 
-		<div class="columns is-centered">
+                        <div class="button-holder-div">
+                            <button class="v-button" role="button" onclick="reset()">Reset</button>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="column">
-				<div class="v-collapsible-instruction-container v-instruction-container">
-					<div class="v-collapsible is-size-5">Instructions</div>
-					<div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-						<ul style="list-style: disc;">
-							<b>Quick theory overview:</b>
-							<ul style="list-style: disc;">
-								<li>
-									Here, we want to show the relationship between the CDF and the PMF/PDF of a random
-									variable. We will find the PMF/PDF of a random variable given its CDF and also try
-									to identify the type of random variable from the plot of its CDF.
-								</li>
-								<b>Procedure:</b>
-								<li>
-									Click on the button to randomly generate a plot of CDF of a valid RV. Note that the
-									only types of RV used here are either continuous Uniform RV of a discrete RV with 5
-									non-zero point.
-								</li>
-								<li>
-									Identify the type of RV from the plot and select from the dropdown.
-								</li>
-								<li>
-									If you choose continuous RV, enter the PDF value and the range of values of RV in
-									which the PDF is non-zero. For example, if the plot is a straight line from (1,0) to
-									(2,0), the PDF value here is 1, the leftmost non-zero point is 1 and the rightmost
-									non-zero point is 2.
-								</li>
-								<li>
-									If you choose discrete RV, enter the PMF values in increasing order of value of RV.
-								</li>
-								<li>
-									Click on the "Submit" button to check your answer.
-								</li>
-								<li>
-									Click on the "Reset" button to reset the experiment.
-								</li>
-							</ul>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
+                <!-- Observations Panel -->
+                <div class="column is-3-desktop is-12-tablet">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="observations1" style="font-weight:bold; width:100%; text-align:center; margin-bottom:10px;"></div>
+					    <div id="results1" style="width:100%; text-align:left; padding: 5px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-	<section id="page1">
-		<div class="columns is-centered">
-			<div class="column is-11-desktop is-12-tablet is-12-mobile">
-				<div class="v-datalist-container components-list">
-					<br>
-					<p>
-						Given a randomly generated CDF, select the type of random variable and enter the PDF or PMF
-						values for it.
-					</p>
-					<br>
-				</div>
-			</div>
-		</div>
-
-		<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
-			style="margin-top:-1.5%">
-			<div class="column is-8-desktop is-12-tablet is-12-mobile">
-				<div class="box-question">
-					<div class="button-holder-div">
-						<button id="generate-cdf-button" class="v-button" role="button" onclick="generateCDF()"> Click
-							to Generate CDF </button>
-					</div>
-					<img id="cdf-img-elem" src="./images/cdfuniform.png" alt="CDF">
-					<canvas id="cont-cdf-canvas-elem"></canvas>
-					<canvas id="disc-cdf-canvas-elem"></canvas>
-
-
-					<div id="select-rv-type">
-						<label for="rv-type">Look at the above plot and <b>Identify the Type of RV </b></label>
-						<select id="rv-type" name="rv-type" onchange="rvType()">
-							\ <option value="discrete">Discrete</option>
-							<option value="continuous">Continuous</option>
-						</select>
-					</div>
-					<div id="pdf-resp">
-						From the above plot, Calculate the <b>PDF value</b> and the <b>range of values of RV in which
-							the PDF is non-zero. </b><br>
-						<input type="number" id="pdf-val" name="pdf-input" placeholder="Enter PDF value"><br>
-						<input type="number" id="pdf-left" name="pdf-left"
-							placeholder="Enter leftmost non zero point"><br>
-						<input type="number" id="pdf-right" name="pdf-right"
-							placeholder="Enter rightmost non zero point"><br>
-						<br>
-						<button class="v-button" role="button" onclick="pdf()"> Submit </button>
-					</div>
-					<div id="pmf-resp">
-						From the above plot, <b> Calculate the PMF values </b> and enter the pmf values in increasing
-						order of value of RV<br>
-						<div>
-							<input type="number" id="pmf-p1" name="pmf-p1" placeholder="PMF-P1"><br>
-							<input type="number" id="pmf-p2" name="pmf-p2" placeholder="PMF-P2"><br>
-							<input type="number" id="pmf-p3" name="pmf-p3" placeholder="PMF-P3"><br>
-							<input type="number" id="pmf-p4" name="pmf-p4" placeholder="PMF-P4"><br>
-							<input type="number" id="pmf-p5" name="pmf-p5" placeholder="PMF-P5"><br>
-						</div>
-						<br>
-						<button class="v-button" role="button" onclick="pmf()"> Submit </button>
-					</div>
-
-					<div class="button-holder-div">
-						<button class="v-button" role="button" onclick="reset()"> Reset </button>
-						<!-- <button class="v-button" role="button" onclick="page2()"> Next </button> -->
-					</div>
-				</div>
-			</div>
-
-			<div class="column is-3-desktop is-4-tablet is-12-mobile">
-				<div class="v-datalist-container components-list">
-					<div class="v-datalist-title">Observations</div>
-					<div id="observations1">
-					</div>
-					<div id="results1">
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
-	<script src="./js/cdf_toPdmf.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/cdf_toPdmf.js"></script>
 </body>
-
-
 </html>

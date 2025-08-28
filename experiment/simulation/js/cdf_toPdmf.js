@@ -1,140 +1,81 @@
-// fixing the continuous RV to be uniform and discrete RV to have only 5 points with non-zero probability
+// Global variables
 var uniform_cdf_params;    // [x_left, x_right]
-var discrete_cdf_params;    // [p1, p2, p3, p4, p5]
+var discrete_cdf_params;   // { probs: [p1,..], points: [x1,..] }
 var RV_type = "none";
-// on dom load
+var uniformChart, discreteChart;
 
+// Chart.js default font settings
+Chart.defaults.font.family = "'Open Sans', sans-serif";
+Chart.defaults.font.size = 14;
+
+// --- Main Functions ---
 document.addEventListener("DOMContentLoaded", function () {
+    const ctx_cont = document.getElementById('cont-cdf-canvas-elem').getContext('2d');
+    const ctx_disc = document.getElementById('disc-cdf-canvas-elem').getContext('2d');
+    initializeCharts(ctx_cont, ctx_disc);
     reset();
 });
-const ctx_cont = document.getElementById('cont-cdf-canvas-elem').getContext('2d');
-const ctx_disc = document.getElementById('disc-cdf-canvas-elem').getContext('2d');
-var uniformChart = new Chart(ctx_cont, {
-    type: 'line',
-    data: {
-        labels: [0,1,2,3],
-        datasets: [{
-            label: 'CDF',
-            data: [0,1,2,3],
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-    },
-    options: {
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'X'
-                }
-            },
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'F(x)'
-                }
-            }
 
-        }
-    }
-});
-var discreteChart = new Chart(ctx_disc, {
-    type: 'line', // Specify the chart type
-    data: {
-        labels: [-7,1,3,7], // X-axis labels
-        datasets: [{
-            label: 'CDF Points', // Name the dataset
-            data: [0,0.5,1,1], // Data points
-            fill: false, // No fill under the line
-            borderColor: 'rgb(75, 192, 192)', // Line color
-            stepped: 'before', // Stepped line type
-            tension: 0 // No line tension for steps
-        }]
-    },
-    options: {
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'x'
-                },
-                ticks: {
-                    stepSize: 1
-                },
-                min: -7,
-                max: 7
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'F(x)'
-                },
-                ticks: {
-                    stepSize: 0.1
-                },
-                min: 0,
-                max: 1,
-                beginAtZero: true
-            }
-        }
-    }
-});
 function generateUniformCDF() {
-    var num1 = Math.floor(Math.random() * 10) - 5;
-    var num2 = Math.floor(Math.random() * 10) - 5;
-    if (num1 == num2) {
-        num2++;
-    }
-    if (num1 > num2) {
-        var temp = num1;
-        num1 = num2;
-        num2 = temp;
-    }
+    let num1 = Math.floor(Math.random() * 10) - 5;
+    let num2 = Math.floor(Math.random() * 10) - 5;
+    if (num1 === num2) num2++;
+    if (num1 > num2) [num1, num2] = [num2, num1]; // Swap
+    
     uniform_cdf_params = [num1, num2];
     document.getElementById('cont-cdf-canvas-elem').style.display = "block";
-    uniformChart.data.labels = [-7,num1,num2,7];
+    
+    uniformChart.data.labels = [num1 - 2, num1, num2, num2 + 2];
     uniformChart.data.datasets[0].data = [0, 0, 1, 1];
+    uniformChart.options.scales.x.min = num1 - 2;
+    uniformChart.options.scales.x.max = num2 + 2;
     uniformChart.update();
 }
+
 function discProbs(n) {
-    var probs = [];
-    var sum = 0;
-    for (var i = 0; i < n-1; i++) {
-        var num = Math.random() * ((1 - sum)*.7);
-        if(num<0.01)
-            num += 0.01;
+    let probs = [];
+    let sum = 0;
+    for (let i = 0; i < n - 1; i++) {
+        let num = Math.random() * ((1 - sum) * 0.7);
+        if (num < 0.05) num += 0.05; // Ensure jumps are noticeable
         num = Number(num.toFixed(2));
         sum += num;
         probs.push(num);
     }
     probs.push(Number((1 - sum).toFixed(2)));
-    return probs;
+    // Shuffle for randomness
+    return probs.sort(() => Math.random() - 0.5);
 }
+
 function generateDiscreteCDF() {
     const probs = discProbs(5);
-    var nums = [-5,-3,0,2,5]
-    var probs2 = [];
-    var sum = 0;
-    for (var i = 0; i < probs.length; i++) {
-        sum += probs[i];
-        probs2.push(sum);
+    const nums = [-4, -2, 0, 2, 4]; // Use fixed points for clarity
+    let cdf_probs = [];
+    let sum = 0;
+    for (const p of probs) {
+        sum = Number((sum + p).toFixed(2));
+        cdf_probs.push(sum);
     }
-    discrete_cdf_params = [[...probs],[...nums]];
+    discrete_cdf_params = { probs: probs, points: nums };
+    
+    // Update labels for PMF inputs
+    for (let i = 0; i < 5; i++) {
+        document.getElementById(`pmf-l${i+1}`).innerText = `P(X = ${nums[i]})`;
+    }
+
     document.getElementById('disc-cdf-canvas-elem').style.display = "block";
-    discreteChart.data.labels = [-7,...nums,7];
-    discreteChart.data.datasets[0].data = [0, ...probs2, 1];
+    discreteChart.data.labels = [-6, ...nums, 6];
+    discreteChart.data.datasets[0].data = [0, cdf_probs[0], ...cdf_probs.slice(1), cdf_probs[4]];
     discreteChart.update();
 }
 
 function generateCDF() {
-    var randomNumber = Math.random();
+    reset();
     document.getElementById("generate-cdf-button").style.display = "none";
-    if (randomNumber < 0.5) {
+    if (Math.random() < 0.5) {
         RV_type = "uniform";
         generateUniformCDF();
-    }
-    else {
+    } else {
         RV_type = "discrete";
         generateDiscreteCDF();
     }
@@ -142,103 +83,69 @@ function generateCDF() {
 }
 
 function rvType() {
-    var value = document.getElementById("rv-type").value;
-    if (value == 'discrete') {
-        document.getElementById("pmf-resp").style.display = "block";
-        document.getElementById("pdf-resp").style.display = "none";
-    } else if (value == 'continuous') {
-        document.getElementById("pdf-resp").style.display = "block";
-        document.getElementById("pmf-resp").style.display = "none";
-    } else {
-        document.getElementById("pdf-resp").style.display = "none";
-        document.getElementById("pmf-resp").style.display = "none";
-        ShowObservation(["Incorrect!","Invalid random variable type."]);
-    }
+    const value = document.getElementById("rv-type").value;
+    document.getElementById("pmf-resp").style.display = (value === 'discrete') ? "block" : "none";
+    document.getElementById("pdf-resp").style.display = (value === 'continuous') ? "block" : "none";
 }
 
 function pdf() {
-    if (RV_type == "uniform") {
-        var pdfVal = document.getElementById("pdf-val").value;
-        var pdfleft = document.getElementById("pdf-left").value;
-        var pdfright = document.getElementById("pdf-right").value;
-        if (pdfleft == uniform_cdf_params[0] && pdfright == uniform_cdf_params[1] && pdfVal >= 1 / (uniform_cdf_params[1] - uniform_cdf_params[0]) - 0.01 && pdfVal <= 1 / (uniform_cdf_params[1] - uniform_cdf_params[0]) + 0.01){
-            ShowObservation(["Correct!"]);
-        } else {
-            var obs = ["Incorrect!"];
-            if(pdfleft != uniform_cdf_params[0]){
-                obs.push("The left value is incorrect.");
-            }
-            if(pdfright != uniform_cdf_params[1]){
-                obs.push("The right value is incorrect.");
-            }
-            if(pdfVal < 1 / (uniform_cdf_params[1] - uniform_cdf_params[0]) - 0.01 && pdfVal > 1 / (uniform_cdf_params[1] - uniform_cdf_params[0]) + 0.01){
-                obs.push("The pdf value is incorrect.");
-            }
-            ShowObservation(obs);
-        }
+    if (RV_type !== "uniform") {
+        ShowObservation(["Incorrect RV Type!", "This is a discrete random variable. It has a PMF, not a PDF."]);
+        return;
     }
-    else if (RV_type == "discrete") {
-        ShowObservation(["Incorrect!","This is a discrete random variable. It has a pmf not a pdf."])
+    
+    const pdfVal = parseFloat(document.getElementById("pdf-val").value);
+    const pdfleft = parseFloat(document.getElementById("pdf-left").value);
+    const pdfright = parseFloat(document.getElementById("pdf-right").value);
+    
+    const [correct_left, correct_right] = uniform_cdf_params;
+    const correct_val = 1 / (correct_right - correct_left);
+
+    if (pdfleft === correct_left && pdfright === correct_right && Math.abs(pdfVal - correct_val) < 0.01) {
+        ShowObservation(["Correct!", `The PDF is the derivative of the CDF. The slope of the CDF is 1/(${correct_right} - ${correct_left}) = ${correct_val.toFixed(3)}, which is the value of the PDF on the interval <b>[${correct_left}, ${correct_right}]</b>.`]);
+    } else {
+        let feedback = "One or more values are incorrect.<br>";
+        if (pdfleft !== correct_left) feedback += `&bull; The lower bound should be <b>${correct_left}</b>.<br>`;
+        if (pdfright !== correct_right) feedback += `&bull; The upper bound should be <b>${correct_right}</b>.<br>`;
+        if (Math.abs(pdfVal - correct_val) >= 0.01) feedback += `&bull; The PDF value should be ~<b>${correct_val.toFixed(3)}</b>.<br>`;
+        ShowObservation(["Incorrect!", feedback]);
     }
 }
+
 function pmf() {
-    if (RV_type == "discrete") {
-        var pmf_p1 = document.getElementById("pmf-p1").value;
-        var pmf_p2 = document.getElementById("pmf-p2").value;
-        var pmf_p3 = document.getElementById("pmf-p3").value;
-        var pmf_p4 = document.getElementById("pmf-p4").value;
-        var pmf_p5 = document.getElementById("pmf-p5").value;
-        var discreteRV_pmf_vals = discrete_cdf_params[0];
-        console.log(discreteRV_pmf_vals);
-        if (pmf_p1 == discreteRV_pmf_vals[0] && pmf_p2 == discreteRV_pmf_vals[1] && pmf_p3 == discreteRV_pmf_vals[2] && pmf_p4 == discreteRV_pmf_vals[3] && pmf_p5 == discreteRV_pmf_vals[4]) {
-            ShowObservation(["Correct!"]);
-        }
-        else {
-            var obs = ["Incorrect!"];
-            if(pmf_p1 != discreteRV_pmf_vals[0]){
-                obs.push("The first pmf value is incorrect.");
-            }
-            if(pmf_p2 != discreteRV_pmf_vals[1]){
-                obs.push("The second pmf value is incorrect.");
-            }
-            if(pmf_p3 != discreteRV_pmf_vals[2]){
-                obs.push("The third pmf value is incorrect.");
-            }
-            if(pmf_p4 != discreteRV_pmf_vals[3]){
-                obs.push("The fourth pmf value is incorrect.");
-            }
-            if(pmf_p5 != discreteRV_pmf_vals[4]){
-                obs.push("The fifth pmf value is incorrect.");
-            }
-            ShowObservation(obs);
+    if (RV_type !== "discrete") {
+        ShowObservation(["Incorrect RV Type!", "This is a continuous random variable. It has a PDF, not a PMF."]);
+        return;
+    }
+    
+    const user_pmf = Array.from({length: 5}, (_, i) => parseFloat(document.getElementById(`pmf-p${i+1}`).value));
+    const correct_pmf = discrete_cdf_params.probs;
+    let isCorrect = true;
+    let feedback = "";
+
+    for (let i = 0; i < 5; i++) {
+        if (isNaN(user_pmf[i]) || Math.abs(user_pmf[i] - correct_pmf[i]) > 0.01) {
+            isCorrect = false;
+            feedback += `&bull; For P(X=${discrete_cdf_params.points[i]}), the correct jump height is <b>${correct_pmf[i]}</b>.<br>`;
         }
     }
-    else if (RV_type == "uniform") {
-        ShowObservation(["Incorrect!","This is a continuous random variable. It has a pdf not a pmf."]);
-    
+
+    if (isCorrect) {
+        ShowObservation(["Correct!", "The PMF values correctly correspond to the height of the jumps in the CDF at each point."]);
+    } else {
+        ShowObservation(["Incorrect!", feedback]);
     }
 }
 
 function ShowObservation(obs) {
-
-    if (obs[0] == "Incorrect!") {
-        document.getElementById("observations1").style.color = "red";
-    }
-    else {
-        document.getElementById("observations1").style.color = "green";
-    }
-    var obsStr = "";
-    for (var i = 1; i < obs.length; i++) {
-        obsStr += obs[i] + "<br>";
-    }
-    document.getElementById("observations1").innerHTML = obs[0];
-    document.getElementById("results1").innerHTML = obsStr;
+    document.getElementById("observations1").style.color = (obs[0].includes("Incorrect")) ? "red" : "green";
+    document.getElementById("observations1").innerHTML = `<b>${obs[0]}</b>`;
+    document.getElementById("results1").innerHTML = obs.length > 1 ? obs[1] : "";
 }
 
 function reset() {
     RV_type = "none";
     document.getElementById("generate-cdf-button").style.display = "block";
-    document.getElementById("cdf-img-elem").style.display = "none";
     document.getElementById("select-rv-type").style.display = "none";
     document.getElementById("pdf-resp").style.display = "none";
     document.getElementById("pmf-resp").style.display = "none";
@@ -246,13 +153,28 @@ function reset() {
     document.getElementById('cont-cdf-canvas-elem').style.display = "none";
     document.getElementById("observations1").innerHTML = "";
     document.getElementById("results1").innerHTML = "";
-    document.getElementById("pdf-val").value = "";
-    document.getElementById("pdf-left").value = "";
-    document.getElementById("pdf-right").value = "";
-    document.getElementById("pmf-p1").value = "";
-    document.getElementById("pmf-p2").value = "";
-    document.getElementById("pmf-p3").value = "";
-    document.getElementById("pmf-p4").value = "";
-    document.getElementById("pmf-p5").value = "";
+    ['pdf-val', 'pdf-left', 'pdf-right', 'pmf-p1', 'pmf-p2', 'pmf-p3', 'pmf-p4', 'pmf-p5'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
     document.getElementById("rv-type").value = "none";
+}
+
+function initializeCharts(ctx_cont, ctx_disc) {
+    uniformChart = new Chart(ctx_cont, {
+        type: 'line',
+        data: { labels: [], datasets: [{ label: 'Uniform CDF', data: [], borderColor: 'rgb(75, 192, 192)', tension: 0.1 }] },
+        options: { scales: { x: { title: { display: true, text: 'x' } }, y: { beginAtZero: true, min: 0, max: 1.1, title: { display: true, text: 'F(x)' } } } }
+    });
+    discreteChart = new Chart(ctx_disc, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Discrete CDF', data: [], fill: false, borderColor: 'rgb(153, 102, 255)',
+                stepped: 'before', pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: 'rgb(153, 102, 255)'
+            }]
+        },
+        options: { scales: { x: { min: -6, max: 6, title: { display: true, text: 'x' } }, y: { min: 0, max: 1.1, beginAtZero: true, title: { display: true, text: 'F(x)' } } } }
+    });
 }
