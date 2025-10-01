@@ -3,12 +3,13 @@
 The aim of this experiment is to comprehensively study and analyze the properties and behaviors of both discrete and continuous random variables through the exploration of their respective probability distributions, cumulative distribution functions (CDFs), and expected values. The experiment will specifically focus on:
 
 1. **Discrete Random Variables**:
+
    - Defining and understanding the concept of countability in sets.
    - Investigating common discrete distributions such as Bernoulli, Geometric, Binomial, and Poisson distributions.
    - Calculating and interpreting the probability mass function (PMF), cumulative distribution function (CDF), and expected values.
    - Analyzing the independence of discrete random variables.
-
 2. **Continuous Random Variables**:
+
    - Understanding the properties of continuous random variables, specifically focusing on the continuity of their CDFs.
    - Exploring the probability density function (PDF) and its relation to the CDF.
    - Examining common continuous distributions including Uniform, Exponential, and Normal distributions.

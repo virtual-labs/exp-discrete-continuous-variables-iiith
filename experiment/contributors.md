@@ -10,3 +10,4 @@
 | :---: | :---: | :---: | :---: | 
 | 1 | Srikar Kale | srikar.kale@research.iiit.ac.in | IIIT Hyderabad |
 | 2 | Keshav Agarwal | keshav.agarwal@students.iiit.ac.in | IIIT Hyderabad | 
+| 3 | Harsh Kapoor   | harsh.kapoor@research.iiit.ac.in | IIIT Hyderabad  |

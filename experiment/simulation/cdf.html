@@ -41,9 +41,9 @@
                              <b>Procedure:</b>
                             <ul style="list-style: circle; margin-left: 20px;">
                                 <li>Click the button to generate a random number "c".</li>
-                                <li>Find the inverse image for the given RV \(X\) by selecting the correct set.</li>
-                                <li>Based on the inverse image and the probability measure, calculate and enter the CDF of \(X\) at "c".</li>
-                                <li>Click "Submit" to check your answer.</li>
+                                <li>Find the inverse image from \(X \leq c\) for the given RV \(X\) by selecting the correct set. The system will check your answer immediately.</li>
+                                <li>If your inverse image is correct, calculate and enter the CDF value, \(F_X(c)\).</li>
+                                <li>Click "Submit" to check your final answer.</li>
                             </ul>
                         </ul>
                     </div>
@@ -69,10 +69,10 @@
                         <div id="selectInverseImage1" class="hiddenInitially">
                             <p><b>1. Find the inverse image, which is the set \(\{\omega \in \Omega : X(\omega) \le c\}\)</b></p>
                             <div class="grid-container">
-                                <div class="ans" onclick="setInvImg1(0,0,0,0)">\(\phi\)</div>
-                                <div class="ans" onclick="setInvImg1(1,0,0,0)">\(\{\omega_1\}\)</div>
-                                <div class="ans" onclick="setInvImg1(0,1,1,1)">\(\{\omega_2, \omega_3, \omega_4\}\)</div>
-                                <div class="ans" onclick="setInvImg1(1,1,1,1)">\(\{\omega_1, \omega_2, \omega_3, \omega_4\}\)</div>
+                                <div class="ans" onclick="checkInverseImage1(0,0,0,0)">\(\phi\)</div>
+                                <div class="ans" onclick="checkInverseImage1(1,0,0,0)">\(\{\omega_1\}\)</div>
+                                <div class="ans" onclick="checkInverseImage1(0,1,1,1)">\(\{\omega_2, \omega_3, \omega_4\}\)</div>
+                                <div class="ans" onclick="checkInverseImage1(1,1,1,1)">\(\{\omega_1, \omega_2, \omega_3, \omega_4\}\)</div>
                             </div>
                         </div>
                         <div id="selectedInverseImage1" style="margin: 1rem 0;"></div>
