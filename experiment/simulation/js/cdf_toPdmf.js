@@ -82,10 +82,31 @@ function generateCDF() {
     document.getElementById("select-rv-type").style.display = "block";
 }
 
+// This function automatically checks the user's selection from the dropdown
 function rvType() {
     const value = document.getElementById("rv-type").value;
-    document.getElementById("pmf-resp").style.display = (value === 'discrete') ? "block" : "none";
-    document.getElementById("pdf-resp").style.display = (value === 'continuous') ? "block" : "none";
+    const isContinuous = (RV_type === "uniform");
+    const isDiscrete = (RV_type === "discrete");
+
+    // Hide both response sections initially
+    document.getElementById("pmf-resp").style.display = "none";
+    document.getElementById("pdf-resp").style.display = "none";
+
+    if (value === 'continuous') {
+        if (isContinuous) {
+            ShowObservation(["Correct!", "This is a continuous random variable. Now, find its PDF."]);
+            document.getElementById("pdf-resp").style.display = "block";
+        } else {
+            ShowObservation(["Incorrect RV Type!", "This CDF is a step function, which corresponds to a <b>discrete</b> random variable."]);
+        }
+    } else if (value === 'discrete') {
+        if (isDiscrete) {
+            ShowObservation(["Correct!", "This is a discrete random variable. Now, find its PMF."]);
+            document.getElementById("pmf-resp").style.display = "block";
+        } else {
+            ShowObservation(["Incorrect RV Type!", "This CDF is a smooth line (not a step function), which corresponds to a <b>continuous</b> random variable."]);
+        }
+    }
 }
 
 function pdf() {
@@ -160,21 +181,47 @@ function reset() {
     document.getElementById("rv-type").value = "none";
 }
 
+/**
+ * [MODIFIED] Initializes charts with a generic "CDF" label and ensures the legend is visible.
+ */
 function initializeCharts(ctx_cont, ctx_disc) {
     uniformChart = new Chart(ctx_cont, {
         type: 'line',
-        data: { labels: [], datasets: [{ label: 'Uniform CDF', data: [], borderColor: 'rgb(75, 192, 192)', tension: 0.1 }] },
-        options: { scales: { x: { title: { display: true, text: 'x' } }, y: { beginAtZero: true, min: 0, max: 1.1, title: { display: true, text: 'F(x)' } } } }
+        data: { labels: [], datasets: [{ 
+            label: 'CDF', // Use a generic label
+            data: [], 
+            borderColor: 'rgb(75, 192, 192)', 
+            tension: 0 
+        }] },
+        options: { 
+            scales: { x: { title: { display: true, text: 'x' } }, y: { beginAtZero: true, min: 0, max: 1.1, title: { display: true, text: 'F(x)' } } },
+            plugins: {
+                legend: { display: true }, // Ensure legend is visible
+                tooltip: { callbacks: { label: (context) => `(x: ${context.parsed.x}, F(x): ${context.parsed.y})` } }
+            }
+        }
     });
     discreteChart = new Chart(ctx_disc, {
         type: 'line',
         data: {
             labels: [],
             datasets: [{
-                label: 'Discrete CDF', data: [], fill: false, borderColor: 'rgb(153, 102, 255)',
-                stepped: 'before', pointRadius: 5, pointHoverRadius: 8, pointBackgroundColor: 'rgb(153, 102, 255)'
+                label: 'CDF', // Use a generic label
+                data: [], 
+                fill: false, 
+                borderColor: 'rgb(153, 102, 255)',
+                stepped: 'before', 
+                pointRadius: 5, 
+                pointHoverRadius: 8, 
+                pointBackgroundColor: 'rgb(153, 102, 255)'
             }]
         },
-        options: { scales: { x: { min: -6, max: 6, title: { display: true, text: 'x' } }, y: { min: 0, max: 1.1, beginAtZero: true, title: { display: true, text: 'F(x)' } } } }
+        options: { 
+            scales: { x: { min: -6, max: 6, title: { display: true, text: 'x' } }, y: { min: 0, max: 1.1, beginAtZero: true, title: { display: true, text: 'F(x)' } } },
+            plugins: {
+                legend: { display: true }, // Ensure legend is visible
+                tooltip: { callbacks: { label: (context) => `(x: ${context.parsed.x}, F(x): ${context.parsed.y})` } }
+            }
+        }
     });
 }

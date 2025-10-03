@@ -11,13 +11,7 @@
 </li>
 <li>
     Based on the inverse image calculated and the probabiliy measure given, find the CDF
-    of the random variable $X$ at "c" and enter the value in the input box.
-</li>
-<li>
-    Click on the "Submit" button to check your answer.
-</li>
-<li>
-    Click on the "Reset" button to reset the experiment.
+    of the random variable $X$ at "c" and enter the value in the input box and check your answer.
 </li>
 
 #### CDF Properties
@@ -26,18 +20,11 @@
     4 different random variables.You have to verify if the given plots satisfy all the properties of
     a CDF.
 </li>
+
 <li>
-    To do this, you have to verify each graph individually.
+    Select a graph by clicking on it first and then, select the Property of CDF that you think the graph does not satisfy. If it satisfies all the properties, select the last option.
 </li>
-<li>
-    First click on a gaph to select it. The selected graph number will be showed  below.
-</li>
-<li>
-    After this, select the Property of CDF that you think the graph does not satisfy. If it satisfies all the properties, select the last option.
-</li>
-<li>
-    After selecting the option, the observation will be displayed.
-</li>	
+
 
 #### CDF to PDF/PMF
 <li>
@@ -50,18 +37,10 @@
 </li>
 <li>
     If you choose continuous RV, enter the PDF value and the range of values of RV in
-    which the PDF is non-zero. For example, if the plot is a straight line from (1,0) to
-    (2,0), the PDF value here is 1, the leftmost non-zero point is 1 and the rightmost
-    non-zero point is 2.
+    which the PDF is non-zero.
 </li>
 <li>
     If you choose discrete RV, enter the PMF values in increasing order of value of RV.
-</li>
-<li>
-    Click on the "Submit" button to check your answer.
-</li>
-<li>
-    Click on the "Reset" button to reset the experiment.
 </li>
 
 ### Part 2
@@ -70,21 +49,14 @@
     Here, we are considering a coin toss experiment as a Bernoulli random variable $X$. Head is mapped to $X=1$ and Tail is mapped to $X=0$.
 </li>
 <li>
-    Choose a value for the probability of getting a Head on tossing a coin, denoted by
-    $p$.
-</li>
-<li>
-    Enter the value of $p$ in the input box and click on the "Set" button.
+    Choose a value for the probability of getting a Head on tossing a coin, denoted by $p$.
 </li>
 <li>
     Click on the "TOSS" button to simulate the coin toss experiment.
 </li>
 <li>
     Observe the value of the Bernoulli random variable $X$ for each toss.
-</li>
-<li>
-    Click on the "Reset" button to reset the experiment.
-</li>
+</li>   
 
 #### Binomial RV
 <li>
@@ -100,21 +72,8 @@
     button.
 </li>
 <li>
-    After setting the value of $P(H)$, you can click on the "TOSS" button to flip the
-    coin once.
-</li>
-<li>
-    You can also click on the "Complete remaining toss" button to flip the coin
-    remaining number of times
-    at once.
-</li>
-<li>
     After the coin is flipped 10 times, check observation to see how the value of the
     binomial random variable changes.
-</li>
-<li>
-    Repeat this experiment multiple times to see how the value of the binomial random
-    variable changes. You can repeat the experiment by clicking on the "Reset" button.
 </li>
 
 #### Geoemetric RV
@@ -129,18 +88,7 @@
     Click on the "TOSS" button to perform the coin toss experiment.
 </li>
 <li>
-    Keep on clicking the "TOSS" button to perform multiple coin tosses until you get the
-    first Head.
-</li>
-<li>
     Observe the value of the Geometric random variable $X$ for the experiment.
-</li>
-<li>
-    Repeat the experiment multiple times to observe the distribution of the Geometric
-    random variable $X$.
-</li>
-<li>
-    Click on the "Reset" button to reset the experiment.
 </li>
 
 #### Poisson RV
@@ -150,28 +98,8 @@
     Poisson random variable with parameter $\lambda = np$.
 </li>
 <li>
-    Ypu have to conduct three experiments with different $n$ and $p$ values such
-    that $np$ is constant.
+    To observe the convergence, you have to enter a value for $n$ and a value of $\lambda$
 </li>
 <li>
-    A value for $ \lambda $ is randomly generated. You have to set the $p$ and $n$
-    values for the three experiments such that $np = \lambda$.
-</li>
-<li>
-    To observe the convergence, you have to enter a value for $n$ between 10 to 50 for
-    the first experiment, 50 to 100 for the second experiment, and 100 to 150 for the
-    third experiment.
-</li>
-<li>
-    After entering these values, you can click on the "Set" button to set the values.
-</li>
-<li>
-    You can then click on the "Toss for 1 experiment at a time" button to conduct the
-    experiments one by one or click on the "Complete all the 3 experiments at once"
-    button to conduct all the experiments at once.
-</li>
-<li>
-    After the experiments are conducted, you can observe the number of heads and tails
-    obtained in each experiment, the observations, and the graph showing the PDF of the
-    three experiments and the Poisson distribution.
+    You can see the two histograms matching and the error values decreasing.
 </li>

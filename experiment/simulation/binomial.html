@@ -7,6 +7,66 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        /* Main container for the history grid */
+        .previous-results-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            border: 1px solid #dbdbdb; /* Outer border for the table */
+            border-radius: 4px;
+            padding: 5px;
+            background-color: #fff;
+            min-height: 80px;
+        }
+
+        /* Wrapper for each coin, acting as a table cell */
+        .coin-wrapper {
+            perspective: 1000px;
+            width: 65px;
+            height: 65px;
+            display: flex; /* Use flex to center the coin inside */
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9; /* Lightly shaded cell background */
+            border-right: 1px solid #dbdbdb; /* Vertical bar */
+        }
+
+        /* Remove the vertical bar from the last cell */
+        .coin-wrapper:last-child {
+            border-right: none;
+        }
+
+        /* The coin itself */
+        .small-coin {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.5s ease-out;
+        }
+        .small-coin .face {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            font-size: 20px;
+        }
+        .small-coin .front {
+            background-color: #d4af37;
+            color: #fff;
+        }
+        .small-coin .back {
+            background-color: #c0c0c0;
+            color: #333;
+            transform: rotateY(180deg);
+        }
+    </style>
     <title>Binomial RV</title>
 </head>
 <body>
@@ -43,10 +103,10 @@
                         <ul style="list-style: disc; margin-bottom: 10px;">
                              <b>Procedure:</b>
                             <ul style="list-style: circle; margin-left: 20px;">
-                                <li>We are modelling the number of Heads from flipping a biased coin \(n=10\) times.</li>
+                                <li>We are modelling the number of Heads from flipping 10 biased coins together.</li>
                                 <li>Set the value of \(P(H) = p\) using the input box.</li>
-                                <li>Click "TOSS" to flip the coin once, or "Complete remaining tosses" to finish all 10 flips.</li>
-                                <li>After 10 flips, check the observation panel for the final results.</li>
+                                <li>Click "TOSS ALL" to flip the 10 coins in the Toss History grid.</li>
+                                <li>After the coins land, check the observation panel for the final results.</li>
                                 <li>Repeat the experiment by clicking "Reset".</li>
                             </ul>
                         </ul>
@@ -73,19 +133,9 @@
                         <div id="binomialDiv" style="display: none;">
                             <p><b>\(P(H)\) = <span id="probabilityValue">0</span></b> and <b>\(n=10\)</b>.</p>
                             
-                            <!-- Animated Coin -->
-                            <div class="coin-container">
-                                <div id="coin" class="coin">
-                                    <div class="face front">H</div>
-                                    <div class="face back">T</div>
-                                </div>
-                            </div>
-
-                            <button class="v-button" role="button" id="binomialInstance" onclick="binomial()">TOSS</button>
-                            <button class="v-button" role="button" id="binomial10Xinstance" onclick="binomial10()">Complete remaining tosses</button>
+                            <button class="v-button" role="button" id="tossAllBtn" onclick="tossAllCoins()">TOSS ALL</button>
                             
-                            <div class="results-display">
-                                <div id="binomialResult" style="font-weight: bold;">Current Toss: -</div>
+                            <div class="results-display" style="margin-top: 1.5rem;">
                                 <div class="stats-grid">
                                     <div><strong>Flips:</strong> <span id="numOfCoinFlips">0</span> / 10</div>
                                     <div><strong>Heads (X):</strong> <span id="numOfHeads">0</span></div>
@@ -95,8 +145,17 @@
                             
                             <h4 style="margin-top: 1.5rem; font-weight: bold;">Toss History</h4>
                             <div class="previous-results-grid">
-                                <span id="res1">-</span> <span id="res2">-</span> <span id="res3">-</span> <span id="res4">-</span> <span id="res5">-</span>
-                                <span id="res6">-</span> <span id="res7">-</span> <span id="res8">-</span> <span id="res9">-</span> <span id="res10">-</span>
+                                <!-- Coins will be rendered here directly -->
+                                <div class="coin-wrapper"><div class="small-coin" id="coin0"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin1"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin2"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin3"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin4"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin5"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin6"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin7"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin8"><div class="face front">H</div><div class="face back">T</div></div></div>
+                                <div class="coin-wrapper"><div class="small-coin" id="coin9"><div class="face front">H</div><div class="face back">T</div></div></div>
                             </div>
                         </div>
 

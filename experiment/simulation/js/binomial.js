@@ -14,18 +14,12 @@ function binomialCoefficient (n, k){
 
 // Global variables
 var p = document.getElementById("inputProbability");
-var result;
-
-var coinFlipsEl = document.getElementById("numOfCoinFlips");
-var expResultEl = document.getElementById("binomialResult");
 var obsEl = document.getElementById("observations");
 var fixedProbValueEl = document.getElementById("probabilityValue");
 var headCountEl = document.getElementById("numOfHeads");
 var tailCountEl = document.getElementById("numOfTails");
-var tossBtn = document.getElementById("binomialInstance");
-var toss10Btn = document.getElementById("binomial10Xinstance");
+var coinFlipsEl = document.getElementById("numOfCoinFlips");
 
-var tossAnimationCount = 0;
 var nFinal = 10;
 
 function setPBinomial() {
@@ -39,71 +33,50 @@ function setPBinomial() {
     fixedProbValueEl.innerHTML = prob.toFixed(2);
 }
 
-function performToss() {
-    // Disable buttons during animation
+function tossAllCoins() {
+    var tossBtn = document.getElementById("tossAllBtn");
     tossBtn.disabled = true;
-    toss10Btn.disabled = true;
-    expResultEl.innerHTML = "Flipping...";
-    
-    // --- Animation Logic ---
-    var coin = document.getElementById("coin");
-    coin.style.transition = 'none';
-    coin.style.transform = `rotateY(${tossAnimationCount * 1800}deg)`;
-    coin.offsetHeight; // Reflow
 
     var prob = parseFloat(fixedProbValueEl.innerText);
-    result = (Math.random() < prob) ? 1 : 0; // 1 for Heads, 0 for Tails
-    tossAnimationCount++;
+    var results = [];
+    var headCount = 0;
 
-    coin.style.transition = 'transform 1.5s ease-out';
-    var finalRotation = tossAnimationCount * 1800 + (result === 0 ? 180 : 0);
-    coin.style.transform = `rotateY(${finalRotation}deg)`;
+    // 1. Determine all outcomes
+    for (let i = 0; i < nFinal; i++) {
+        const result = (Math.random() < prob) ? 1 : 0; // 1 for Heads, 0 for Tails
+        results.push(result);
+        if (result === 1) headCount++;
+    }
 
-    // --- Update UI after animation ---
+    // 2. Animate all coins with a random stagger
+    const allCoins = document.querySelectorAll('.small-coin');
+    allCoins.forEach((coin, i) => {
+        var randomDelay = Math.random() * 500; // up to 0.5s delay
+        
+        // Reset to start before flipping
+        coin.style.transition = 'none';
+        coin.style.transform = `rotateY(0deg)`;
+        coin.offsetHeight; // Trigger reflow to apply the reset instantly
+
+        setTimeout(() => {
+            coin.style.transition = 'transform 1.5s ease-out';
+            // Each coin has its own rotation count to look more random
+            const rotationCount = Math.floor(Math.random() * 2) + 4; // 4 or 5 full spins
+            const finalRotation = (rotationCount * 360) + (results[i] === 0 ? 180 : 0);
+            coin.style.transform = `rotateY(${finalRotation}deg)`;
+        }, randomDelay);
+    });
+
+    // 3. Update UI after the longest animation finishes
     setTimeout(() => {
-        var currentFlips = parseInt(coinFlipsEl.innerText);
-        if (currentFlips >= nFinal) return; // Stop if we've already done 10 flips
-
-        expResultEl.innerHTML  = "Current Toss: <b>"+(result === 0 ? "Tail" : "Head")+"</b>";
-        coinFlipsEl.innerText = 1 + currentFlips;
-
-        var prevresult = "res" + (1 + currentFlips);
-        if (result === 1) {
-            document.getElementById(prevresult).innerText = "H";
-            headCountEl.innerText = 1 + parseInt(headCountEl.innerText);
-        } else {
-            document.getElementById(prevresult).innerText = "T";
-            tailCountEl.innerText = 1 + parseInt(tailCountEl.innerText);
-        }
-            
-        // Check if experiment is complete
-        if (parseInt(coinFlipsEl.innerText) === nFinal) {
-            showObservations();
-            tossBtn.disabled = true; // Final state
-            toss10Btn.disabled = true;
-        } else {
-            // Re-enable buttons if not complete
-            tossBtn.disabled = false;
-            toss10Btn.disabled = false;
-        }
-    }, 1600);
+        coinFlipsEl.innerText = nFinal;
+        headCountEl.innerText = headCount;
+        tailCountEl.innerText = nFinal - headCount;
+        
+        showObservations();
+    }, 2100); // 1.5s animation + 0.5s max delay + buffer
 }
 
-function binomial() {
-    if (parseInt(coinFlipsEl.innerText) < nFinal) {
-        performToss();
-    }
-}
-
-function binomial10() {
-    var remaining = nFinal - parseInt(coinFlipsEl.innerText);
-    if (remaining <= 0) return;
-
-    // Chain the animations with a delay
-    for (let i = 0; i < remaining; i++) {
-        setTimeout(performToss, i * 1700); // Stagger tosses slightly more than animation time
-    }
-}
 
 function showObservations() {
     var prob = parseFloat(fixedProbValueEl.innerText);
@@ -121,36 +94,34 @@ function showObservations() {
         <p><b>2. Binomial RV Value:</b></p>
         <p>The random variable \(X\) counts the number of heads, so for this experiment, <b>X = ${numHeads}</b>.</p>
         <hr>
-        <p><b>3. Theoretical vs. Experimental:</b></p>
+        <p><b>3. Probability Calculations:</b></p>
         <p>The theoretical probability of getting exactly ${numHeads} heads is P(X=${numHeads}) = <b>${randomVariableAns.toFixed(4)}</b>.</p>
-        <p>Your experimental probability from this one set of 10 flips was <b>${(numHeads / nFinal).toFixed(2)}</b>.</p>
         <p>The overall expected (average) number of heads is n*p = ${nFinal} * ${prob} = <b>${(nFinal * prob).toFixed(2)}</b>.</p>
     `;
     obsEl.innerHTML = observation;
+    if (window.MathJax) {
+        MathJax.typeset(); // Re-render MathJax for new content
+    }
 }
 
 function reset() {
     p.value = 0.5;
-    tossAnimationCount = 0;
-    var coin = document.getElementById("coin");
-    if(coin) {
+    
+    // Reset coins in the history grid
+    const allCoins = document.querySelectorAll('.small-coin');
+    allCoins.forEach(coin => {
         coin.style.transition = 'none';
         coin.style.transform = 'rotateY(0deg)';
-    }
+    });
 
     document.getElementById("inputDiv").style.display = "block";
     document.getElementById("binomialDiv").style.display = "none";
     
     obsEl.innerHTML = "Set a probability and complete 10 tosses.";
-    expResultEl.innerHTML = "Current Toss: -";
     coinFlipsEl.innerText = 0;
     headCountEl.innerText = 0;
     tailCountEl.innerText = 0;
 
-    tossBtn.disabled = false;
-    toss10Btn.disabled = false;
-
-    for(var i = 1; i <= 10; i++) {
-        document.getElementById("res" + i).innerText = "-";
-    }
+    var tossBtn = document.getElementById("tossAllBtn");
+    if(tossBtn) tossBtn.disabled = false;
 }

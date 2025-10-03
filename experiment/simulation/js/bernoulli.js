@@ -16,7 +16,7 @@ function setPbernoulli() {
     }
     document.getElementById("input-p-bernoulli-div").style.display = "none";
     document.getElementById("bernoulli-instance").style.display = "block";    
-    document.getElementById("p-bernoulli-value").innerHTML = p;
+    document.getElementById("p-bernoulli-value").innerHTML = p.toFixed(2);
     document.getElementById("q-bernoulli-value").innerHTML = (1 - p).toFixed(2);
 }
 

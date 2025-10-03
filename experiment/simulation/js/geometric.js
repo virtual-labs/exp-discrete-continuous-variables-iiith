@@ -2,7 +2,8 @@ var p;
 var result;
 var counter = 0;
 var tossAnimationCount = 0;
-const maxCounter = 40; // Safety limit
+const maxCounter = 50; // Safety limit
+const minP = 0.1; // Lower limit for p
 var previousResp = [];
 var tossBtn, runBtn;
 
@@ -15,15 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
 function setPGeometric() {
     p = document.getElementById("input-p-geometric").value;
     p = parseFloat(p);
-    if (isNaN(p) || p <= 0 || p > 1) { // p cannot be 0 for this experiment
-        alert("Invalid P(H) value. Please enter a number greater than 0 and up to 1.");
+    if (isNaN(p) || p < minP || p > 1) {
+        alert(`Invalid P(H) value. Please enter a number between ${minP} and 1.`);
         return;
     }
     document.getElementById("input-p-div").style.display = "none";
     document.getElementById("geometric-instance").style.display = "block";
     document.getElementById("geometric-counter-div").style.display = "block";
-    document.getElementById("prev-resp").style.display = "grid";
-    document.getElementById("p-geometric-value").innerHTML = p;
+    document.getElementById("prev-resp").style.display = "flex";
+    document.getElementById("p-geometric-value").innerHTML = p.toFixed(2);
 }
 
 function tossCoinForGeometric() {
@@ -104,7 +105,7 @@ function updateExperimentState() {
 function showObservations(maxedOut) {
     var obsEl = document.getElementById("observations");
     if (maxedOut) {
-        obsEl.innerHTML = `<p><b>Experiment Limit Reached!</b></p><hr><p>We reached the maximum of ${maxCounter} trials without getting a Head. This is unlikely but possible with a low p-value.</p><p>Please try again or use a higher P(H).</p>`;
+        obsEl.innerHTML = `<p><b>Experiment Limit Reached!</b></p><hr><p>We reached the maximum of ${maxCounter} trials without getting a Head. This is very unlikely but possible.</p><p>Please try again.</p>`;
         obsEl.style.color = "red";
         return;
     }
@@ -114,7 +115,7 @@ function showObservations(maxedOut) {
 
     var extraNote = "";
     if (counter > 10) {
-        extraNote = `<br><p><i>Note: It took over 10 trials to succeed. With P(H)=${p}, longer waits like this are possible, though less frequent than shorter ones.</i></p>`;
+        extraNote = `<br><p><i>Note: It took over 10 trials to succeed. With P(H)=${p.toFixed(2)}, longer waits like this are possible, though less frequent than shorter ones.</i></p>`;
     }
 
     var observation = `
@@ -131,6 +132,9 @@ function showObservations(maxedOut) {
         ${extraNote}
     `;
     obsEl.innerHTML = observation;
+    if (window.MathJax) {
+        MathJax.typeset();
+    }
 }
 
 function getOrdinal(n) {
