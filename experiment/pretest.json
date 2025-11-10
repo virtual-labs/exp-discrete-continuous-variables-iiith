@@ -36,7 +36,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "3. A discrete random variable X has a range of \\{1, 2, 3\\} and a PMF defined as $p_X(k) = c \\cdot k^2$. What is the value of the constant $c$ that makes this a valid PMF?",
+      "question": "3. A discrete random variable X has a range of $\\{1, 2, 3\\}$ and a PMF defined as $p_X(k) = c \\cdot k^2$. What is the value of the constant $c$ that makes this a valid PMF?",
       "answers": {
         "a": "1",
         "b": "1/6",
@@ -84,7 +84,7 @@
         "d": "Wrong answer. A PDF value can be greater than 1 (e.g., a uniform distribution on [0, 0.5] has a PDF value of 2)."
       },
       "correctAnswer": "c",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     }
   ]
 }

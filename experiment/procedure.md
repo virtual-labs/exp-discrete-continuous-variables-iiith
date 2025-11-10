@@ -1,7 +1,7 @@
-## Procedure for the experiments in the following section
-
 ### Part 1
+
 #### CDF
+
 <li>
     Click on the button to generate a random number "c".
 </li>
@@ -15,6 +15,7 @@
 </li>
 
 #### CDF Properties
+
 <li>
     In this experiment, you will be shown 4 graphs of the cumulative distribution function (CDF) of
     4 different random variables.You have to verify if the given plots satisfy all the properties of
@@ -25,8 +26,8 @@
     Select a graph by clicking on it first and then, select the Property of CDF that you think the graph does not satisfy. If it satisfies all the properties, select the last option.
 </li>
 
-
 #### CDF to PDF/PMF
+
 <li>
     Click on the button to randomly generate a plot of CDF of a valid RV. Note that the
     only types of RV used here are either continuous Uniform RV of a discrete RV with 5
@@ -44,7 +45,9 @@
 </li>
 
 ### Part 2
+
 #### Bernoulli RV
+
 <li>
     Here, we are considering a coin toss experiment as a Bernoulli random variable $X$. Head is mapped to $X=1$ and Tail is mapped to $X=0$.
 </li>
@@ -56,9 +59,10 @@
 </li>
 <li>
     Observe the value of the Bernoulli random variable $X$ for each toss.
-</li>   
+</li>
 
 #### Binomial RV
+
 <li>
     In this experiment, we are modelling the number of Heads we get when we flip a
     biased coin $n$ times as a Binomial RV. The probability of getting a head is given
@@ -77,6 +81,7 @@
 </li>
 
 #### Geoemetric RV
+
 <li>
     Choose a value for the probability of getting a Head on a coin toss, denoted by
     $p$.
@@ -92,6 +97,7 @@
 </li>
 
 #### Poisson RV
+
 <li>
     In this experiment, we are trying to show that as $n \to \infty$ and $p \to 0$
     such that $np$ is constant, the binomial random variable $X$ converges to a

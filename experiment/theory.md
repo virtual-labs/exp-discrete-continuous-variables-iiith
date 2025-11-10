@@ -1,17 +1,15 @@
-## Random Variables
-
 There are two important classes of random variables: discrete random variables and continuous random variables.
 
 ### Discrete Random Variable
 
-A random variable is called discrete if its range (the set of values that it can take) is finite or at most countably infinite. A random variable that can take an uncountably infinite number of values is not discrete. For an example, consider the experiment of choosing a point *a* from the interval [−1, 1]. The random variable that associates the numerical value $X(a) = a^2$ to the outcome *a* is not discrete since the range is [0, 1]. On the other hand, the random variable that associates with *a* the numerical value
+A random variable is called discrete if its range (the set of values that it can take) is finite or at most countably infinite. A random variable that can take an uncountably infinite number of values is not discrete. For an example, consider the experiment of choosing a point _a_ from the interval [−1, 1]. The random variable that associates the numerical value $X(a) = a^2$ to the outcome _a_ is not discrete since the range is [0, 1]. On the other hand, the random variable that associates with _a_ the numerical value
 
 $$
-X(a) = 
-\begin{cases} 
+X(a) =
+\begin{cases}
 1, & a > 0 \\
 0, & a = 0 \\
--1, & a < 0 
+-1, & a < 0
 \end{cases}
 \tag{6.2}
 $$
@@ -48,7 +46,7 @@ $$
 
 ##### Bernoulli Random Vadriable
 
-Consider the toss of a biased coin, which comes up a head with probability *p*, and a tail with probability 1 − *p*. The Bernoulli random variable takes the two values 1 and 0, depending on whether the outcome is a head or a tail:
+Consider the toss of a biased coin, which comes up a head with probability _p_, and a tail with probability 1 − _p_. The Bernoulli random variable takes the two values 1 and 0, depending on whether the outcome is a head or a tail:
 
 $$
 X(T) = 0, \quad X(H) = 1.
@@ -63,19 +61,19 @@ $$
 The cumulative distribution function (cdf) of the Bernoulli random variable is given by
 
 $$
-F_X(x) = 
-\begin{cases} 
+F_X(x) =
+\begin{cases}
 0, & x < 0 \\
 1 - p, & 0 \le x < 1 \\
-1, & x \ge 1 
+1, & x \ge 1
 \end{cases}
 $$
 
 ##### Binomial Random Variable
 
-A biased coin is tossed *n* times. At each toss, the coin comes up a head with probability *p*, and a tail with probability $1-p$, independently of prior tosses. The sample space is given by the set of all $2^n$ possible tuples
+A biased coin is tossed _n_ times. At each toss, the coin comes up a head with probability _p_, and a tail with probability $1-p$, independently of prior tosses. The sample space is given by the set of all $2^n$ possible tuples
 
-of H, T combinations. For the case of *n* = 4, the sample space is as given below:
+of H, T combinations. For the case of _n_ = 4, the sample space is as given below:
 
 $$
 \Omega = \{TTTT, TTTH, TTHT, TTHH, THTT, THTH, THHT, THHH, HTTT, HTTH, HTHT, HTHH, HHTT, HHTH, HHHT, HHHH\}.
@@ -95,7 +93,7 @@ $$
 
 ##### Geometric Random Variable
 
-Suppose that we repeatedly and independently toss a biased coin with probability of a head *p*, where $0 < p < 1$ till a head comes up for the first time. The sample space corresponding to the experiment is given by
+Suppose that we repeatedly and independently toss a biased coin with probability of a head _p_, where $0 < p < 1$ till a head comes up for the first time. The sample space corresponding to the experiment is given by
 
 $$
 \Omega = \{H, TH, TTH, TTTH, \dots\}.
@@ -127,7 +125,7 @@ $$
 \sum_{k=0}^{\infty} p_X(k) = e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^k}{k!} = e^{-\lambda} e^{\lambda} = 1.
 $$
 
-An important property of the Poisson random variable is that it may be used to approximate a binomial random variable when the binomial parameter *n* is large and *p* is small.
+An important property of the Poisson random variable is that it may be used to approximate a binomial random variable when the binomial parameter _n_ is large and _p_ is small.
 
 ### Continuous Random Variables
 
@@ -136,16 +134,21 @@ Random variables with a continuous range of possible values are common. For exam
 For a continuous random variable $X$, the probability of it taking any single value is zero, so we use a **Probability Density Function (PDF)**, denoted $f_X(x)$, to describe its distribution.
 
 The PDF is defined as the derivative of the Cumulative Distribution Function (CDF), $F_X(x)$, where the derivative exists:
+
 $$
 f_X(x) = \frac{dF_X(x)}{dx}
 $$
+
 The probability that $X$ falls within an interval $[a, b]$ is the integral of the PDF over that interval:
+
 $$
 \mathbb{P}(a \leq X \leq b) = \int_a^b f_X(x) \, dx
 $$
+
 A valid PDF must satisfy two conditions: $f_X(x) \geq 0$ for all $x$, and its total integral must be one, $\int_{-\infty}^{\infty} f_X(x) \, dx = 1$.
 
 Conversely, the CDF can be obtained from the PDF by integrating from negative infinity up to a point $x$:
+
 $$
 F_X(x) = \mathbb{P}(X \leq x) = \int_{-\infty}^{x} f_X(u) \, du
 $$
