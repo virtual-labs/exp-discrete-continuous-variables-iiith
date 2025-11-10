@@ -78,12 +78,12 @@
         "d": "$P(10 < X \\leq 15) = \\sum_{k=10}^{15} \\frac{e^{-10} \\cdot 10^k}{k!}$"
       },
       "explanations": {
-        "a": "Correct! This correctly uses the Poisson probability mass function with the appropriate bounds and lambda value.",
-        "b": "Incorrect. The lower bound should be k=11, not k=10, to exclude 10.",
-        "c": "Incorrect. The lambda value used here is incorrect; it should be 15 instead of 10.",
-        "d": "Incorrect. Both the lambda value and the bounds are incorrect."
+        "a": "Incorrect. The average rate for the one-hour interval is $\\lambda = 10$, but this formula uses $\\lambda = 15$.",
+        "b": "Incorrect. This formula uses the wrong average rate ($\\lambda=15$) and the wrong lower bound for the sum. The condition is $10 < X$, so the sum must start at $k=11$.",
+        "c": "Correct. The average rate for the one-hour interval is $\\lambda = 10$. The condition $10 < X \\leq 15$ corresponds to summing the probabilities for integer values $k = 11, 12, 13, 14, 15$.",
+        "d": "Incorrect. While this formula uses the correct average rate ($\\lambda=10$), the lower bound of the sum is incorrect. The condition is $10 < X$, so the sum must start at $k=11$."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "c",
       "difficulty": "intermediate"
     }
   ]

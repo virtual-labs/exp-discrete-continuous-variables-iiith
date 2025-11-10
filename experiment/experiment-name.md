@@ -1,1 +1,1 @@
-# Discrete and Continuous Random Variables
+## Discrete and Continuous Random Variables
