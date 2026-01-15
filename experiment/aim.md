@@ -1,1 +1,1 @@
-The aim of this experiment is to comprehensively study and analyze the properties and behaviors of both discrete and continuous random variables through the exploration of their respective probability distributions, cumulative distribution functions (CDFs), and expected values.
+1. The aim of this experiment is to comprehensively study and analyze the properties and behaviors of both discrete and continuous random variables. We aim to explore their respective probability distributions, cumulative distribution functions (CDFs), and expected values.

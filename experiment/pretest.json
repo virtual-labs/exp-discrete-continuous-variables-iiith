@@ -21,10 +21,10 @@
     {
       "question": "2. An experiment consists of flipping a coin until the first 'Heads' appears. Let the random variable X represent the number of flips required. Which distribution's PMF should be used to model X?",
       "answers": {
-        "a": "Binomial",
-        "b": "Poisson",
-        "c": "Bernoulli",
-        "d": "Geometric"
+        "a": "Binomial Random Variable",
+        "b": "Poisson Random Variable",
+        "c": "Bernoulli Random Variable",
+        "d": "Geometric Random Variable"
       },
       "explanations": {
         "a": "Wrong answer. A Binomial RV counts successes in a fixed number of trials.",

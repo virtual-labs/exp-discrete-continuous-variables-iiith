@@ -18,7 +18,7 @@
 
 <li>
     In this experiment, you will be shown 4 graphs of the cumulative distribution function (CDF) of
-    4 different random variables.You have to verify if the given plots satisfy all the properties of
+    4 different random variables. You have to verify if the given plots satisfy all the properties of
     a CDF.
 </li>
 

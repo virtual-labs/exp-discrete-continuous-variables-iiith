@@ -19,7 +19,7 @@
       "difficulty": "intermediate"
     },
     {
-      "question": "2. A person 'S' is driving to work every working day. The driving time of 'S' is between 7 to 10 minutes on a sunny day and 30 to 45 minutes on a rainy day, with all times being equally likely in each case. In a month of 30 days, 3 weeks are said to be sunny while the rest are rainy. What is the PDF of the driving time as a random variable of X?",
+      "question": "2. A person 'S' is driving to work every working day. The driving time of 'S' is between 7 and 10 minutes on a sunny day, 30 and 45 minutes on a rainy day, with all times being equally likely in each case. In a month of 30 days, 3 weeks are said to be sunny while the rest are rainy. What is the PDF of the driving time as a random variable of X?",
       "answers": {
         "a": "$f_X(x) = \\frac{7}{30}, \\text{ for } 7 \\leq x \\leq 10$ and $f_X(x) = \\frac{3}{150}, \\text{ for } 30 \\leq x \\leq 45$, and $f_X(x) = 0 \\text{ otherwise}$",
         "b": "$f_X(x) = \\frac{1}{30}, \\text{ for } 7 \\leq x \\leq 10$ and $f_X(x) = \\frac{2}{150}, \\text{ for } 30 \\leq x \\leq 45$, and $f_X(x) = 0 \\text{ otherwise}$",

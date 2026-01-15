@@ -16,7 +16,7 @@ $$
 
 is discrete.
 
-For a discrete random variable X, we define the probability mass function (pmf) of X by
+For a discrete random variable $X$, we define the probability mass function (pmf) of $X$ by
 
 $$
 p_X(a) = P(X = a) = P(\{\omega | X(\omega) = a\}).
@@ -28,7 +28,7 @@ $$
 \sum_{I=1}^{\infty} p_X(x_I) = 1,
 $$
 
-where $\{x_1, x_2, \dots, \}$ is the range of the random variable X.
+where $\{x_1, x_2, \dots, \}$ is the range of the random variable $X$.
 
 The CDF of a random variable $ X $ is defined as:
 
@@ -46,7 +46,7 @@ $$
 
 ##### Bernoulli Random Vadriable
 
-Consider the toss of a biased coin, which comes up a head with probability _p_, and a tail with probability 1 − _p_. The Bernoulli random variable takes the two values 1 and 0, depending on whether the outcome is a head or a tail:
+Consider the toss of a biased coin, which comes up a head with probability $p$, and a tail with probability $1 − p$. The Bernoulli random variable takes the two values 1 and 0, depending on whether the outcome is a head or a tail:
 
 $$
 X(T) = 0, \quad X(H) = 1.
@@ -71,7 +71,7 @@ $$
 
 ##### Binomial Random Variable
 
-A biased coin is tossed _n_ times. At each toss, the coin comes up a head with probability _p_, and a tail with probability $1-p$, independently of prior tosses. The sample space is given by the set of all $2^n$ possible tuples
+A biased coin is tossed _n_ times. At each toss, the coin comes up a head with probability $p$, and a tail with probability $1-p$, independently of prior tosses. The sample space is given by the set of all $2^n$ possible tuples
 
 of H, T combinations. For the case of _n_ = 4, the sample space is as given below:
 
@@ -79,7 +79,7 @@ $$
 \Omega = \{TTTT, TTTH, TTHT, TTHH, THTT, THTH, THHT, THHH, HTTT, HTTH, HTHT, HTHH, HHTT, HHTH, HHHT, HHHH\}.
 $$
 
-For any $\omega \in \Omega$, $X(\omega)$ is defined as the number of heads in $\omega$. The range of values which the random variable X takes is $\{0, 1, \dots, n\}$. The probability mass function (pmf) of the random variable X is given by
+For any $\omega \in \Omega$, $X(\omega)$ is defined as the number of heads in $\omega$. The range of values which the random variable $X$ takes is $\{0, 1, \dots, n\}$. The probability mass function (pmf) of the random variable $X$ is given by
 
 $$
 p_X(k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad 0 \le k \le n
@@ -93,13 +93,13 @@ $$
 
 ##### Geometric Random Variable
 
-Suppose that we repeatedly and independently toss a biased coin with probability of a head _p_, where $0 < p < 1$ till a head comes up for the first time. The sample space corresponding to the experiment is given by
+Suppose that we repeatedly and independently toss a biased coin with probability of a head $p$, where $0 < p < 1$ till a head comes up for the first time. The sample space corresponding to the experiment is given by
 
 $$
 \Omega = \{H, TH, TTH, TTTH, \dots\}.
 $$
 
-For any $\omega \in \Omega$, $X(\omega)$ is defined as the number of tosses in $\omega$. The range of values which the random variable X takes is $\{1, 2, \dots, \}$. The probability mass function (pmf) of the random variable X is given by
+For any $\omega \in \Omega$, $X(\omega)$ is defined as the number of tosses in $\omega$. The range of values which the random variable $X$ takes is $\{1, 2, \dots, \}$. The probability mass function (pmf) of the random variable $X$ is given by
 
 $$
 p_X(k) = (1-p)^{k-1}p, \quad k \in \{1, 2, \dots\}.
