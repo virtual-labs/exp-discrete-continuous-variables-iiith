@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <title>CDF Properties</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Header and Tabs -->
+        <div class="columns is-centered">
+            <div class="column is-full"><h2 class="tasks-heading">Tasks</h2></div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li onclick="window.location.href = 'cdf.html';"><a>CDF</a></li>
+                        <li class="is-active"><a>CDF Properties</a></li>
+                        <li onclick="window.location.href = 'cdf_toPdmf.html';"><a>CDF to PMF/PDF</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheading-box">
+            <h3 class="title">Properties of CDF</h3>
+        </div>
+
+        <!-- Instructions -->
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding: 0 10%;">
+                        <ul style="list-style: disc; margin-bottom: 10px;">
+                            <b>Procedure:</b>
+                            <ul style="list-style: circle; margin-left: 20px;">
+                                <li>You are shown 4 graphs. You have to verify if they satisfy all properties of a valid CDF.</li>
+                                <li>First, click on a graph to select it. The selected graph will be highlighted.</li>
+                                <li>Then, select the property that you think the graph violates from the list on the right.</li>
+                                <li>If it satisfies all properties, select the last option.</li>
+                                <li>Your result will be displayed in the observation panel.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section>
+            <div class="columns is-centered">
+                <!-- Experiment Panel -->
+                <div class="column is-8-desktop is-9-tablet">
+                    <div class="white-boxed-panel">
+                        <div class="properties-layout">
+                            <div id="graph1" class="graph-container" onclick="sendresponse(1)">
+                                <div class="questiondiv">1. Uniform Discrete RV with \(x = \{1,2,3,4,5\}\)</div>
+                                <img src="./images/UniformCDF.png" alt="Uniform Discrete CDF">
+                            </div>
+                            <div id="graph2" class="graph-container" onclick="sendresponse(2)">
+                                <div class="questiondiv">2. Binomial Discrete RV with \(n = 5, p > 0.5\)</div>
+                                <img src="./images/BnomialCDFDiscrete.png" alt="Binomial Discrete CDF">
+                            </div>
+                            <div id="graph3" class="graph-container" onclick="sendresponse(3)">
+                                <div class="questiondiv">3. Uniform Continuous RV with \(a = 2, b = 5\)</div>
+                                <img src="./images/uniformCDFContinous.png" alt="Uniform Continuous CDF">
+                            </div>
+                            <div id="graph4" class="graph-container" onclick="sendresponse(4)">
+                                <div class="questiondiv">4. Normal Continuous RV with \(\mu = 0, \sigma = 2\)</div>
+                                <img src="./images/NormalCDF.png" alt="Normal Continuous CDF">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Observations Panel -->
+                <div class="column is-3-desktop is-12-tablet">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Verifier</div>
+                        <div class="mcq-container" id="mcq">
+                            <p id="AnswerChoiceText" style="font-weight:bold; margin-bottom:15px; min-height: 40px;">No graph selected.</p>
+                            <div class="answerdiv" onclick="checkanswer(1)">Violates Property 1: Limits at \(-\infty\) and \(+\infty\)</div>
+                            <div class="answerdiv" onclick="checkanswer(2)">Violates Property 2: Non-decreasing</div>
+                            <div class="answerdiv" onclick="checkanswer(3)">Violates Property 3: Right-continuous</div>
+                            <div class="answerdiv" onclick="checkanswer(4)">Satisfies all properties</div>
+                        </div>
+                        <hr>
+                        <div class="v-datalist-title">Observation</div>
+                        <div id="obsBody" style="text-align: left; padding: 5px;">Select a graph and then choose an option.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/cdf_properties.js"></script>
+</body>
+</html>

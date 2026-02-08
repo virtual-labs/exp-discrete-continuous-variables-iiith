@@ -1,0 +1,379 @@
+/* --- UNIFIED STYLESHEET (style.css) --- */
+
+/* ----------------------------------------
+   Base, Header & Tab Styling (from Template)
+   ---------------------------------------- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 20px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.tasks-heading {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+.v-tabs ul {
+    display: flex;
+    justify-content: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.v-tabs li {
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+}
+
+.v-tabs a {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.v-tabs li.is-active>a {
+    color: #3273dc;
+    border-bottom: 3px solid #3273dc;
+}
+
+.v-tabs a:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.subheading-box {
+    background-color: #f7fdf7;
+    border-left: 4px solid #3c763d;
+    padding: 0.75rem 1rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.subheading-box .title {
+    color: #3c763d;
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* ----------------------------------------
+   Main Content Panels & Observation Box (from Template)
+   ---------------------------------------- */
+.white-boxed-panel {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    text-align: center; /* Center content by default */
+}
+
+.v-datalist-container.components-list {
+    border: 2px solid #8dc63f;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fafafa;
+    height: 100%;
+}
+
+.v-datalist-title {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-weight: 600;
+    color: #363636;
+}
+
+/* General button styling */
+.v-button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #3273dc;
+    border: 2px solid #3273dc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+.v-button:hover {
+    background-color: #275bb0;
+}
+
+.v-button:disabled {
+    background-color: #b5b5b5;
+    border-color: #b5b5b5;
+    cursor: not-allowed;
+}
+
+.button-holder-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid #eee;
+}
+
+/* ----------------------------------------
+   Coin Flip Animation (for Bernoulli)
+   ---------------------------------------- */
+.coin-container {
+    width: 150px;
+    height: 150px;
+    perspective: 1000px;
+    margin: 2rem auto;
+}
+
+.coin {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    /* transition is now set via JS for better control */
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    border-radius: 50%;
+}
+
+.front {
+    background-color: #d4af37; /* Gold */
+    border: 5px solid #b8860b;
+}
+
+.back {
+    background-color: #c0c0c0; /* Silver */
+    border: 5px solid #a9a9a9;
+    transform: rotateY(180deg);
+}
+
+/* ----------------------------------------
+   Styles for Bernoulli, Geometric, Binomial & Poisson
+   ---------------------------------------- */
+
+/* Input sections */
+.input-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.input-section input[type="number"] {
+    width: 70px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Result display */
+.results-display {
+    margin-top: 1.5rem;
+    font-size: 1.1em;
+}
+
+.results-display div {
+    margin: 0.5rem 0;
+}
+
+/* Grid for previous results (Binomial/Geometric) */
+.previous-results-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin: 1rem auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 90%;
+}
+
+.previous-results-grid span {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f7f7f7;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Binomial and Poisson specific stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#graphDiv, #zoomedGraphDiv {
+    margin-top: 20px;
+}
+
+
+/* ----------------------------------------
+   Styles for CDF Pages
+   ---------------------------------------- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 1.5rem 0;
+}
+
+.grid-container .ans {
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.grid-container .ans:hover {
+    background-color: #3273dc;
+    color: white;
+}
+
+.hiddenInitially {
+    display: none;
+}
+
+#cdf-img-elem, #cont-cdf-canvas-elem, #disc-cdf-canvas-elem {
+    max-width: 100%;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#select-rv-type, #pdf-resp, #pmf-resp {
+    margin-top: 1rem;
+}
+#select-rv-type select, #pdf-resp input, #pmf-resp input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px auto;
+    display: block;
+}
+
+/* ----------------------------------------
+   Styles for CDF Properties Page
+   ---------------------------------------- */
+.properties-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.graph-container {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.graph-container:hover {
+    border-color: #3273dc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.graph-container .questiondiv {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.graph-container img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.graph-container.selected {
+    border-color: #3273dc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mcq-container .answerdiv {
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.mcq-container .answerdiv:hover {
+    background-color: #e9e9e9;
+}
+
+/* ----------------------------------------
+   Responsiveness (from Template)
+   ---------------------------------------- */
+@media (max-width: 1024px) {
+    .columns {
+        flex-direction: column;
+        align-items: center;
+    }
+    .column {
+        width: 90% !important;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .white-boxed-panel {
+        width: 100%;
+        padding: 1.5rem;
+    }
+}
+
+/* Add these new rules to style.css under "Styles for CDF Pages" */
+
+.pdf-input-grid, .pmf-input-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+    max-width: 350px;
+    margin: 1rem auto;
+}
+
+.pdf-input-grid label, .pmf-input-grid label {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+#pdf-resp input, #pmf-resp input {
+    width: 100%; /* Override the max-width for inputs inside these grids */
+    max-width: none;
+    display: initial; /* Override display block */
+}
