@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <title>CDF</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Header and Tabs -->
+        <div class="columns is-centered">
+            <div class="column is-full"><h2 class="tasks-heading">Tasks</h2></div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li class="is-active"><a>CDF</a></li>
+                        <li onclick="window.location.href = 'cdf_properties.html';"><a>CDF Properties</a></li>
+                        <li onclick="window.location.href = 'cdf_toPdmf.html';"><a>CDF to PMF/PDF</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheading-box">
+            <h3 class="title">Cumulative Distribution Function (CDF)</h3>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding: 0 10%;">
+                        <ul style="list-style: disc; margin-bottom: 10px;">
+                             <b>Procedure:</b>
+                            <ul style="list-style: circle; margin-left: 20px;">
+                                <li>Click the button to generate a random number "c".</li>
+                                <li>Find the inverse image from \(X \leq c\) for the given RV \(X\) by selecting the correct set. The system will check your answer immediately.</li>
+                                <li>If your inverse image is correct, calculate and enter the CDF value, \(F_X(c)\).</li>
+                                <li>Click "Submit" to check your final answer.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section>
+            <div class="columns is-centered">
+                <!-- Experiment Panel -->
+                <div class="column is-8-desktop is-9-tablet">
+                    <div class="white-boxed-panel">
+                        <p>
+                            Given \(\Omega = \{\omega_1, \omega_2, \omega_3, \omega_4\}\), a probability measure where \(P(\{\omega_1\}) = 0.2\) and \(P(\{\omega_2,\omega_3,\omega_4\}) = 0.8\), and a Random Variable \(X\) defined as: \(X(\omega_1) = 1\), \(X(\omega_2) = 2\), \(X(\omega_3) = 2\), \(X(\omega_4) = 2\).
+                        </p>
+                        <hr>
+                        <div id="generateNumberButton1">
+                            <button class="v-button" role="button" onclick="generateRandom1()">Generate a random number 'c'</button>
+                        </div>
+                        <div id="generatedNumber1" style="font-weight: bold; margin: 1rem 0;"></div>
+
+                        <div id="selectInverseImage1" class="hiddenInitially">
+                            <p><b>1. Find the inverse image, which is the set \(\{\omega \in \Omega : X(\omega) \le c\}\)</b></p>
+                            <div class="grid-container">
+                                <div class="ans" onclick="checkInverseImage1(0,0,0,0)">\(\phi\)</div>
+                                <div class="ans" onclick="checkInverseImage1(1,0,0,0)">\(\{\omega_1\}\)</div>
+                                <div class="ans" onclick="checkInverseImage1(0,1,1,1)">\(\{\omega_2, \omega_3, \omega_4\}\)</div>
+                                <div class="ans" onclick="checkInverseImage1(1,1,1,1)">\(\{\omega_1, \omega_2, \omega_3, \omega_4\}\)</div>
+                            </div>
+                        </div>
+                        <div id="selectedInverseImage1" style="margin: 1rem 0;"></div>
+
+                        <div id="enterCDF1" class="hiddenInitially">
+                            <p><b>2. Now, find \(F_X(c) = P(\{\omega \in \Omega : X(\omega) \le c\})\)</b></p>
+                            <input type="number" id="enteredCDF1" placeholder="Enter CDF value" required style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                            <button class="v-button" role="button" onclick="checkCDF1()">Submit</button>
+                        </div>
+
+                        <div class="button-holder-div">
+                            <button class="v-button" role="button" onclick="reset1()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Observations Panel -->
+                <div class="column is-3-desktop is-12-tablet">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="observations1" style="font-weight:bold; width:100%; text-align:center; margin-bottom:10px;"></div>
+					    <div id="results1" style="width:100%; text-align:center;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/cdf.js"></script>
+</body>
+</html>

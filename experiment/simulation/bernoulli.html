@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <title>Bernoulli RV</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header and Tabs -->
+        <div class="columns is-centered">
+            <div class="column is-full">
+                <h2 class="tasks-heading">Tasks</h2>
+            </div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li class="is-active"><a>Bernoulli RV</a></li>
+                        <li onclick="window.location.href = 'binomial.html';"><a>Binomial RV</a></li>
+                        <li onclick="window.location.href = 'geometric.html';"><a>Geometric RV</a></li>
+                        <li onclick="window.location.href = 'Poisson.html';"><a>Poisson RV</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheading-box">
+            <h3 class="title">Bernoulli Random Variable</h3>
+        </div>
+        
+        <!-- Theory and Instructions -->
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding: 0 10%;">
+                        <ul style="list-style: disc; margin-bottom: 10px;">
+                             <b>Procedure:</b>
+                            <ul style="list-style: circle; margin-left: 20px;">
+                                <li>A <b>Head</b> is considered a "success" and is mapped to \(X=1\).</li>
+                                <li>A <b>Tail</b> is considered a "failure" and is mapped to \(X=0\).</li>
+                                <li>Choose a value for the probability of getting a Head, denoted by \(p\).</li>
+                                <li>Enter the value of \(p\) in the input box and click "Set".</li>
+                                <li>Click "TOSS" to simulate the coin flip and watch the animation.</li>
+                                <li>Observe the outcome and read the detailed explanation in the "Observations" panel.</li>
+                                <li>Click "Reset" to start over with a new probability.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section>
+            <div class="columns is-centered">
+                <!-- Experiment Panel -->
+                <div class="column is-8-desktop is-9-tablet">
+                    <div class="white-boxed-panel">
+                        <p style="margin-bottom: 1.5rem;">
+                            Take a coin with the probability of getting a Head on tossing it being \(p\). We will model the result as a Bernoulli random variable \(X\).
+                        </p>
+
+                        <div id="input-p-bernoulli-div" class="input-section">
+                            P(H) = <input type="number" id="input-p-bernoulli" value="0.5" step="0.01" min="0" max="1">
+                            <button class="v-button" role="button" onclick="setPbernoulli()">Set</button>
+                        </div>
+
+                        <div id="bernoulli-instance" style="display: none;">
+                            <p>We have set the probability of a Head: <b>P(H) = <span id="p-bernoulli-value">0</span></b>.</p>
+                            <p>This means the probability of a Tail is <b>P(T) = <span id="q-bernoulli-value">0</span></b>.</p>
+                            <p>Mapping: Head to X=1 and Tail to X=0.</p>
+                            <br>
+
+                            <!-- Animated Coin -->
+                            <div class="coin-container">
+                                <div id="coin" class="coin">
+                                    <div class="face front">H</div>
+                                    <div class="face back">T</div>
+                                </div>
+                            </div>
+                            
+                            <button class="v-button" role="button" id="bernoulli-instance-btn" onclick="bernoulli()">TOSS</button>
+                            <div id="bernoulli-result" class="results-display" style="font-weight: bold; font-size: 1.2em; min-height: 30px;">
+                                <!-- Result will be displayed here -->
+                            </div>
+                        </div>
+
+                        <div class="button-holder-div">
+                            <button class="v-button" role="button" onclick="reset()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Observations Panel -->
+                <div class="column is-3-desktop is-12-tablet">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="observations" style="font-size: 1em; padding: 10px; text-align: left;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/bernoulli.js"></script>
+</body>
+</html>

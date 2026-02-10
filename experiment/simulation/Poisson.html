@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Poisson RV</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Header and Tabs -->
+        <div class="columns is-centered">
+            <div class="column is-full">
+                <h2 class="tasks-heading">Tasks</h2>
+            </div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li onclick="window.location.href = 'bernoulli.html';"><a>Bernoulli RV</a></li>
+                        <li onclick="window.location.href = 'binomial.html';"><a>Binomial RV</a></li>
+                        <li onclick="window.location.href = 'geometric.html';"><a>Geometric RV</a></li>
+                        <li class="is-active"><a>Poisson RV</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="subheading-box">
+            <h3 class="title">Poisson Random Variable</h3>
+        </div>
+
+        <!-- Instructions -->
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding: 0 10%;">
+                        <ul style="list-style: disc; margin-bottom: 10px;">
+                            <b>Procedure:</b>
+                            <ul style="list-style: circle; margin-left: 20px;">
+                                <li>The simulation shows how a Binomial RV converges to a Poisson RV as \(n \to \infty\) and \(p \to 0\) such that \(np = \lambda\) is constant.</li>
+                                <li>A value for \(\lambda\) is randomly generated.</li>
+                                <li>Set \(n\) and \(p\) for three experiments such that \(np = \lambda\), with \(n\) increasing across experiments. Use the suggested ranges for \(n_1, n_2, n_3\).</li>
+                                <li>Click "Set", then "Run Experiments" to simulate all three scenarios.</li>
+                                <li>Observe the results and the graph, which now appears in the main panel.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section>
+            <div class="columns is-centered">
+                <!-- Experiment Panel -->
+                <div class="column is-8-desktop is-9-tablet">
+                    <div class="white-boxed-panel">
+                        <p style="font-weight: bold; font-size: 1.2em;">
+                            Target Mean: \(\lambda\) = <span id="inputLambda">0</span>
+                        </p>
+                        
+                        <div id="inputDiv" class="input-section">
+                            <div>
+                                Exp 1: \(n_1\) (10-50) = <input type="number" id="numofexperiments1" value="10" step="1" min="10" max="50">
+                                , \(p_1\) = <input type="number" id="inputProbability1" value="0.5" step="0.001" min="0" max="1">
+                            </div>
+                            <div>
+                                Exp 2: \(n_2\) (51-100) = <input type="number" id="numofexperiments2" value="51" step="1" min="51" max="100">
+                                , \(p_2\) = <input type="number" id="inputProbability2" value="0.1" step="0.001" min="0" max="1">
+                            </div>
+                            <div>
+                                Exp 3: \(n_3\) (101-150) = <input type="number" id="numofexperiments3" value="101" step="1" min="101" max="150">
+                                , \(p_3\)  = <input type="number" id="inputProbability3" value="0.05" step="0.001" min="0" max="1">
+                            </div>
+                            <button class="v-button" role="button" onclick="setPPoisson()">Set Parameters</button>
+                        </div>
+
+                        <div id="poissonDiv" style="display: none;">
+                            <p>Values set for (n, p): 
+                                (<b><span id="experimentsValue1">0</span></b>, <b><span id="probabilityValue1">0</span></b>),
+                                (<b><span id="experimentsValue2">0</span></b>, <b><span id="probabilityValue2">0</span></b>),
+                                (<b><span id="experimentsValue3">0</span></b>, <b><span id="probabilityValue3">0</span></b>)
+                            </p>
+                            <button class="v-button" role="button" id="run-experiments-btn" onclick="runAllExperiments()">Run Experiments</button>
+                            <div id="simulation-status" style="margin-top: 1rem; font-weight: bold; min-height: 25px;"></div>
+                            
+                            <div class="stats-grid" style="margin-top: 1.5rem;">
+                                <div>
+                                    <strong>Exp 1 (n=<span class="nVal1"></span>)</strong><br>
+                                    Heads: <span id="numOfHeads1">0</span><br>
+                                    Tails: <span id="numOfTails1">0</span>
+                                </div>
+                                <div>
+                                    <strong>Exp 2 (n=<span class="nVal2"></span>)</strong><br>
+                                    Heads: <span id="numOfHeads2">0</span><br>
+                                    Tails: <span id="numOfTails2">0</span>
+                                </div>
+                                <div>
+                                    <strong>Exp 3 (n=<span class="nVal3"></span>)</strong><br>
+                                    Heads: <span id="numOfHeads3">0</span><br>
+                                    Tails: <span id="numOfTails3">0</span>
+                                </div>
+                            </div>
+
+                            <!-- MOVED GRAPH -->
+                            <div id="graphDiv" style="display:none; width:100%; margin-top: 2rem;">
+                                <canvas id="linechart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="button-holder-div">
+                            <button class="v-button" role="button" onclick="reset()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Observations Panel -->
+                <div class="column is-3-desktop is-12-tablet">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="observations" style="font-size: 1em; text-align: left; padding: 10px;">Set parameters and run the experiments.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/Poisson.js"></script>
+</body>
+</html>
